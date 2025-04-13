@@ -258,7 +258,7 @@
       color: white;
     }
     
-    /* Updated Game Section Styles */
+    /* Games Section - Mobile Optimized */
     .section {
       padding: 30px 16px;
     }
@@ -283,9 +283,12 @@
     }
     
     .section-title h2 {
-      font-size: 1.8rem;
-      font-weight: 600;
-      color: var(--primary);
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
     
     .view-all {
@@ -298,233 +301,70 @@
       font-size: 0.95rem;
     }
     
-    /* New Game Grid Style */
-    .baps {
+    /* New Game Grid Style - 2 columns */
+    .game-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 20px;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
     }
     
-    .bav {
+    .game-card {
       background: var(--light);
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease-in-out;
-      cursor: pointer;
-    }
-    
-    .bav:hover {
-      transform: translateY(-5px);
-    }
-    
-    .bav a {
-      text-decoration: none;
-      color: var(--text);
-      display: block;
-      padding: 15px;
-    }
-    
-    .bloque-imagen img {
-      width: 100%;
-      height: auto;
-      border-radius: 10px;
-    }
-    
-    .title {
-      display: block;
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin: 10px 0 5px;
-      color: var(--text);
-    }
-    
-    .version {
-      display: block;
-      font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.7);
-      margin-bottom: 10px;
-    }
-    
-    .px-postmeta {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-    
-    .box-rating {
-      display: inline-block;
-      position: relative;
-      color: var(--warning);
-    }
-    
-    .box-rating .stars {
-      display: inline-block;
-      position: relative;
-    }
-    
-    .box-rating .stars i {
-      font-size: 1rem;
-    }
-    
-    .box-rating .stars::before {
-      content: "\f005 \f005 \f005 \f005 \f005";
-      font-family: "Font Awesome 5 Free";
-      font-weight: 900;
-      color: rgba(255, 255, 255, 0.2);
-    }
-    
-    .box-rating .stars::after {
-      content: "\f005 \f005 \f005 \f005 \f005";
-      font-family: "Font Awesome 5 Free";
-      font-weight: 900;
-      color: var(--warning);
-      position: absolute;
-      top: 0;
-      left: 0;
-      overflow: hidden;
-    }
-    
-    .box-rating[data-post-id="75"] .stars::after {
-      width: 92%;
-    }
-    
-    .box-rating[data-post-id="68"] .stars::after {
-      width: 98%;
-    }
-    
-    .box-rating[data-post-id="55"] .stars::after {
-      width: 96%;
-    }
-    
-    .box-rating[data-post-id="46"] .stars::after {
-      width: 100%;
-    }
-    
-    /* Game Detail Modal */
-    .game-detail-modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.9);
-      z-index: 1000;
-      overflow-y: auto;
-    }
-    
-    .game-detail-content {
-      background: var(--light);
-      max-width: 800px;
-      margin: 30px auto;
       border-radius: var(--border-radius);
       overflow: hidden;
-      position: relative;
+      box-shadow: var(--box-shadow);
+      transition: var(--transition);
+      border: 1px solid rgba(255,255,255,0.05);
     }
     
-    .game-detail-header {
-      position: relative;
-    }
-    
-    .game-detail-banner {
+    .game-card-img {
       width: 100%;
-      height: 300px;
+      height: 150px;
       object-fit: cover;
     }
     
-    .game-detail-close {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      background: rgba(0,0,0,0.7);
-      color: white;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      font-size: 1.2rem;
+    .game-card-content {
+      padding: 12px;
     }
     
-    .game-detail-body {
-      padding: 20px;
+    .game-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 5px;
+      color: var(--white);
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
     
-    .game-detail-title {
-      font-size: 1.8rem;
-      margin-bottom: 10px;
-      color: var(--primary);
-    }
-    
-    .game-detail-meta {
-      display: flex;
-      gap: 15px;
-      margin-bottom: 15px;
-      flex-wrap: wrap;
-    }
-    
-    .game-detail-version {
-      background: var(--darker);
-      padding: 5px 10px;
-      border-radius: 20px;
-      font-size: 0.9rem;
-    }
-    
-    .game-detail-size {
-      color: var(--text-secondary);
-      font-size: 0.9rem;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-    
-    .game-detail-rating {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      color: var(--warning);
-    }
-    
-    .game-detail-description {
-      margin: 20px 0;
-      line-height: 1.6;
-    }
-    
-    .game-detail-buttons {
-      display: flex;
-      gap: 15px;
-      margin: 25px 0;
-    }
-    
-    .game-detail-download {
-      background: var(--primary);
-      color: var(--dark);
-      padding: 12px 25px;
-      border-radius: 50px;
-      font-weight: 600;
-      text-decoration: none;
+    .game-meta {
       display: flex;
       align-items: center;
       gap: 8px;
+      margin-bottom: 8px;
+      font-size: 0.8rem;
     }
     
-    .related-games {
-      margin-top: 40px;
+    .game-rating {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      color: var(--warning);
     }
     
-    .related-games-title {
-      font-size: 1.3rem;
-      margin-bottom: 20px;
-      color: var(--primary);
+    .game-size {
+      color: var(--text-secondary);
+      font-size: 0.75rem;
     }
     
-    .related-games-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 15px;
+    .game-version {
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+      background: rgba(255,255,255,0.05);
+      padding: 3px 6px;
+      border-radius: 4px;
+      display: inline-block;
     }
     
     /* Features Section */
@@ -1096,6 +936,22 @@
       display: none;
     }
     
+    /* Star Rating Styles */
+    .game-rating {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      color: var(--warning);
+    }
+    
+    .game-rating i {
+      font-size: 0.7rem;
+    }
+    
+    .game-rating span {
+      font-size: 0.7rem;
+    }
+    
     /* Verified Badge */
     .dl-verified {
       display: flex;
@@ -1158,7 +1014,7 @@
         padding: 0;
       }
       
-      .baps {
+      .game-grid {
         grid-template-columns: repeat(3, 1fr);
       }
       
@@ -1176,10 +1032,6 @@
       
       .hero-buttons .btn {
         max-width: 180px;
-      }
-      
-      .game-detail-buttons {
-        flex-direction: row;
       }
     }
     
@@ -1245,7 +1097,7 @@
         align-items: center;
       }
       
-      .baps {
+      .game-grid {
         grid-template-columns: repeat(4, 1fr);
       }
       
@@ -1273,30 +1125,11 @@
       .hero-buttons {
         padding: 0 30px;
       }
-      
-      .related-games-grid {
-        grid-template-columns: repeat(4, 1fr);
-      }
-    }
-    
-    @media (max-width: 768px) {
-      .baps {
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      }
-    
-      .title {
-        font-size: 1rem;
-      }
-    
-      .version {
-        font-size: 0.8rem;
-      }
-      
-      .game-detail-buttons {
-        flex-direction: column;
-      }
     }
   </style>
+  
+  <!-- Ads -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4143839749025019" crossorigin="anonymous"></script>
 </head>
 <body>
   <!-- Header -->
@@ -1372,169 +1205,100 @@
   <section class="section" id="featured-games">
     <div class="section-header">
       <div class="section-title">
-        <h2>Latest Games</h2>
+        <i class="fas fa-star"></i>
+        <h2>Featured Games</h2>
       </div>
       <a href="#" class="view-all" id="viewAllBtn">
         View All <i class="fas fa-arrow-right"></i>
       </a>
     </div>
     
-    <div class="baps">
+    <div class="game-grid">
       <!-- Game Card 1 -->
-      <div class="bav animate-in" onclick="showGameDetail('BeamNG.drive Mobile', 'v0.32.0.0', 'https://i.ibb.co/VYfy7Bcs/Picsart-25-03-08-05-57-01-681.jpg', '75')">
-        <div class="bloque-imagen">
-          <img src="https://i.ibb.co/VYfy7Bcs/Picsart-25-03-08-05-57-01-681.jpg" alt="BeamNG.drive Mobile" loading="lazy">
-        </div>
-        <span class="title">BeamNG.drive Mobile</span>
-        <span class="version">v0.32.0.0</span>
-        <div class="px-postmeta">
-          <div class="box-rating voted" data-post-id="75">
-            <span class="rating">
-              <span class="stars"></span>
-            </span>
+      <div class="game-card animate-in">
+        <a href="https://modxnet.github.io/BeamNG.drive/" title="BeamNG drive">
+          <img src="https://i.ibb.co/VYfy7Bcs/Picsart-25-03-08-05-57-01-681.jpg" alt="BeamNG.drive Mobile" class="game-card-img" loading="lazy">
+          <div class="game-card-content">
+            <h3 class="game-title">BeamNG.drive Mobile</h3>
+            <span class="game-version">v0.32.0.0</span>
+            <div class="game-meta">
+              <div class="game-rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+                <span>4.7</span>
+              </div>
+            </div>
           </div>
-        </div>
+        </a>
       </div>
       
       <!-- Game Card 2 -->
-      <div class="bav animate-in delay-1" onclick="showGameDetail('Grand Theft Auto V', 'v1.0.3095/1.68', 'https://i.ibb.co/FzQ7s9s/gta5.jpg', '68')">
-        <div class="bloque-imagen">
-          <img src="https://i.ibb.co/FzQ7s9s/gta5.jpg" alt="GTA 5 Mobile" loading="lazy">
-        </div>
-        <span class="title">Grand Theft Auto V</span>
-        <span class="version">v1.0.3095/1.68</span>
-        <div class="px-postmeta">
-          <div class="box-rating voted" data-post-id="68">
-            <span class="rating">
-              <span class="stars"></span>
-            </span>
+      <div class="game-card animate-in delay-1">
+        <a href="https://modxnet.github.io/GTA-5/" title="Grand Theft Auto V">
+          <img src="https://i.ibb.co/FzQ7s9s/gta5.jpg" alt="GTA 5 Mobile" class="game-card-img" loading="lazy">
+          <div class="game-card-content">
+            <h3 class="game-title">Grand Theft Auto V</h3>
+            <span class="game-version">v1.0.3095/1.68</span>
+            <div class="game-meta">
+              <div class="game-rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <span>5.0</span>
+              </div>
+            </div>
           </div>
-        </div>
+        </a>
       </div>
       
       <!-- Game Card 3 -->
-      <div class="bav animate-in delay-2" onclick="showGameDetail('Assetto Corsa Mobile', 'v1.16.4', 'https://i.ibb.co/yFvT3ZWd/Picsart-25-02-25-00-54-38-367.jpg', '55')">
-        <div class="bloque-imagen">
-          <img src="https://i.ibb.co/yFvT3ZWd/Picsart-25-02-25-00-54-38-367.jpg" alt="Assetto Corsa Mobile" loading="lazy">
-        </div>
-        <span class="title">Assetto Corsa Mobile</span>
-        <span class="version">v1.16.4</span>
-        <div class="px-postmeta">
-          <div class="box-rating voted" data-post-id="55">
-            <span class="rating">
-              <span class="stars"></span>
-            </span>
+      <div class="game-card animate-in delay-2">
+        <a href="https://modxnet.github.io/assetto-corsa/" title="Assetto Corsa Mobile">
+          <img src="https://i.ibb.co/yFvT3ZWd/Picsart-25-02-25-00-54-38-367.jpg" alt="Assetto Corsa Mobile" class="game-card-img" loading="lazy">
+          <div class="game-card-content">
+            <h3 class="game-title">Assetto Corsa Mobile</h3>
+            <span class="game-version">v1.16.4</span>
+            <div class="game-meta">
+              <div class="game-rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+                <span>4.2</span>
+              </div>
+            </div>
           </div>
-        </div>
+        </a>
       </div>
       
       <!-- Game Card 4 -->
-      <div class="bav animate-in delay-3" onclick="showGameDetail('Forza Horizon 5 Mobile', 'v1.656.386.0', 'https://i.ibb.co/jkMCTy35/Picsart-25-02-02-15-18-45-924.jpg', '46')">
-        <div class="bloque-imagen">
-          <img src="https://i.ibb.co/jkMCTy35/Picsart-25-02-02-15-18-45-924.jpg" alt="Forza Horizon 5 Mobile" loading="lazy">
-        </div>
-        <span class="title">Forza Horizon 5 Mobile</span>
-        <span class="version">v1.656.386.0</span>
-        <div class="px-postmeta">
-          <div class="box-rating voted" data-post-id="46">
-            <span class="rating">
-              <span class="stars"></span>
-            </span>
+      <div class="game-card animate-in delay-3">
+        <a href="https://modxnet.github.io/forza-horizon/" title="Forza Horizon 5 Mobile">
+          <img src="https://i.ibb.co/jkMCTy35/Picsart-25-02-02-15-18-45-924.jpg" alt="Forza Horizon 5 Mobile" class="game-card-img" loading="lazy">
+          <div class="game-card-content">
+            <h3 class="game-title">Forza Horizon 5 Mobile</h3>
+            <span class="game-version">v1.656.386.0</span>
+            <div class="game-meta">
+              <div class="game-rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <span>4.9</span>
+              </div>
+            </div>
           </div>
-        </div>
+        </a>
       </div>
     </div>
   </section>
-
-  <!-- Game Detail Modal -->
-  <div class="game-detail-modal" id="gameDetailModal">
-    <div class="game-detail-content">
-      <div class="game-detail-header">
-        <img id="gameDetailBanner" src="" alt="" class="game-detail-banner">
-        <div class="game-detail-close" onclick="closeGameDetail()">
-          <i class="fas fa-times"></i>
-        </div>
-      </div>
-      <div class="game-detail-body">
-        <h1 class="game-detail-title" id="gameDetailTitle"></h1>
-        <div class="game-detail-meta">
-          <span class="game-detail-version" id="gameDetailVersion"></span>
-          <span class="game-detail-size">
-            <i class="fas fa-download"></i> 1.2GB
-          </span>
-          <span class="game-detail-rating" id="gameDetailRating">
-            <i class="fas fa-star"></i> 4.8
-          </span>
-        </div>
-        <p class="game-detail-description">
-          Experience the ultimate mobile gaming with this premium modded version. All features unlocked, no ads, and unlimited resources. Perfectly optimized for your device.
-        </p>
-        <div class="game-detail-buttons">
-          <a href="#" class="game-detail-download" onclick="triggerContentLocker(this, event)">
-            <i class="fas fa-cloud-download-alt"></i>
-            Download Now
-          </a>
-          <a href="#" class="btn btn-outline">
-            <i class="fas fa-share-alt"></i>
-            Share
-          </a>
-        </div>
-        
-        <div class="related-games">
-          <h3 class="related-games-title">You May Also Like</h3>
-          <div class="related-games-grid">
-            <!-- Related Game 1 -->
-            <div class="bav" onclick="showGameDetail('Need For Speed Mobile', 'v2.5.0', 'https://i.ibb.co/wZbqZrWm/Fiyk-DJVdy-9ytqfua-DCBB1-Mm-HNTH.jpg', '72')">
-              <div class="bloque-imagen">
-                <img src="https://i.ibb.co/wZbqZrWm/Fiyk-DJVdy-9ytqfua-DCBB1-Mm-HNTH.jpg" alt="Need For Speed Mobile" loading="lazy">
-              </div>
-              <span class="title">Need For Speed</span>
-              <span class="version">v2.5.0</span>
-              <div class="px-postmeta">
-                <div class="box-rating voted" data-post-id="72">
-                  <span class="rating">
-                    <span class="stars"></span>
-                  </span>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Related Game 2 -->
-            <div class="bav" onclick="showGameDetail('Call of Duty Mobile', 'v1.0.28', 'https://i.ibb.co/4gmNk2V3/unnamed.jpg', '65')">
-              <div class="bloque-imagen">
-                <img src="https://i.ibb.co/4gmNk2V3/unnamed.jpg" alt="Call of Duty Mobile" loading="lazy">
-              </div>
-              <span class="title">Call of Duty</span>
-              <span class="version">v1.0.28</span>
-              <div class="px-postmeta">
-                <div class="box-rating voted" data-post-id="65">
-                  <span class="rating">
-                    <span class="stars"></span>
-                  </span>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Related Game 3 -->
-            <div class="bav" onclick="showGameDetail('Roblox Mod', 'v2.567.492', 'https://i.ibb.co/k92hJwF/roblox.png', '58')">
-              <div class="bloque-imagen">
-                <img src="https://i.ibb.co/k92hJwF/roblox.png" alt="Roblox Mod" loading="lazy">
-              </div>
-              <span class="title">Roblox Mod</span>
-              <span class="version">v2.567.492</span>
-              <div class="px-postmeta">
-                <div class="box-rating voted" data-post-id="58">
-                  <span class="rating">
-                    <span class="stars"></span>
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- How It Works Section -->
   <section class="features" id="how-it-works">
@@ -2119,7 +1883,6 @@
     const viewAllBtn = document.getElementById('viewAllBtn');
     const allGamesModal = document.getElementById('allGamesModal');
     const closeAllGamesModal = document.getElementById('closeAllGamesModal');
-    const gameDetailModal = document.getElementById('gameDetailModal');
     
     // Mobile Menu Toggle
     menuToggle.addEventListener('click', () => {
@@ -2217,61 +1980,9 @@
       }, 3000);
     }
     
-    // Game Detail Functions
-    function showGameDetail(title, version, image, ratingId) {
-      document.getElementById('gameDetailTitle').textContent = title;
-      document.getElementById('gameDetailVersion').textContent = version;
-      document.getElementById('gameDetailBanner').src = image;
-      
-      // Set rating based on the ratingId
-      let ratingStars = '';
-      let ratingValue = 4.5;
-      
-      switch(ratingId) {
-        case '75':
-          ratingValue = 4.6;
-          break;
-        case '68':
-          ratingValue = 4.9;
-          break;
-        case '55':
-          ratingValue = 4.8;
-          break;
-        case '46':
-          ratingValue = 5.0;
-          break;
-      }
-      
-      document.getElementById('gameDetailRating').innerHTML = `<i class="fas fa-star"></i> ${ratingValue}`;
-      
-      gameDetailModal.style.display = 'block';
-      document.body.style.overflow = 'hidden';
-    }
-    
-    function closeGameDetail() {
-      gameDetailModal.style.display = 'none';
-      document.body.style.overflow = 'auto';
-    }
-    
-    // Close game detail when clicking outside
-    gameDetailModal.addEventListener('click', (e) => {
-      if (e.target === gameDetailModal) {
-        closeGameDetail();
-      }
-    });
-    
     // Trigger Content Locker with adbluemedia script
-    function triggerContentLocker(button, event = null) {
-      if (event) event.preventDefault();
-      
-      let gameTitle = '';
-      if (button.closest('.all-game-card')) {
-        gameTitle = button.closest('.all-game-card').querySelector('.all-game-title').textContent;
-      } else if (button.closest('.game-detail-content')) {
-        gameTitle = document.getElementById('gameDetailTitle').textContent;
-      } else if (button.closest('.bav')) {
-        gameTitle = button.closest('.bav').querySelector('.title').textContent;
-      }
+    function triggerContentLocker(button) {
+      const gameTitle = button.closest('.all-game-card').querySelector('.all-game-title').textContent;
       
       // Create and append the adbluemedia script
       const script1 = document.createElement('script');
