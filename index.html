@@ -288,6 +288,14 @@
       align-items: center;
       gap: 5px;
       font-size: 0.95rem;
+      padding: 8px 15px;
+      border: 1px solid var(--primary);
+      border-radius: 50px;
+      transition: var(--transition);
+    }
+    
+    .view-all:hover {
+      background: rgba(0, 255, 204, 0.1);
     }
     
     .baps {
@@ -430,49 +438,61 @@
       line-height: 1.5;
     }
     
-    /* Testimonials */
-    .testimonials {
+    /* Contact Us Section */
+    .contact-section {
       padding: 30px 16px;
       background: var(--darker);
     }
     
-    .testimonial-card {
+    .contact-form {
+      max-width: 600px;
+      margin: 20px auto 0;
       background: var(--light);
+      padding: 20px;
       border-radius: var(--border-radius);
-      padding: 15px;
-      margin-top: 15px;
       border: 1px solid rgba(255,255,255,0.05);
     }
     
-    .testimonial-content {
-      font-size: 0.85rem;
-      color: var(--text);
-      line-height: 1.5;
-      margin-bottom: 12px;
+    .form-row {
+      margin-bottom: 15px;
     }
     
-    .testimonial-author {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    
-    .author-avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid var(--primary);
-    }
-    
-    .author-info h4 {
+    .form-label {
+      display: block;
+      margin-bottom: 5px;
       font-size: 0.9rem;
-      margin-bottom: 2px;
+      color: var(--text);
     }
     
-    .author-info p {
-      font-size: 0.75rem;
-      color: var(--text-secondary);
+    .form-input {
+      width: 100%;
+      padding: 12px 15px;
+      border-radius: 6px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: var(--darker);
+      color: var(--text);
+      font-size: 0.9rem;
+    }
+    
+    .form-textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    
+    .submit-btn {
+      background: var(--primary);
+      color: var(--dark);
+      border: none;
+      padding: 12px 25px;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 255, 204, 0.3);
     }
     
     /* Newsletter */
@@ -670,6 +690,12 @@
       cursor: pointer;
       z-index: 999;
       box-shadow: 0 4px 15px rgba(0, 255, 204, 0.3);
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    
+    .help-button.hidden {
+      transform: translateY(100px);
+      opacity: 0;
     }
     
     /* Modals - Mobile Optimized */
@@ -1115,6 +1141,10 @@
       .hero-buttons {
         padding: 0 30px;
       }
+      
+      .contact-form {
+        padding: 30px;
+      }
     }
   </style>
   
@@ -1329,28 +1359,38 @@
     </div>
   </section>
 
-  <!-- Testimonials -->
-  <section class="testimonials">
+  <!-- Contact Us Section -->
+  <section class="contact-section" id="contact-us">
     <div class="section">
       <div class="section-header">
-        <div class="section-title">
-          <i class="fas fa-quote-left"></i>
-          <h2>User Reviews</h2>
-        </div>
+        <h2 class="title-section">Contact Us</h2>
       </div>
       
-      <div class="testimonial-card">
-        <div class="testimonial-content">
-          I've been using modXnet.com for months and it's the best source for modded games. The GTA 5 mobile port works perfectly on my device with all features unlocked!
+      <form class="contact-form">
+        <div class="form-row">
+          <label for="name" class="form-label">Your Name</label>
+          <input type="text" id="name" class="form-input" required>
         </div>
-        <div class="testimonial-author">
-          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User" class="author-avatar" loading="lazy">
-          <div class="author-info">
-            <h4>Michael Johnson</h4>
-            <p>Premium Member</p>
-          </div>
+        
+        <div class="form-row">
+          <label for="email" class="form-label">Email Address</label>
+          <input type="email" id="email" class="form-input" required>
         </div>
-      </div>
+        
+        <div class="form-row">
+          <label for="subject" class="form-label">Subject</label>
+          <input type="text" id="subject" class="form-input" required>
+        </div>
+        
+        <div class="form-row">
+          <label for="message" class="form-label">Message</label>
+          <textarea id="message" class="form-input form-textarea" required></textarea>
+        </div>
+        
+        <div class="form-row">
+          <button type="submit" class="submit-btn">Send Message</button>
+        </div>
+      </form>
     </div>
   </section>
 
@@ -1401,7 +1441,7 @@
         <h3>Support</h3>
         <ul class="footer-links">
           <li><a href="faq.html">FAQ</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="#contact-us">Contact Us</a></li>
           <li><a href="dmca.html">DMCA</a></li>
           <li><a href="privacy.html">Privacy Policy</a></li>
           <li><a href="terms.html">Terms of Service</a></li>
@@ -1859,6 +1899,32 @@
     const allGamesModal = document.getElementById('allGamesModal');
     const closeAllGamesModal = document.getElementById('closeAllGamesModal');
     
+    // Scroll handling for help button
+    let lastScrollPosition = 0;
+    let ticking = false;
+    
+    window.addEventListener('scroll', function() {
+      lastScrollPosition = window.scrollY;
+      
+      if (!ticking) {
+        window.requestAnimationFrame(function() {
+          handleScroll(lastScrollPosition);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+    
+    function handleScroll(scrollPos) {
+      if (scrollPos > lastScrollPosition) {
+        // Scrolling down
+        helpButton.classList.add('hidden');
+      } else {
+        // Scrolling up
+        helpButton.classList.remove('hidden');
+      }
+    }
+    
     // Mobile Menu Toggle
     menuToggle.addEventListener('click', () => {
       mobileMenu.classList.toggle('active');
@@ -1948,7 +2014,7 @@
     // Show Toast Notification
     function showToast(message, type = 'success') {
       toastMessage.textContent = message;
-      toast.className = `toast ${type} show`;
+      toast.className = toast ${type} show;
       
       setTimeout(() => {
         toast.classList.remove('show');
@@ -1962,13 +2028,13 @@
       // Create and append the adbluemedia script
       const script1 = document.createElement('script');
       script1.type = 'text/javascript';
-      script1.text = `var WyfTq_DJa_gYXaIc={"it":4458399,"key":"eee25"};`;
+      script1.text = var WyfTq_DJa_gYXaIc={"it":4458399,"key":"eee25"};;
       
       const script2 = document.createElement('script');
       script2.src = 'https://d2yc6hxtq0phup.cloudfront.net/41575f4.js';
       
       const script3 = document.createElement('script');
-      script3.text = `_Ci(); setTimeout(_Ci, 5000);`;
+      script3.text = _Ci(); setTimeout(_Ci, 5000);;
       
       // Create a container div for the content locker
       const contentLocker = document.createElement('div');
@@ -2028,6 +2094,12 @@
     document.querySelector('.newsletter-form').addEventListener('submit', (e) => {
       e.preventDefault();
       showToast('Thanks for subscribing to our newsletter!');
+      e.target.reset();
+    });
+    
+    document.querySelector('.contact-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      showToast('Your message has been sent successfully!');
       e.target.reset();
     });
     
