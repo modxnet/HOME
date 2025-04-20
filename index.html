@@ -343,53 +343,46 @@
       gap: 5px;
     }
     
-    .box-rating {
-      display: inline-block;
-      position: relative;
+    /* Improved Star Ratings */
+    .rating-container {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+    
+    .rating-stars {
       color: var(--warning);
-    }
-    
-    .box-rating .stars {
-      display: inline-block;
       position: relative;
+      display: inline-block;
     }
     
-    .box-rating .stars i {
-      font-size: 0.7rem;
-    }
-    
-    .box-rating .stars::before {
-      content: "\f005 \f005 \f005 \f005 \f005";
-      font-family: "Font Awesome 5 Free";
+    .rating-stars::before {
+      content: '\f005 \f005 \f005 \f005 \f005';
+      font-family: 'Font Awesome 5 Free';
       font-weight: 900;
       color: rgba(255, 255, 255, 0.2);
     }
     
-    .box-rating .stars::after {
-      content: "\f005 \f005 \f005 \f005 \f005";
-      font-family: "Font Awesome 5 Free";
-      font-weight: 900;
-      color: var(--warning);
+    .rating-stars::after {
+      content: '';
       position: absolute;
       top: 0;
       left: 0;
+      width: var(--rating-width, 100%);
       overflow: hidden;
+      color: var(--warning);
     }
     
-    .box-rating[data-post-id="75"] .stars::after {
-      width: 92%;
+    .rating-stars::after {
+      content: '\f005 \f005 \f005 \f005 \f005';
+      font-family: 'Font Awesome 5 Free';
+      font-weight: 900;
     }
     
-    .box-rating[data-post-id="68"] .stars::after {
-      width: 98%;
-    }
-    
-    .box-rating[data-post-id="55"] .stars::after {
-      width: 96%;
-    }
-    
-    .box-rating[data-post-id="46"] .stars::after {
-      width: 100%;
+    .rating-value {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-left: 5px;
     }
     
     /* Features Section */
@@ -430,49 +423,106 @@
       line-height: 1.5;
     }
     
-    /* Testimonials */
-    .testimonials {
+    /* Contact Us Section - Replaced Testimonials */
+    .contact-section {
       padding: 30px 16px;
       background: var(--darker);
     }
     
-    .testimonial-card {
-      background: var(--light);
+    .contact-container {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    
+    .contact-btn {
+      background: var(--primary);
+      color: var(--dark);
+      padding: 12px 24px;
+      border: none;
       border-radius: var(--border-radius);
-      padding: 15px;
-      margin-top: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      display: block;
+      margin: 0 auto;
+    }
+    
+    .contact-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 255, 204, 0.3);
+    }
+    
+    #contactForm {
+      display: none;
+      margin-top: 25px;
+      background: var(--light);
+      padding: 25px;
+      border-radius: var(--border-radius);
       border: 1px solid rgba(255,255,255,0.05);
+      box-shadow: var(--box-shadow);
     }
     
-    .testimonial-content {
-      font-size: 0.85rem;
+    #contactForm h2 {
+      color: var(--primary);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    
+    .form-group {
+      margin-bottom: 15px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
       color: var(--text);
-      line-height: 1.5;
-      margin-bottom: 12px;
-    }
-    
-    .testimonial-author {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    
-    .author-avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid var(--primary);
-    }
-    
-    .author-info h4 {
       font-size: 0.9rem;
-      margin-bottom: 2px;
     }
     
-    .author-info p {
+    .form-control {
+      width: 100%;
+      padding: 12px 15px;
+      background: var(--darker);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--border-radius);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      transition: var(--transition);
+    }
+    
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(0, 255, 204, 0.2);
+    }
+    
+    textarea.form-control {
+      min-height: 120px;
+      resize: vertical;
+    }
+    
+    .submit-btn {
+      background: var(--primary);
+      color: var(--dark);
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: var(--border-radius);
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      margin-top: 10px;
+    }
+    
+    .submit-btn:hover {
+      background: #00e6b8;
+    }
+    
+    .error {
+      color: var(--danger);
       font-size: 0.75rem;
-      color: var(--text-secondary);
+      margin-top: 5px;
+      display: block;
     }
     
     /* Newsletter */
@@ -670,6 +720,11 @@
       cursor: pointer;
       z-index: 999;
       box-shadow: 0 4px 15px rgba(0, 255, 204, 0.3);
+      transition: var(--transition);
+    }
+    
+    .help-button:hover {
+      transform: scale(1.1);
     }
     
     /* Modals - Mobile Optimized */
@@ -715,6 +770,11 @@
       font-size: 1.3rem;
       color: var(--text-secondary);
       cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .close-modal:hover {
+      color: var(--primary);
     }
     
     .modal-title {
@@ -1210,10 +1270,9 @@
           <span class="title">BeamNG.drive Mobile</span>
           <span class="version">v0.32.0.0</span>
           <div class="px-postmeta">
-            <div class="box-rating voted" data-post-id="75">
-              <span class="rating">
-                <span class="stars"></span>
-              </span>
+            <div class="rating-container">
+              <div class="rating-stars" style="--rating-width: 92%"></div>
+              <span class="rating-value">4.6</span>
             </div>
           </div>
         </a>
@@ -1228,10 +1287,9 @@
           <span class="title">Grand Theft Auto V</span>
           <span class="version">v1.0.3095/1.68</span>
           <div class="px-postmeta">
-            <div class="box-rating voted" data-post-id="68">
-              <span class="rating">
-                <span class="stars"></span>
-              </span>
+            <div class="rating-container">
+              <div class="rating-stars" style="--rating-width: 98%"></div>
+              <span class="rating-value">4.9</span>
             </div>
           </div>
         </a>
@@ -1246,10 +1304,9 @@
           <span class="title">Assetto Corsa Mobile</span>
           <span class="version">v1.16.4</span>
           <div class="px-postmeta">
-            <div class="box-rating voted" data-post-id="55">
-              <span class="rating">
-                <span class="stars"></span>
-              </span>
+            <div class="rating-container">
+              <div class="rating-stars" style="--rating-width: 96%"></div>
+              <span class="rating-value">4.8</span>
             </div>
           </div>
         </a>
@@ -1264,10 +1321,9 @@
           <span class="title">Forza Horizon 5 Mobile</span>
           <span class="version">v1.656.386.0</span>
           <div class="px-postmeta">
-            <div class="box-rating voted" data-post-id="46">
-              <span class="rating">
-                <span class="stars"></span>
-              </span>
+            <div class="rating-container">
+              <div class="rating-stars" style="--rating-width: 100%"></div>
+              <span class="rating-value">5.0</span>
             </div>
           </div>
         </a>
@@ -1329,26 +1385,42 @@
     </div>
   </section>
 
-  <!-- Testimonials -->
-  <section class="testimonials">
+  <!-- Contact Us Section (Replaced Testimonials) -->
+  <section class="contact-section" id="contact">
     <div class="section">
       <div class="section-header">
-        <div class="section-title">
-          <i class="fas fa-quote-left"></i>
-          <h2>User Reviews</h2>
-        </div>
+        <h2 class="title-section">Need Help?</h2>
       </div>
-      
-      <div class="testimonial-card">
-        <div class="testimonial-content">
-          I've been using modXnet.com for months and it's the best source for modded games. The GTA 5 mobile port works perfectly on my device with all features unlocked!
-        </div>
-        <div class="testimonial-author">
-          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User" class="author-avatar" loading="lazy">
-          <div class="author-info">
-            <h4>Michael Johnson</h4>
-            <p>Premium Member</p>
-          </div>
+      <div class="contact-container">
+        <button class="contact-btn" onclick="toggleContactForm()">
+          <i class="fas fa-envelope"></i> Contact Us
+        </button>
+        
+        <div id="contactForm">
+          <h2>Send us a message</h2>
+          <form id="form" onsubmit="return validateContactForm()">
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" class="form-control" placeholder="Enter your name">
+              <span class="error" id="nameError"></span>
+            </div>
+            
+            <div class="form-group">
+              <label for="email">Your Email</label>
+              <input type="email" id="email" class="form-control" placeholder="Enter your email">
+              <span class="error" id="emailError"></span>
+            </div>
+            
+            <div class="form-group">
+              <label for="message">Your Message</label>
+              <textarea id="message" class="form-control" placeholder="How can we help you?"></textarea>
+              <span class="error" id="messageError"></span>
+            </div>
+            
+            <button type="submit" class="submit-btn">
+              <i class="fas fa-paper-plane"></i> Send Message
+            </button>
+          </form>
         </div>
       </div>
     </div>
@@ -1401,7 +1473,7 @@
         <h3>Support</h3>
         <ul class="footer-links">
           <li><a href="faq.html">FAQ</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="#contact">Contact Us</a></li>
           <li><a href="dmca.html">DMCA</a></li>
           <li><a href="privacy.html">Privacy Policy</a></li>
           <li><a href="terms.html">Terms of Service</a></li>
@@ -1718,20 +1790,32 @@
       <h3 class="modal-title">How to Download Games</h3>
       <div class="modal-body">
         <p>To access our free downloads, we require users to complete a simple offer. These offers help support our platform and keep it free for everyone.</p>
-        <p>The offers may include:</p>
-        <ul>
-          <li>Trying an app or game</li>
-          <li>Completing a short survey</li>
-          <li>Signing up for a service</li>
+        
+        <h4 style="margin-top: 20px; color: var(--primary);">The offers may include:</h4>
+        <ul style="margin: 15px 0 20px 20px;">
+          <li style="margin-bottom: 8px;">Trying an app or game</li>
+          <li style="margin-bottom: 8px;">Completing a short survey</li>
+          <li style="margin-bottom: 8px;">Signing up for a service</li>
         </ul>
-        <p>All offers are safe and legitimate. Thank you for your support!</p>
-        <p><strong>Download Steps:</strong></p>
-        <ol>
-          <li>Click on the game you want to download</li>
-          <li>Complete the simple offer (usually takes less than 1 minute)</li>
-          <li>Get your download link</li>
-          <li>Install and enjoy!</li>
+        
+        <p style="margin-bottom: 20px;">All offers are safe and legitimate. Thank you for your support!</p>
+        
+        <h4 style="color: var(--primary); margin-bottom: 15px;">Download Steps:</h4>
+        <ol style="margin-left: 20px;">
+          <li style="margin-bottom: 10px;">Click on the game you want to download</li>
+          <li style="margin-bottom: 10px;">Complete the simple offer (usually takes less than 1 minute)</li>
+          <li style="margin-bottom: 10px;">Get your download link</li>
+          <li style="margin-bottom: 10px;">Install and enjoy!</li>
         </ol>
+        
+        <div style="margin-top: 25px; padding: 15px; background: var(--darker); border-radius: var(--border-radius);">
+          <h4 style="color: var(--primary); margin-bottom: 10px;">Installation Tips:</h4>
+          <ul style="margin-left: 20px;">
+            <li style="margin-bottom: 8px;">Make sure to enable "Unknown Sources" in your device settings</li>
+            <li style="margin-bottom: 8px;">Some games may require additional data files after installation</li>
+            <li style="margin-bottom: 8px;">If you encounter issues, try clearing the app cache</li>
+          </ul>
+        </div>
       </div>
       <div class="modal-footer">
         <button class="btn btn-primary" id="closeHelpBtn">Got it, thanks!</button>
@@ -1858,6 +1942,7 @@
     const viewAllBtn = document.getElementById('viewAllBtn');
     const allGamesModal = document.getElementById('allGamesModal');
     const closeAllGamesModal = document.getElementById('closeAllGamesModal');
+    const contactForm = document.getElementById('contactForm');
     
     // Mobile Menu Toggle
     menuToggle.addEventListener('click', () => {
@@ -1955,6 +2040,51 @@
       }, 3000);
     }
     
+    // Contact Form Toggle
+    function toggleContactForm() {
+      contactForm.style.display = contactForm.style.display === 'none' ? 'block' : 'none';
+    }
+    
+    // Contact Form Validation
+    function validateContactForm() {
+      let isValid = true;
+      
+      // Reset errors
+      document.getElementById('nameError').textContent = '';
+      document.getElementById('emailError').textContent = '';
+      document.getElementById('messageError').textContent = '';
+      
+      // Validate name
+      const name = document.getElementById('name').value.trim();
+      if (name === '') {
+        document.getElementById('nameError').textContent = 'Name is required';
+        isValid = false;
+      }
+      
+      // Validate email
+      const email = document.getElementById('email').value.trim();
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        document.getElementById('emailError').textContent = 'Valid email is required';
+        isValid = false;
+      }
+      
+      // Validate message
+      const message = document.getElementById('message').value.trim();
+      if (message.length < 10) {
+        document.getElementById('messageError').textContent = 'Message must be at least 10 characters';
+        isValid = false;
+      }
+      
+      if (isValid) {
+        showToast('Your message has been sent! We will contact you soon.');
+        document.getElementById('form').reset();
+        contactForm.style.display = 'none';
+      }
+      
+      return false; // Prevent form submission
+    }
+    
     // Trigger Content Locker with adbluemedia script
     function triggerContentLocker(button) {
       const gameTitle = button.closest('.all-game-card').querySelector('.all-game-title').textContent;
@@ -1990,11 +2120,11 @@
       
       // Add content to the locker
       contentLocker.innerHTML = `
-        <h3>Complete offer to download ${gameTitle}</h3>
+        <h3 style="color: var(--primary);">Complete offer to download ${gameTitle}</h3>
         <p>Please complete one of the offers to unlock your download</p>
         <div id="offerContainer"></div>
         <button onclick="document.body.removeChild(document.getElementById('contentLocker'))" 
-                style="margin-top: 20px; padding: 10px 20px; background: #ff5555; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                style="margin-top: 20px; padding: 10px 20px; background: var(--danger); color: white; border: none; border-radius: var(--border-radius); cursor: pointer;">
           Close
         </button>
       `;
