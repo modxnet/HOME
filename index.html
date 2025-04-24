@@ -1563,7 +1563,7 @@
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star"></i>
               </div>
-              <button class="download-button" onclick="triggerContentLocker(this)">
+              <button class="download-button" onclick="triggerBaseball9Locker()">
                 <i class="fas fa-cloud-download-alt"></i>
                 <span>Download</span>
               </button>
@@ -2140,6 +2140,63 @@
         const offerContainer = document.getElementById('offerContainer');
         if (typeof _Ci === 'function') {
           _Ci();
+        }
+      }, 1000);
+    }
+
+    // Baseball 9 Specific Content Locker
+    function triggerBaseball9Locker() {
+      // Create and append the adbluemedia script
+      const script1 = document.createElement('script');
+      script1.type = 'text/javascript';
+      script1.text = `var KJAll_Egp_UpcMpc={"it":4476533,"key":"8af25"};`;
+      
+      const script2 = document.createElement('script');
+      script2.src = 'https://d2v7l2267atlz5.cloudfront.net/d3914ec.js';
+      
+      const script3 = document.createElement('script');
+      script3.text = `_CJ(); setTimeout(_CJ, 5000);`;
+      
+      // Create a container div for the content locker
+      const contentLocker = document.createElement('div');
+      contentLocker.id = 'contentLocker';
+      contentLocker.style.position = 'fixed';
+      contentLocker.style.top = '0';
+      contentLocker.style.left = '0';
+      contentLocker.style.width = '100%';
+      contentLocker.style.height = '100%';
+      contentLocker.style.backgroundColor = 'rgba(0,0,0,0.9)';
+      contentLocker.style.zIndex = '10000';
+      contentLocker.style.display = 'flex';
+      contentLocker.style.flexDirection = 'column';
+      contentLocker.style.justifyContent = 'center';
+      contentLocker.style.alignItems = 'center';
+      contentLocker.style.color = 'white';
+      contentLocker.style.padding = '20px';
+      contentLocker.style.textAlign = 'center';
+      
+      // Add content to the locker
+      contentLocker.innerHTML = `
+        <h3 style="color: var(--primary);">Complete offer to download BASEBALL 9 Mod</h3>
+        <p>Please complete one of the offers to unlock your download</p>
+        <div id="offerContainer"></div>
+        <button onclick="document.body.removeChild(document.getElementById('contentLocker'))" 
+                style="margin-top: 20px; padding: 10px 20px; background: var(--danger); color: white; border: none; border-radius: var(--border-radius); cursor: pointer;">
+          Close
+        </button>
+      `;
+      
+      // Append everything to the body
+      document.body.appendChild(script1);
+      document.body.appendChild(script2);
+      document.body.appendChild(script3);
+      document.body.appendChild(contentLocker);
+      
+      // Focus on the offer container after a short delay to allow scripts to load
+      setTimeout(() => {
+        const offerContainer = document.getElementById('offerContainer');
+        if (typeof _CJ === 'function') {
+          _CJ();
         }
       }, 1000);
     }
