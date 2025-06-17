@@ -196,6 +196,12 @@
       border: 1px solid var(--primary);
     }
     
+    .btn-dark {
+      background: var(--darker);
+      color: var(--primary);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    
     .search-box {
       margin: 15px 0;
       position: relative;
@@ -234,195 +240,183 @@
       object-fit: cover;
     }
     
-    .hero-buttons {
+    /* Promo Section */
+    .promo-section {
+      padding: 20px 16px;
+      text-align: center;
+      background: var(--dark);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    
+    .promo-content {
       display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
+      align-items: center;
       justify-content: center;
-      margin: 20px 0;
-      padding: 0 16px;
-    }
-    
-    .hero-buttons .btn {
-      flex: 1 1 45%;
-      min-width: 140px;
-      max-width: 160px;
-      padding: 10px 15px;
-    }
-    
-    .btn-lg {
-      padding: 12px 20px;
+      gap: 10px;
+      color: var(--primary);
+      font-weight: 600;
       font-size: 1rem;
     }
     
-    .btn-accent {
-      background: var(--accent);
-      color: white;
-    }
-    
-    /* New Game Section Styles */
-    .section {
-      padding: 30px 16px;
-    }
-    
-    .section-header {
+    /* Action Buttons */
+    .action-buttons {
       display: flex;
-      flex-direction: column;
-      align-items: flex-start;
+      justify-content: center;
       gap: 15px;
-      margin-bottom: 25px;
+      margin-top: 20px;
+      margin-bottom: 30px;
     }
     
-    .title-section {
-      font-size: 1.5rem;
-      font-weight: 700;
-      background: linear-gradient(to right, var(--primary), var(--secondary));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-    
-    .view-all {
-      color: var(--primary);
-      text-decoration: none;
+    .action-btn {
+      padding: 12px 24px;
+      border-radius: var(--border-radius);
       font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
       display: flex;
       align-items: center;
-      gap: 5px;
-      font-size: 0.95rem;
+      gap: 8px;
     }
     
-    .baps {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 20px;
+    /* Games List Section */
+    .games-list {
+      padding: 20px 16px;
     }
     
-    .bav {
+    .game-card {
+      display: flex;
+      align-items: center;
       background: var(--light);
       border-radius: var(--border-radius);
-      overflow: hidden;
-      box-shadow: var(--box-shadow);
+      padding: 12px;
+      margin-bottom: 12px;
       transition: var(--transition);
       border: 1px solid rgba(255,255,255,0.05);
-    }
-    
-    .bav:hover {
-      transform: translateY(-5px);
-    }
-    
-    .bav a {
-      text-decoration: none;
-      color: var(--text);
-      display: block;
-      padding: 15px;
-    }
-    
-    .bloque-imagen img {
-      width: 100%;
-      height: auto;
-      border-radius: 10px;
-    }
-    
-    .title {
-      display: block;
-      font-size: 0.95rem;
-      font-weight: 700;
-      margin: 10px 0 5px;
-      color: var(--white);
-    }
-    
-    .version {
-      display: block;
-      font-size: 0.8rem;
-      color: var(--text-secondary);
-      margin-bottom: 10px;
-    }
-    
-    .px-postmeta {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-    
-    /* Improved Star Ratings */
-    .rating-container {
-      display: flex;
-      align-items: center;
-      gap: 3px;
-    }
-    
-    .rating-stars {
-      color: var(--warning);
+      cursor: pointer;
       position: relative;
-      display: inline-block;
+      overflow: hidden;
     }
     
-    .rating-stars::before {
-      content: '\f005 \f005 \f005 \f005 \f005';
-      font-family: 'Font Awesome 5 Free';
-      font-weight: 900;
-      color: rgba(255, 255, 255, 0.2);
+    .game-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--box-shadow);
     }
     
-    .rating-stars::after {
+    .game-card::after {
       content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 5px;
+      height: 5px;
+      background: rgba(0, 255, 204, 0.6);
+      border-radius: 100%;
+      transform: scale(1, 1) translate(-50%, -50%);
+      transform-origin: 50% 50%;
+      transition: transform 0.3s, opacity 0.3s;
+      opacity: 0;
+      z-index: 1;
+    }
+    
+    .game-card:active::after {
+      transform: scale(50, 50) translate(-50%, -50%);
+      opacity: 0.3;
+      transition: transform 0.5s, opacity 0.5s;
+    }
+    
+    .game-card-click-effect {
       position: absolute;
       top: 0;
       left: 0;
-      width: var(--rating-width, 100%);
-      overflow: hidden;
-      color: var(--warning);
-    }
-    
-    .rating-stars::after {
-      content: '\f005 \f005 \f005 \f005 \f005';
-      font-family: 'Font Awesome 5 Free';
-      font-weight: 900;
-    }
-    
-    .rating-value {
-      font-size: 0.8rem;
-      color: var(--text-secondary);
-      margin-left: 5px;
-    }
-    
-    /* Features Section */
-    .features {
-      padding: 30px 16px;
-      background: linear-gradient(to bottom, var(--dark), var(--darker));
-    }
-    
-    .feature-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 15px;
-      margin-top: 20px;
-    }
-    
-    .feature-card {
-      background: var(--light);
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(0, 255, 204, 0.2), rgba(0, 204, 255, 0.2));
       border-radius: var(--border-radius);
-      padding: 15px;
-      border: 1px solid rgba(255,255,255,0.05);
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+      z-index: 1;
     }
     
-    .feature-icon {
-      font-size: 1.2rem;
-      color: var(--primary);
-      margin-bottom: 10px;
+    .game-card.active .game-card-click-effect {
+      opacity: 1;
+      animation: neonPulse 0.6s ease-out;
     }
     
-    .feature-title {
-      font-size: 1rem;
-      font-weight: 700;
-      margin-bottom: 8px;
+    @keyframes neonPulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(0, 255, 204, 0.7);
+      }
+      70% {
+        box-shadow: 0 0 0 10px rgba(0, 255, 204, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(0, 255, 204, 0);
+      }
     }
     
-    .feature-description {
+    .game-thumbnail {
+      width: 60px;
+      height: 60px;
+      border-radius: 10px;
+      object-fit: cover;
+      margin-right: 12px;
+    }
+    
+    .game-info {
+      flex: 1;
+    }
+    
+    .game-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+    
+    .game-meta {
+      display: flex;
+      gap: 10px;
       font-size: 0.8rem;
       color: var(--text-secondary);
-      line-height: 1.5;
+    }
+    
+    .game-version {
+      position: relative;
+      padding-right: 10px;
+    }
+    
+    .game-version:after {
+      content: "•";
+      position: absolute;
+      right: -2px;
+    }
+    
+    .game-rating {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+    
+    .game-rating i {
+      color: var(--warning);
+      font-size: 0.7rem;
+    }
+    
+    /* View All Button */
+    .view-all-btn {
+      display: block;
+      text-align: center;
+      margin: 20px auto;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+      font-size: 0.9rem;
+    }
+    
+    .view-all-btn:hover {
+      color: var(--secondary);
     }
     
     /* Contact Us Section - Replaced Testimonials */
@@ -434,6 +428,7 @@
     .contact-container {
       max-width: 500px;
       margin: 0 auto;
+      text-align: center;
     }
     
     .contact-btn {
@@ -445,7 +440,7 @@
       font-weight: 600;
       cursor: pointer;
       transition: var(--transition);
-      display: block;
+      display: inline-block;
       margin: 0 auto;
     }
     
@@ -708,25 +703,33 @@
     /* Floating Help Button */
     .help-button {
       position: fixed;
-      bottom: 20px;
+      bottom: 30px;
       right: 20px;
-      width: 50px;
-      height: 50px;
+      width: 56px;
+      height: 56px;
       background: var(--primary);
       color: var(--dark);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 20px;
+      font-size: 24px;
       cursor: pointer;
       z-index: 999;
-      box-shadow: 0 4px 15px rgba(0, 255, 204, 0.3);
-      transition: var(--transition);
+      box-shadow: 0 4px 20px rgba(0, 255, 204, 0.4);
+      transition: all 0.3s ease;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    
+    .help-button.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
     
     .help-button:hover {
-      transform: scale(1.1);
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 6px 25px rgba(0, 255, 204, 0.5);
     }
     
     /* Modals - Mobile Optimized */
@@ -747,6 +750,12 @@
     
     .modal.active {
       display: flex;
+      animation: fadeIn 0.3s ease-out;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
     
     .modal-content {
@@ -758,6 +767,26 @@
       overflow-y: auto;
       padding: 15px;
       position: relative;
+      animation: slideUp 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      transform: scale(0.9);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    .modal.active .modal-content {
+      transform: scale(1);
+      opacity: 1;
+    }
+    
+    @keyframes slideUp {
+      from {
+        transform: translateY(50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
     }
     
     .all-games-modal .modal-content {
@@ -773,6 +802,7 @@
       color: var(--text-secondary);
       cursor: pointer;
       transition: var(--transition);
+      z-index: 1;
     }
     
     .close-modal:hover {
@@ -799,40 +829,146 @@
       justify-content: flex-end;
     }
     
-    .offer-options {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
+    /* Game Detail Modal */
+    .game-detail-modal .modal-content {
+      max-width: 500px;
+      padding: 0;
+      overflow: hidden;
     }
     
-    .offer-card {
+    .game-detail-header {
+      display: flex;
+      align-items: center;
+      padding: 20px;
+      background: linear-gradient(135deg, var(--darker), var(--dark));
+      position: relative;
+    }
+    
+    .game-detail-header::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 20px;
+      background: linear-gradient(to bottom, rgba(30,30,30,0.8), rgba(30,30,30,0));
+    }
+    
+    .game-detail-thumbnail {
+      width: 80px;
+      height: 80px;
+      border-radius: var(--border-radius);
+      object-fit: cover;
+      margin-right: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+    
+    .game-detail-title {
+      font-size: 1.2rem;
+      margin-bottom: 5px;
+      color: var(--white);
+    }
+    
+    .game-detail-meta {
+      display: flex;
+      gap: 10px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 5px;
+    }
+    
+    .game-detail-rating {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      color: var(--warning);
+    }
+    
+    .game-detail-screenshots {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding: 15px;
+      margin: 0;
+      scrollbar-width: thin;
+      scrollbar-color: var(--primary) var(--darker);
+    }
+    
+    .game-detail-screenshots::-webkit-scrollbar {
+      height: 6px;
+    }
+    
+    .game-detail-screenshots::-webkit-scrollbar-track {
       background: var(--darker);
-      padding: 12px;
+    }
+    
+    .game-detail-screenshots::-webkit-scrollbar-thumb {
+      background-color: var(--primary);
+      border-radius: 6px;
+    }
+    
+    .game-detail-screenshot {
+      width: 150px;
+      height: 100px;
+      border-radius: 8px;
+      object-fit: cover;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+    
+    .game-detail-screenshot:hover {
+      transform: scale(1.03);
+    }
+    
+    .game-detail-content {
+      padding: 20px;
+    }
+    
+    .game-detail-description {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+    
+    .game-detail-features {
+      margin: 15px 0;
+      background: var(--darker);
+      padding: 15px;
       border-radius: var(--border-radius);
     }
     
-    .offer-card h4 {
-      font-size: 0.95rem;
+    .game-detail-features h4 {
       margin-bottom: 8px;
+      color: var(--primary);
     }
     
-    .app-option {
+    .game-detail-features ul {
+      margin-left: 20px;
+    }
+    
+    .game-detail-features li {
+      margin-bottom: 6px;
+      font-size: 0.85rem;
+      position: relative;
+      padding-left: 15px;
+    }
+    
+    .game-detail-features li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 6px;
+      height: 6px;
+      background: var(--primary);
+      border-radius: 50%;
+    }
+    
+    .game-detail-buttons {
       display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 8px;
-    }
-    
-    .app-option img {
-      width: 35px;
-      height: 35px;
-      border-radius: 8px;
-    }
-    
-    .small-text {
-      font-size: 0.75rem;
-      color: var(--text-secondary);
-      margin-top: 12px;
+      gap: 10px;
+      margin-top: 20px;
+      padding: 0 20px 20px;
     }
     
     /* All Games Grid */
@@ -848,12 +984,23 @@
       border-radius: var(--border-radius);
       overflow: hidden;
       border: 1px solid rgba(255,255,255,0.05);
+      transition: var(--transition);
+    }
+    
+    .all-game-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--box-shadow);
     }
     
     .all-game-img {
       width: 100%;
       height: 150px;
       object-fit: cover;
+      transition: var(--transition);
+    }
+    
+    .all-game-card:hover .all-game-img {
+      transform: scale(1.05);
     }
     
     .all-game-info {
@@ -890,6 +1037,11 @@
       align-items: center;
       justify-content: center;
       gap: 5px;
+      transition: var(--transition);
+    }
+    
+    .download-button:hover {
+      background: #00e6b8;
     }
     
     /* Auth Forms */
@@ -1023,67 +1175,34 @@
       display: none;
     }
     
-    /* Content Locker Styles */
-    #contentLocker {
-      position: fixed;
-      top: 0;
-      left: 0;
+    /* Search Bar */
+    .games-search {
+      margin: 15px 16px;
+      position: relative;
+    }
+    
+    .games-search input {
       width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.9);
-      z-index: 10000;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: white;
-      padding: 20px;
-      text-align: center;
+      padding: 12px 15px 12px 45px;
+      border-radius: 50px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: var(--darker);
+      color: var(--text);
+      font-size: 1rem;
     }
     
-    #contentLocker h3 {
-      color: var(--primary);
-      margin-bottom: 15px;
-    }
-    
-    #contentLocker p {
-      margin-bottom: 20px;
-    }
-    
-    #contentLocker button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      background: #ff5555;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
+    .games-search i {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-secondary);
     }
     
     /* Tablet Styles */
     @media (min-width: 600px) {
-      .hero {
-        padding: 0;
-      }
-      
-      .baps {
-        grid-template-columns: repeat(3, 1fr);
-      }
-      
-      .all-games-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-      
-      .feature-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      
       .footer-grid {
         grid-template-columns: repeat(2, 1fr);
-      }
-      
-      .hero-buttons .btn {
-        max-width: 180px;
       }
     }
     
@@ -1133,32 +1252,10 @@
         display: none;
       }
       
-      .hero {
-        padding: 0;
-      }
-      
       .section {
         padding: 50px 30px;
         max-width: 1200px;
         margin: 0 auto;
-      }
-      
-      .section-header {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-      }
-      
-      .baps {
-        grid-template-columns: repeat(4, 1fr);
-      }
-      
-      .all-games-grid {
-        grid-template-columns: repeat(4, 1fr);
-      }
-      
-      .feature-grid {
-        grid-template-columns: repeat(4, 1fr);
       }
       
       .footer-grid {
@@ -1174,14 +1271,31 @@
         max-width: 1000px;
       }
       
-      .hero-buttons {
-        padding: 0 30px;
+      .help-button {
+        right: 30px;
+        bottom: 40px;
+      }
+      
+      .all-games-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      
+      .game-detail-modal .modal-content {
+        max-width: 600px;
+      }
+      
+      .game-detail-screenshot {
+        width: 200px;
+        height: 120px;
+      }
+    }
+    
+    @media (min-width: 1200px) {
+      .all-games-grid {
+        grid-template-columns: repeat(4, 1fr);
       }
     }
   </style>
-  
-  <!-- Ads -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4143839749025019" crossorigin="anonymous"></script>
 </head>
 <body>
   <!-- Header -->
@@ -1243,158 +1357,164 @@
   <!-- Hero Section -->
   <section class="hero">
     <img src="https://i.ibb.co/LBKP4bC/nbanner1.jpg" alt="Premium Modded Games" class="hero-banner" loading="lazy">
-    <div class="hero-buttons">
-      <a href="#featured-games" class="btn btn-primary btn-lg">
-        <i class="fas fa-gamepad"></i> Explore
-      </a>
-      <a href="#how-it-works" class="btn btn-accent btn-lg">
-        <i class="fas fa-question-circle"></i> How It Works
-      </a>
+  </section>
+
+  <!-- Promo Section -->
+  <section class="promo-section">
+    <div class="promo-content">
+      <i class="fas fa-fire" style="color: var(--accent);"></i>
+      <span>Experience Your Favorite Games on Mobile!</span>
     </div>
   </section>
 
-  <!-- Featured Games -->
-  <section class="section" id="featured-games">
-    <div class="section-header">
-      <h2 class="title-section">Featured Games</h2>
-      <a href="#" class="view-all" id="viewAllBtn">
-        View All Games <i class="fas fa-arrow-right"></i>
-      </a>
+  <!-- Games Search -->
+  <div class="games-search">
+    <input type="text" id="gamesSearchInput" placeholder="Search games...">
+    <i class="fas fa-search"></i>
+  </div>
+
+  <!-- Games List Section -->
+  <section class="games-list" id="gamesList">
+    <!-- BeamNG.drive -->
+    <div class="game-card animate-in" data-game="beamng" data-link="https://modxnet.github.io/BeamNG.drive/">
+      <img src="https://i.ibb.co/VYfy7Bcs/Picsart-25-03-08-05-57-01-681.jpg" alt="BeamNG.drive Mobile" class="game-thumbnail" loading="lazy">
+      <div class="game-info">
+        <div class="game-title">BeamNG.drive Mobile</div>
+        <div class="game-meta">
+          <span class="game-version">v0.32.0.0</span>
+          <div class="game-rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+          </div>
+        </div>
+      </div>
     </div>
     
-    <div class="baps">
-      <!-- Game Card 1 -->
-      <div class="bav animate-in">
-        <a href="https://modxnet.github.io/BeamNG.drive/" title="BeamNG drive">
-          <div class="bloque-imagen">
-            <img src="https://i.ibb.co/VYfy7Bcs/Picsart-25-03-08-05-57-01-681.jpg" alt="BeamNG.drive Mobile" loading="lazy">
+    <!-- GTA 5 -->
+    <div class="game-card animate-in delay-1" data-game="gta5" data-link="https://modxnet.github.io/GTA-5/">
+      <img src="https://i.ibb.co/FzQ7s9s/gta5.jpg" alt="GTA 5 Mobile" class="game-thumbnail" loading="lazy">
+      <div class="game-info">
+        <div class="game-title">Grand Theft Auto V</div>
+        <div class="game-meta">
+          <span class="game-version">v1.0.3095/1.68</span>
+          <div class="game-rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="far fa-star"></i>
           </div>
-          <span class="title">BeamNG.drive Mobile</span>
-          <span class="version">v0.32.0.0</span>
-          <div class="px-postmeta">
-            <div class="rating-container">
-              <div class="rating-stars" style="--rating-width: 92%"></div>
-              <span class="rating-value">4.6</span>
-            </div>
-          </div>
-        </a>
-      </div>
-      
-      <!-- Game Card 2 -->
-      <div class="bav animate-in delay-1">
-        <a href="https://modxnet.github.io/GTA-5/" title="Grand Theft Auto V">
-          <div class="bloque-imagen">
-            <img src="https://i.ibb.co/FzQ7s9s/gta5.jpg" alt="GTA 5 Mobile" loading="lazy">
-          </div>
-          <span class="title">Grand Theft Auto V</span>
-          <span class="version">v1.0.3095/1.68</span>
-          <div class="px-postmeta">
-            <div class="rating-container">
-              <div class="rating-stars" style="--rating-width: 98%"></div>
-              <span class="rating-value">4.9</span>
-            </div>
-          </div>
-        </a>
-      </div>
-      
-      <!-- Game Card 3 -->
-      <div class="bav animate-in delay-2">
-        <a href="https://modxnet.github.io/assetto-corsa/" title="Assetto Corsa Mobile">
-          <div class="bloque-imagen">
-            <img src="https://i.ibb.co/yFvT3ZWd/Picsart-25-02-25-00-54-38-367.jpg" alt="Assetto Corsa Mobile" loading="lazy">
-          </div>
-          <span class="title">Assetto Corsa Mobile</span>
-          <span class="version">v1.16.4</span>
-          <div class="px-postmeta">
-            <div class="rating-container">
-              <div class="rating-stars" style="--rating-width: 96%"></div>
-              <span class="rating-value">4.8</span>
-            </div>
-          </div>
-        </a>
-      </div>
-      
-      <!-- Game Card 4 -->
-      <div class="bav animate-in delay-3">
-        <a href="https://modxnet.github.io/forza-horizon/" title="Forza Horizon 5 Mobile">
-          <div class="bloque-imagen">
-            <img src="https://i.ibb.co/jkMCTy35/Picsart-25-02-02-15-18-45-924.jpg" alt="Forza Horizon 5 Mobile" loading="lazy">
-          </div>
-          <span class="title">Forza Horizon 5 Mobile</span>
-          <span class="version">v1.656.386.0</span>
-          <div class="px-postmeta">
-            <div class="rating-container">
-              <div class="rating-stars" style="--rating-width: 100%"></div>
-              <span class="rating-value">5.0</span>
-            </div>
-          </div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- How It Works Section -->
-  <section class="features" id="how-it-works">
-    <div class="section">
-      <div class="section-header">
-        <div class="section-title">
-          <i class="fas fa-cogs"></i>
-          <h2>How It Works</h2>
-        </div>
-      </div>
-      
-      <div class="feature-grid">
-        <div class="feature-card animate-in">
-          <div class="feature-icon">
-            <i class="fas fa-search"></i>
-          </div>
-          <h3 class="feature-title">Find Your Game</h3>
-          <p class="feature-description">
-            Browse our collection of modded games or search for what you want.
-          </p>
-        </div>
-        
-        <div class="feature-card animate-in delay-1">
-          <div class="feature-icon">
-            <i class="fas fa-cloud-download-alt"></i>
-          </div>
-          <h3 class="feature-title">Complete Offer</h3>
-          <p class="feature-description">
-            Complete a quick offer (less than 1 minute) to unlock the download.
-          </p>
-        </div>
-        
-        <div class="feature-card animate-in delay-2">
-          <div class="feature-icon">
-            <i class="fas fa-mobile-alt"></i>
-          </div>
-          <h3 class="feature-title">Download & Install</h3>
-          <p class="feature-description">
-            Get your download link and install the game with our instructions.
-          </p>
-        </div>
-        
-        <div class="feature-card animate-in delay-3">
-          <div class="feature-icon">
-            <i class="fas fa-gamepad"></i>
-          </div>
-          <h3 class="feature-title">Enjoy Premium</h3>
-          <p class="feature-description">
-            Play with all premium features unlocked - unlimited money, no ads!
-          </p>
         </div>
       </div>
     </div>
+    
+    <!-- Assetto Corsa -->
+    <div class="game-card animate-in delay-2" data-game="assetto" data-link="https://modxnet.github.io/assetto-corsa/">
+      <img src="https://i.ibb.co/yFvT3ZWd/Picsart-25-02-25-00-54-38-367.jpg" alt="Assetto Corsa Mobile" class="game-thumbnail" loading="lazy">
+      <div class="game-info">
+        <div class="game-title">Assetto Corsa Mobile</div>
+        <div class="game-meta">
+          <span class="game-version">v1.16.4</span>
+          <div class="game-rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Forza Horizon 5 -->
+    <div class="game-card animate-in delay-3" data-game="forza" data-link="https://modxnet.github.io/forza-horizon/">
+      <img src="https://i.ibb.co/jkMCTy35/Picsart-25-02-02-15-18-45-924.jpg" alt="Forza Horizon 5 Mobile" class="game-thumbnail" loading="lazy">
+      <div class="game-info">
+        <div class="game-title">Forza Horizon 5 Mobile</div>
+        <div class="game-meta">
+          <span class="game-version">v1.656.386.0</span>
+          <div class="game-rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Euro Truck Simulator -->
+    <div class="game-card animate-in" data-game="eurotruck" data-link="https://modxnet.github.io/Euro-truck-simulator/">
+      <img src="https://i.postimg.cc/pLph9hnC/iconets.jpg" alt="Euro Truck Simulator" class="game-thumbnail" loading="lazy">
+      <div class="game-info">
+        <div class="game-title">Euro Truck Simulator</div>
+        <div class="game-meta">
+          <span class="game-version">v1.0.0</span>
+          <div class="game-rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="far fa-star"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- CarX Street -->
+    <div class="game-card animate-in delay-1" data-game="carx" data-link="https://modxnet.github.io/CarXstreet/">
+      <img src="https://i.postimg.cc/Bbp1gGXr/66041bf5444ed-com-carxtech-sr.png" alt="CarX Street Mobile" class="game-thumbnail" loading="lazy">
+      <div class="game-info">
+        <div class="game-title">CarX Street</div>
+        <div class="game-meta">
+          <span class="game-version">v1.3.0</span>
+          <div class="game-rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="far fa-star"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Watch Dogs 2 -->
+    <div class="game-card animate-in delay-2" data-game="watchdogs" data-link="https://modxnet.github.io/Watch-dogs2/">
+      <img src="https://i.postimg.cc/Xvg3XNm6/Watch-Dogs-2-Logo.png" alt="Watch Dogs 2 Mobile" class="game-thumbnail" loading="lazy">
+      <div class="game-info">
+        <div class="game-title">Watch Dogs 2</div>
+        <div class="game-meta">
+          <span class="game-version">v1.0.5</span>
+          <div class="game-rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+            <i class="far fa-star"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- View All Button -->
+    <a href="https://modxnet.github.io/All-Games/" class="view-all-btn">
+      View All Games <i class="fas fa-chevron-right"></i>
+    </a>
   </section>
 
-  <!-- Contact Us Section (Replaced Testimonials) -->
+  <!-- Contact Us Section -->
   <section class="contact-section" id="contact">
     <div class="section">
       <div class="section-header">
         <h2 class="title-section">Need Help?</h2>
       </div>
       <div class="contact-container">
-        <button class="contact-btn" onclick="toggleContactForm()">
+        <button class="contact-btn" id="contactBtn">
           <i class="fas fa-envelope"></i> Contact Us
         </button>
         
@@ -1508,6 +1628,61 @@
     <i class="fas fa-question"></i>
   </div>
 
+  <!-- Game Detail Modal -->
+  <div class="modal game-detail-modal" id="gameDetailModal">
+    <div class="modal-content">
+      <span class="close-modal" id="closeGameDetailModal">&times;</span>
+      <div class="game-detail-header">
+        <img id="detailThumbnail" src="" alt="Game Thumbnail" class="game-detail-thumbnail">
+        <div>
+          <h3 id="detailTitle" class="game-detail-title">Game Title</h3>
+          <div id="detailMeta" class="game-detail-meta">
+            <span id="detailVersion">v1.0.0</span>
+            <div id="detailRating" class="game-detail-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="game-detail-screenshots">
+        <img src="https://i.ibb.co/VYfy7Bcs/Picsart-25-03-08-05-57-01-681.jpg" class="game-detail-screenshot" loading="lazy">
+        <img src="https://i.ibb.co/FzQ7s9s/gta5.jpg" class="game-detail-screenshot" loading="lazy">
+        <img src="https://i.ibb.co/yFvT3ZWd/Picsart-25-02-25-00-54-38-367.jpg" class="game-detail-screenshot" loading="lazy">
+      </div>
+      
+      <div class="game-detail-content">
+        <p id="detailDescription" class="game-detail-description">
+          Experience the ultimate mobile gaming with this premium mod. Unlock all features, get unlimited resources, and enjoy ad-free gameplay. This mod has been tested and verified to work on most devices.
+        </p>
+        
+        <div class="game-detail-features">
+          <h4>Mod Features:</h4>
+          <ul>
+            <li>Unlimited Money/Coins</li>
+            <li>All Vehicles/Characters Unlocked</li>
+            <li>Premium Features Enabled</li>
+            <li>No Ads</li>
+            <li>Increased Performance</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="game-detail-buttons">
+        <button class="btn btn-primary" id="downloadGameBtn">
+          <i class="fas fa-download"></i> Download Now
+        </button>
+        <button class="btn btn-dark" onclick="document.getElementById('gameDetailModal').classList.remove('active')">
+          <i class="fas fa-times"></i> Close
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- All Games Modal -->
   <div class="modal all-games-modal" id="allGamesModal">
     <div class="modal-content">
@@ -1527,7 +1702,7 @@
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star-half-alt"></i>
               </div>
-              <button class="download-button" onclick="triggerContentLocker(this)">
+              <button class="download-button" onclick="window.open('https://modxnet.github.io/BeamNG.drive/', '_blank')">
                 <i class="fas fa-cloud-download-alt"></i>
                 <span>Download</span>
               </button>
@@ -1546,7 +1721,7 @@
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star-half-alt"></i>
               </div>
-              <button class="download-button" onclick="triggerContentLocker(this)">
+              <button class="download-button" onclick="window.open('https://modxnet.github.io/GTA-5/', '_blank')">
                 <i class="fas fa-cloud-download-alt"></i>
                 <span>Download</span>
               </button>
@@ -1565,7 +1740,7 @@
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star"></i>
               </div>
-              <button class="download-button" onclick="triggerBaseball9Locker()">
+              <button class="download-button" onclick="window.open('https://modxnet.github.io/assetto-corsa/', '_blank')">
                 <i class="fas fa-cloud-download-alt"></i>
                 <span>Download</span>
               </button>
@@ -1584,7 +1759,7 @@
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star-half-alt"></i>
               </div>
-              <button class="download-button" onclick="triggerContentLocker(this)">
+              <button class="download-button" onclick="window.open('https://modxnet.github.io/forza-horizon/', '_blank')">
                 <i class="fas fa-cloud-download-alt"></i>
                 <span>Download</span>
               </button>
@@ -1603,7 +1778,7 @@
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star"></i>
               </div>
-              <button class="download-button" onclick="triggerContentLocker(this)">
+              <button class="download-button" onclick="window.open('https://modxnet.github.io/Euro-truck-simulator/', '_blank')">
                 <i class="fas fa-cloud-download-alt"></i>
                 <span>Download</span>
               </button>
@@ -1622,7 +1797,7 @@
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star-half-alt"></i>
               </div>
-              <button class="download-button" onclick="triggerContentLocker(this)">
+              <button class="download-button" onclick="window.open('https://modxnet.github.io/CarXstreet/', '_blank')">
                 <i class="fas fa-cloud-download-alt"></i>
                 <span>Download</span>
               </button>
@@ -1641,7 +1816,7 @@
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star"></i>
               </div>
-              <button class="download-button" onclick="triggerContentLocker(this)">
+              <button class="download-button" onclick="window.open('https://modxnet.github.io/Watch-dogs2/', '_blank')">
                 <i class="fas fa-cloud-download-alt"></i>
                 <span>Download</span>
               </button>
@@ -1660,7 +1835,7 @@
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star-half-alt"></i>
               </div>
-              <button class="download-button" onclick="triggerContentLocker(this)">
+              <button class="download-button" onclick="window.open('https://modxnet.github.io/BeamNG.drive/', '_blank')">
                 <i class="fas fa-cloud-download-alt"></i>
                 <span>Download</span>
               </button>
@@ -1679,7 +1854,7 @@
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star"></i>
               </div>
-              <button class="download-button" onclick="triggerContentLocker(this)">
+              <button class="download-button" onclick="window.open('https://modxnet.github.io/GTA-5/', '_blank')">
                 <i class="fas fa-cloud-download-alt"></i>
                 <span>Download</span>
               </button>
@@ -1698,7 +1873,7 @@
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star-half-alt"></i>
               </div>
-              <button class="download-button" onclick="triggerContentLocker(this)">
+              <button class="download-button" onclick="window.open('https://modxnet.github.io/assetto-corsa/', '_blank')">
                 <i class="fas fa-cloud-download-alt"></i>
                 <span>Download</span>
               </button>
@@ -1717,7 +1892,7 @@
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star"></i>
               </div>
-              <button class="download-button" onclick="triggerContentLocker(this)">
+              <button class="download-button" onclick="window.open('https://modxnet.github.io/forza-horizon/', '_blank')">
                 <i class="fas fa-cloud-download-alt"></i>
                 <span>Download</span>
               </button>
@@ -1736,7 +1911,7 @@
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star-half-alt"></i>
               </div>
-              <button class="download-button" onclick="triggerContentLocker(this)">
+              <button class="download-button" onclick="window.open('https://modxnet.github.io/Euro-truck-simulator/', '_blank')">
                 <i class="fas fa-cloud-download-alt"></i>
                 <span>Download</span>
               </button>
@@ -1755,7 +1930,7 @@
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star"></i>
               </div>
-              <button class="download-button" onclick="triggerContentLocker(this)">
+              <button class="download-button" onclick="window.open('https://modxnet.github.io/CarXstreet/', '_blank')">
                 <i class="fas fa-cloud-download-alt"></i>
                 <span>Download</span>
               </button>
@@ -1774,7 +1949,7 @@
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star-half-alt"></i>
               </div>
-              <button class="download-button" onclick="triggerContentLocker(this)">
+              <button class="download-button" onclick="window.open('https://modxnet.github.io/Watch-dogs2/', '_blank')">
                 <i class="fas fa-cloud-download-alt"></i>
                 <span>Download</span>
               </button>
@@ -1789,20 +1964,21 @@
   <div class="modal" id="helpModal">
     <div class="modal-content">
       <span class="close-modal" id="closeHelpModal">&times;</span>
-      <h3 class="modal-title">How to Download Games</h3>
+      <h3 class="modal-title">Help Center</h3>
       <div class="modal-body">
+        <h4>How to Download Games</h4>
         <p>To access our free downloads, we require users to complete a simple offer. These offers help support our platform and keep it free for everyone.</p>
         
-        <h4 style="margin-top: 20px; color: var(--primary);">The offers may include:</h4>
+        <p>The offers may include:</p>
         <ul style="margin: 15px 0 20px 20px;">
           <li style="margin-bottom: 8px;">Trying an app or game</li>
           <li style="margin-bottom: 8px;">Completing a short survey</li>
           <li style="margin-bottom: 8px;">Signing up for a service</li>
         </ul>
         
-        <p style="margin-bottom: 20px;">All offers are safe and legitimate. Thank you for your support!</p>
+        <p>All offers are safe and legitimate. Thank you for your support!</p>
         
-        <h4 style="color: var(--primary); margin-bottom: 15px;">Download Steps:</h4>
+        <h4 style="margin-top: 20px;">Download Steps:</h4>
         <ol style="margin-left: 20px;">
           <li style="margin-bottom: 10px;">Click on the game you want to download</li>
           <li style="margin-bottom: 10px;">Complete the simple offer (usually takes less than 1 minute)</li>
@@ -1941,10 +2117,16 @@
     const switchToLogin = document.getElementById('switchToLogin');
     const toast = document.getElementById('toast');
     const toastMessage = document.getElementById('toastMessage');
-    const viewAllBtn = document.getElementById('viewAllBtn');
     const allGamesModal = document.getElementById('allGamesModal');
     const closeAllGamesModal = document.getElementById('closeAllGamesModal');
     const contactForm = document.getElementById('contactForm');
+    const contactBtn = document.getElementById('contactBtn');
+    const gameDetailModal = document.getElementById('gameDetailModal');
+    const closeGameDetailModal = document.getElementById('closeGameDetailModal');
+    const gamesSearchInput = document.getElementById('gamesSearchInput');
+    const gamesList = document.getElementById('gamesList');
+    const gameCards = document.querySelectorAll('.game-card');
+    const downloadGameBtn = document.getElementById('downloadGameBtn');
     
     // Mobile Menu Toggle
     menuToggle.addEventListener('click', () => {
@@ -1962,6 +2144,35 @@
       });
     });
     
+    // Game card click handlers with visual effects
+    gameCards.forEach(card => {
+      // Add click effect element
+      const clickEffect = document.createElement('div');
+      clickEffect.className = 'game-card-click-effect';
+      card.appendChild(clickEffect);
+      
+      card.addEventListener('click', (e) => {
+        // Check if click was on a link/button inside card
+        if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+        
+        // Add active class for visual effect
+        card.classList.add('active');
+        
+        // Remove the effect after animation completes
+        setTimeout(() => {
+          card.classList.remove('active');
+        }, 600);
+        
+        // Redirect after a short delay to allow effect to be seen
+        const gameLink = card.getAttribute('data-link');
+        if (gameLink) {
+          setTimeout(() => {
+            window.open(gameLink, '_blank');
+          }, 300);
+        }
+      });
+    });
+
     // Help Modal
     helpButton.addEventListener('click', () => {
       helpModal.classList.add('active');
@@ -1974,13 +2185,43 @@
     });
     
     // All Games Modal
-    viewAllBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      allGamesModal.classList.add('active');
-    });
-    
     closeAllGamesModal.addEventListener('click', () => {
       allGamesModal.classList.remove('active');
+    });
+    
+    // Game Detail Modal
+    closeGameDetailModal.addEventListener('click', () => {
+      gameDetailModal.classList.remove('active');
+    });
+    
+    // Live search functionality
+    gamesSearchInput.addEventListener('input', () => {
+      const searchTerm = gamesSearchInput.value.toLowerCase();
+      
+      gameCards.forEach(card => {
+        const title = card.querySelector('.game-title').textContent.toLowerCase();
+        if (title.includes(searchTerm)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+    
+    // Show/hide help button on scroll
+    let lastScrollPosition = 0;
+    const scrollThreshold = 200;
+    
+    window.addEventListener('scroll', () => {
+      const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+      
+      if (currentScrollPosition > scrollThreshold) {
+        helpButton.classList.add('visible');
+      } else {
+        helpButton.classList.remove('visible');
+      }
+      
+      lastScrollPosition = currentScrollPosition;
     });
     
     // Auth Modals
@@ -2043,9 +2284,9 @@
     }
     
     // Contact Form Toggle
-    function toggleContactForm() {
-      contactForm.style.display = contactForm.style.display === 'none' ? 'block' : 'none';
-    }
+    contactBtn.addEventListener('click', () => {
+      contactForm.style.display = contactForm.style.display === 'block' ? 'none' : 'block';
+    });
     
     // Contact Form Validation
     function validateContactForm() {
@@ -2085,122 +2326,6 @@
       }
       
       return false; // Prevent form submission
-    }
-    
-    // Trigger Content Locker with adbluemedia script
-    function triggerContentLocker(button) {
-      const gameTitle = button.closest('.all-game-card').querySelector('.all-game-title').textContent;
-      
-      // Create and append the adbluemedia script
-      const script1 = document.createElement('script');
-      script1.type = 'text/javascript';
-      script1.text = `var WyfTq_DJa_gYXaIc={"it":4458399,"key":"eee25"};`;
-      
-      const script2 = document.createElement('script');
-      script2.src = 'https://d2yc6hxtq0phup.cloudfront.net/41575f4.js';
-      
-      const script3 = document.createElement('script');
-      script3.text = `_Ci(); setTimeout(_Ci, 5000);`;
-      
-      // Create a container div for the content locker
-      const contentLocker = document.createElement('div');
-      contentLocker.id = 'contentLocker';
-      contentLocker.style.position = 'fixed';
-      contentLocker.style.top = '0';
-      contentLocker.style.left = '0';
-      contentLocker.style.width = '100%';
-      contentLocker.style.height = '100%';
-      contentLocker.style.backgroundColor = 'rgba(0,0,0,0.9)';
-      contentLocker.style.zIndex = '10000';
-      contentLocker.style.display = 'flex';
-      contentLocker.style.flexDirection = 'column';
-      contentLocker.style.justifyContent = 'center';
-      contentLocker.style.alignItems = 'center';
-      contentLocker.style.color = 'white';
-      contentLocker.style.padding = '20px';
-      contentLocker.style.textAlign = 'center';
-      
-      // Add content to the locker
-      contentLocker.innerHTML = `
-        <h3 style="color: var(--primary);">Complete offer to download ${gameTitle}</h3>
-        <p>Please complete one of the offers to unlock your download</p>
-        <div id="offerContainer"></div>
-        <button onclick="document.body.removeChild(document.getElementById('contentLocker'))" 
-                style="margin-top: 20px; padding: 10px 20px; background: var(--danger); color: white; border: none; border-radius: var(--border-radius); cursor: pointer;">
-          Close
-        </button>
-      `;
-      
-      // Append everything to the body
-      document.body.appendChild(script1);
-      document.body.appendChild(script2);
-      document.body.appendChild(script3);
-      document.body.appendChild(contentLocker);
-      
-      // Focus on the offer container after a short delay to allow scripts to load
-      setTimeout(() => {
-        const offerContainer = document.getElementById('offerContainer');
-        if (typeof _Ci === 'function') {
-          _Ci();
-        }
-      }, 1000);
-    }
-
-    // Baseball 9 Specific Content Locker
-    function triggerBaseball9Locker() {
-      // Create and append the adbluemedia script
-      const script1 = document.createElement('script');
-      script1.type = 'text/javascript';
-      script1.text = `var KJAll_Egp_UpcMpc={"it":4476533,"key":"8af25"};`;
-      
-      const script2 = document.createElement('script');
-      script2.src = 'https://d2v7l2267atlz5.cloudfront.net/d3914ec.js';
-      
-      const script3 = document.createElement('script');
-      script3.text = `_CJ(); setTimeout(_CJ, 5000);`;
-      
-      // Create a container div for the content locker
-      const contentLocker = document.createElement('div');
-      contentLocker.id = 'contentLocker';
-      contentLocker.style.position = 'fixed';
-      contentLocker.style.top = '0';
-      contentLocker.style.left = '0';
-      contentLocker.style.width = '100%';
-      contentLocker.style.height = '100%';
-      contentLocker.style.backgroundColor = 'rgba(0,0,0,0.9)';
-      contentLocker.style.zIndex = '10000';
-      contentLocker.style.display = 'flex';
-      contentLocker.style.flexDirection = 'column';
-      contentLocker.style.justifyContent = 'center';
-      contentLocker.style.alignItems = 'center';
-      contentLocker.style.color = 'white';
-      contentLocker.style.padding = '20px';
-      contentLocker.style.textAlign = 'center';
-      
-      // Add content to the locker
-      contentLocker.innerHTML = `
-        <h3 style="color: var(--primary);">Complete offer to download BASEBALL 9 Mod</h3>
-        <p>Please complete one of the offers to unlock your download</p>
-        <div id="offerContainer"></div>
-        <button onclick="document.body.removeChild(document.getElementById('contentLocker'))" 
-                style="margin-top: 20px; padding: 10px 20px; background: var(--danger); color: white; border: none; border-radius: var(--border-radius); cursor: pointer;">
-          Close
-        </button>
-      `;
-      
-      // Append everything to the body
-      document.body.appendChild(script1);
-      document.body.appendChild(script2);
-      document.body.appendChild(script3);
-      document.body.appendChild(contentLocker);
-      
-      // Focus on the offer container after a short delay to allow scripts to load
-      setTimeout(() => {
-        const offerContainer = document.getElementById('offerContainer');
-        if (typeof _CJ === 'function') {
-          _CJ();
-        }
-      }, 1000);
     }
     
     // Form Submissions
