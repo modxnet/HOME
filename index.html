@@ -1,6 +1,20 @@
 <!DOCTYPE html>
+<!-- 
+⚠ This code is protected by GitHub Pages ⚠
+Copyright © 2025. All rights reserved.
+Any attempt to steal or copy this code will result in immediate suspension through our copyright protection system.
+Your IP address has been logged for security purposes.
+-->
+
+<!-- 
+⚠ هذا الكود محمي بواسطة GitHub Pages ⚠
+جميع الحقوق محفوظة © 2025.
+أي محاولة لسرقة أو نسخ هذا الكود ستؤدي إلى الإيقاف الفوري عبر نظام حماية حقوق النشر.
+تم تسجيل عنوان IP الخاص بك لأغراض أمنية.
+-->
 <html lang="en">
 <head>
+
   <script>
   document.addEventListener('contextmenu', event => event.preventDefault());
   document.onkeydown = function(e) {
@@ -233,6 +247,111 @@
       color: var(--text-secondary);
     }
     
+    /* View Toggle Styles */
+    .view-toggle {
+      display: flex;
+      gap: 10px;
+      margin: 10px 16px 15px;
+    }
+    
+    .view-toggle-btn {
+      background: var(--darker);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--text-secondary);
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .view-toggle-btn.active {
+      background: var(--primary);
+      color: var(--dark);
+      border-color: var(--primary);
+    }
+    
+    .view-toggle-btn i {
+      font-size: 18px;
+    }
+    
+    /* Grid View Styles */
+    .grid-view {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      padding: 0 16px;
+    }
+    
+    .game-card-grid {
+      background: var(--light);
+      border-radius: var(--border-radius);
+      padding: 15px;
+      transition: var(--transition);
+      border: 1px solid rgba(255,255,255,0.05);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    
+    .game-card-grid:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--box-shadow);
+    }
+    
+    .game-thumbnail-grid {
+      width: 80px;
+      height: 80px;
+      border-radius: 12px;
+      object-fit: cover;
+      margin-bottom: 12px;
+    }
+    
+    .game-info-grid {
+      width: 100%;
+    }
+    
+    .game-title-grid {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 6px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    
+    .game-meta-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+    }
+    
+    .game-version-grid {
+      margin-bottom: 2px;
+    }
+    
+    .game-rating-grid {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+    }
+    
+    .game-rating-grid i {
+      color: var(--warning);
+      font-size: 0.7rem;
+    }
+    
     /* Hero Section - Mobile Optimized */
     .hero {
       padding: 0;
@@ -288,7 +407,11 @@
     
     /* Games List Section */
     .games-list {
-      padding: 20px 16px;
+      padding: 0 16px 20px;
+    }
+    
+    .list-view {
+      display: none;
     }
     
     .game-card {
@@ -1212,6 +1335,10 @@
       .footer-grid {
         grid-template-columns: repeat(2, 1fr);
       }
+      
+      .grid-view {
+        grid-template-columns: repeat(3, 1fr);
+      }
     }
     
     /* Desktop Styles */
@@ -1296,11 +1423,19 @@
         width: 200px;
         height: 120px;
       }
+      
+      .grid-view {
+        grid-template-columns: repeat(4, 1fr);
+      }
     }
     
     @media (min-width: 1200px) {
       .all-games-grid {
         grid-template-columns: repeat(4, 1fr);
+      }
+      
+      .grid-view {
+        grid-template-columns: repeat(5, 1fr);
       }
     }
   </style>
@@ -1316,7 +1451,19 @@
           <small>Unlock Premium Games</small>
         </div>
       </a>
-      
+      <!-- 
+⚠ This code is protected by GitHub Pages ⚠
+Copyright © 2025. All rights reserved.
+Any attempt to steal or copy this code will result in immediate suspension through our copyright protection system.
+Your IP address has been logged for security purposes.
+-->
+
+<!-- 
+⚠ هذا الكود محمي بواسطة GitHub Pages ⚠
+جميع الحقوق محفوظة © 2025.
+أي محاولة لسرقة أو نسخ هذا الكود ستؤدي إلى الإيقاف الفوري عبر نظام حماية حقوق النشر.
+تم تسجيل عنوان IP الخاص بك لأغراض أمنية.
+-->
       <div class="desktop-nav">
         <ul class="nav-links">
           <li><a href="index.html">Home</a></li>
@@ -1347,7 +1494,19 @@
         <input type="text" placeholder="Search games..." id="mobileSearchInput">
         <i class="fas fa-search"></i>
       </div>
-      
+      <!-- 
+⚠ This code is protected by GitHub Pages ⚠
+Copyright © 2025. All rights reserved.
+Any attempt to steal or copy this code will result in immediate suspension through our copyright protection system.
+Your IP address has been logged for security purposes.
+-->
+
+<!-- 
+⚠ هذا الكود محمي بواسطة GitHub Pages ⚠
+جميع الحقوق محفوظة © 2025.
+أي محاولة لسرقة أو نسخ هذا الكود ستؤدي إلى الإيقاف الفوري عبر نظام حماية حقوق النشر.
+تم تسجيل عنوان IP الخاص بك لأغراض أمنية.
+-->
       <ul class="mobile-nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="games.html">Games</a></li>
@@ -1380,130 +1539,284 @@
     <input type="text" id="gamesSearchInput" placeholder="Search games...">
     <i class="fas fa-search"></i>
   </div>
+<!-- 
+⚠ This code is protected by GitHub Pages ⚠
+Copyright © 2025. All rights reserved.
+Any attempt to steal or copy this code will result in immediate suspension through our copyright protection system.
+Your IP address has been logged for security purposes.
+-->
+
+<!-- 
+⚠ هذا الكود محمي بواسطة GitHub Pages ⚠
+جميع الحقوق محفوظة © 2025.
+أي محاولة لسرقة أو نسخ هذا الكود ستؤدي إلى الإيقاف الفوري عبر نظام حماية حقوق النشر.
+تم تسجيل عنوان IP الخاص بك لأغراض أمنية.
+-->
+  <!-- View Toggle -->
+  <div class="view-toggle">
+    <button class="view-toggle-btn active" id="gridViewBtn" title="Grid View">
+      <i class="fas fa-th-large"></i>
+    </button>
+    <button class="view-toggle-btn" id="listViewBtn" title="List View">
+      <i class="fas fa-list"></i>
+    </button>
+  </div>
 
   <!-- Games List Section -->
   <section class="games-list" id="gamesList">
-    <!-- BeamNG.drive -->
-    <div class="game-card animate-in" data-game="beamng" data-link="https://modxnet.github.io/BeamNG.drive/">
-      <img src="https://avatars.githubusercontent.com/u/6404024?s=280&v=4" alt="BeamNG.drive Mobile" class="game-thumbnail" loading="lazy">
-      <div class="game-info">
-        <div class="game-title">BeamNG.drive Mobile</div>
-        <div class="game-meta">
-          <span class="game-version">v0.32.0.0</span>
-          <div class="game-rating">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star-half-alt"></i>
+    <!-- Grid View (default) -->
+    <div class="grid-view" id="gridView">
+      <!-- BeamNG.drive -->
+      <div class="game-card-grid animate-in" data-game="beamng" data-link="https://modxnet.github.io/BeamNG.drive/">
+        <img src="https://avatars.githubusercontent.com/u/6404024?s=280&v=4" alt="BeamNG.drive Mobile" class="game-thumbnail-grid" loading="lazy">
+        <div class="game-info-grid">
+          <div class="game-title-grid">BeamNG.drive Mobile</div>
+          <div class="game-meta-grid">
+            <span class="game-version-grid">v0.32.0.0</span>
+            <div class="game-rating-grid">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- GTA 5 -->
+      <div class="game-card-grid animate-in delay-1" data-game="gta5" data-link="https://modxnet.github.io/GTA-5/">
+        <img src="https://i.pinimg.com/736x/8f/01/03/8f010359c57da7850e723fa17a53b55e.jpg" alt="GTA 5 Mobile" class="game-thumbnail-grid" loading="lazy">
+        <div class="game-info-grid">
+          <div class="game-title-grid">Grand Theft Auto V</div>
+          <div class="game-meta-grid">
+            <span class="game-version-grid">v1.0.3095/1.68</span>
+            <div class="game-rating-grid">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="far fa-star"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Assetto Corsa -->
+      <div class="game-card-grid animate-in delay-2" data-game="assetto" data-link="https://modxnet.github.io/assetto-corsa/">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsv7-mEL1UXJbWJNZMtkffQzMXXZWYoOD8zw&s" alt="Assetto Corsa Mobile" class="game-thumbnail-grid" loading="lazy">
+        <div class="game-info-grid">
+          <div class="game-title-grid">Assetto Corsa Mobile</div>
+          <div class="game-meta-grid">
+            <span class="game-version-grid">v1.16.4</span>
+            <div class="game-rating-grid">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Forza Horizon 5 -->
+      <div class="game-card-grid animate-in delay-3" data-game="forza" data-link="https://modxnet.github.io/forza-horizon/">
+        <img src="https://images.seeklogo.com/logo-png/40/1/forza-horizon-5-logo-png_seeklogo-406612.png" alt="Forza Horizon 5 Mobile" class="game-thumbnail-grid" loading="lazy">
+        <div class="game-info-grid">
+          <div class="game-title-grid">Forza Horizon 5 Mobile</div>
+          <div class="game-meta-grid">
+            <span class="game-version-grid">v1.656.386.0</span>
+            <div class="game-rating-grid">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Euro Truck Simulator -->
+      <div class="game-card-grid animate-in" data-game="eurotruck" data-link="https://modxnet.github.io/Euro-truck-simulator/">
+        <img src="https://i.pinimg.com/564x/32/ae/e5/32aee5919f1c4e81da58627d21b3323a.jpg" alt="Euro Truck Simulator" class="game-thumbnail-grid" loading="lazy">
+        <div class="game-info-grid">
+          <div class="game-title-grid">Euro Truck Simulator</div>
+          <div class="game-meta-grid">
+            <span class="game-version-grid">v1.0.0</span>
+            <div class="game-rating-grid">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="far fa-star"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- CarX Street -->
+      <div class="game-card-grid animate-in delay-1" data-game="carx" data-link="https://modxnet.github.io/CarXstreet/">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4pqJlpezWAKhl0bwwWy1GIc_zVOGXjHvz9Q&s" alt="CarX Street Mobile" class="game-thumbnail-grid" loading="lazy">
+        <div class="game-info-grid">
+          <div class="game-title-grid">CarX Street Mod</div>
+          <div class="game-meta-grid">
+            <span class="game-version-grid">v1.3.0</span>
+            <div class="game-rating-grid">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="far fa-star"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Watch Dogs 2 -->
+      <div class="game-card-grid animate-in delay-2" data-game="watchdogs" data-link="https://modxnet.github.io/Watch-dogs2/">
+        <img src="https://images.steamusercontent.com/ugc/180542583658076938/524D520DFF7C6671219DF93F38B195D435B93786/?imw=637&imh=358&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true" alt="Watch Dogs 2 Mobile" class="game-thumbnail-grid" loading="lazy">
+        <div class="game-info-grid">
+          <div class="game-title-grid">Watch Dogs 2</div>
+          <div class="game-meta-grid">
+            <span class="game-version-grid">v1.0.5</span>
+            <div class="game-rating-grid">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+              <i class="far fa-star"></i>
+            </div>
           </div>
         </div>
       </div>
     </div>
     
-    <!-- GTA 5 -->
-    <div class="game-card animate-in delay-1" data-game="gta5" data-link="https://modxnet.github.io/GTA-5/">
-      <img src="https://i.pinimg.com/736x/8f/01/03/8f010359c57da7850e723fa17a53b55e.jpg" alt="GTA 5 Mobile" class="game-thumbnail" loading="lazy">
-      <div class="game-info">
-        <div class="game-title">Grand Theft Auto V</div>
-        <div class="game-meta">
-          <span class="game-version">v1.0.3095/1.68</span>
-          <div class="game-rating">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="far fa-star"></i>
+    <!-- List View (hidden by default) -->
+    <div class="list-view" id="listView">
+      <!-- BeamNG.drive -->
+      <div class="game-card animate-in" data-game="beamng" data-link="https://modxnet.github.io/BeamNG.drive/">
+        <img src="https://avatars.githubusercontent.com/u/6404024?s=280&v=4" alt="BeamNG.drive Mobile" class="game-thumbnail" loading="lazy">
+        <div class="game-info">
+          <div class="game-title">BeamNG.drive Mobile</div>
+          <div class="game-meta">
+            <span class="game-version">v0.32.0.0</span>
+            <div class="game-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    
-    <!-- Assetto Corsa -->
-    <div class="game-card animate-in delay-2" data-game="assetto" data-link="https://modxnet.github.io/assetto-corsa/">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsv7-mEL1UXJbWJNZMtkffQzMXXZWYoOD8zw&s" alt="Assetto Corsa Mobile" class="game-thumbnail" loading="lazy">
-      <div class="game-info">
-        <div class="game-title">Assetto Corsa Mobile</div>
-        <div class="game-meta">
-          <span class="game-version">v1.16.4</span>
-          <div class="game-rating">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
+      
+      <!-- GTA 5 -->
+      <div class="game-card animate-in delay-1" data-game="gta5" data-link="https://modxnet.github.io/GTA-5/">
+        <img src="https://i.pinimg.com/736x/8f/01/03/8f010359c57da7850e723fa17a53b55e.jpg" alt="GTA 5 Mobile" class="game-thumbnail" loading="lazy">
+        <div class="game-info">
+          <div class="game-title">Grand Theft Auto V</div>
+          <div class="game-meta">
+            <span class="game-version">v1.0.3095/1.68</span>
+            <div class="game-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="far fa-star"></i>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    
-    <!-- Forza Horizon 5 -->
-    <div class="game-card animate-in delay-3" data-game="forza" data-link="https://modxnet.github.io/forza-horizon/">
-      <img src="https://images.seeklogo.com/logo-png/40/1/forza-horizon-5-logo-png_seeklogo-406612.png" alt="Forza Horizon 5 Mobile" class="game-thumbnail" loading="lazy">
-      <div class="game-info">
-        <div class="game-title">Forza Horizon 5 Mobile</div>
-        <div class="game-meta">
-          <span class="game-version">v1.656.386.0</span>
-          <div class="game-rating">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star-half-alt"></i>
+      
+      <!-- Assetto Corsa -->
+      <div class="game-card animate-in delay-2" data-game="assetto" data-link="https://modxnet.github.io/assetto-corsa/">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsv7-mEL1UXJbWJNZMtkffQzMXXZWYoOD8zw&s" alt="Assetto Corsa Mobile" class="game-thumbnail" loading="lazy">
+        <div class="game-info">
+          <div class="game-title">Assetto Corsa Mobile</div>
+          <div class="game-meta">
+            <span class="game-version">v1.16.4</span>
+            <div class="game-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    
-    <!-- Euro Truck Simulator -->
-    <div class="game-card animate-in" data-game="eurotruck" data-link="https://modxnet.github.io/Euro-truck-simulator/">
-      <img src="https://i.pinimg.com/564x/32/ae/e5/32aee5919f1c4e81da58627d21b3323a.jpg" alt="Euro Truck Simulator" class="game-thumbnail" loading="lazy">
-      <div class="game-info">
-        <div class="game-title">Euro Truck Simulator</div>
-        <div class="game-meta">
-          <span class="game-version">v1.0.0</span>
-          <div class="game-rating">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="far fa-star"></i>
+      
+      <!-- Forza Horizon 5 -->
+      <div class="game-card animate-in delay-3" data-game="forza" data-link="https://modxnet.github.io/forza-horizon/">
+        <img src="https://images.seeklogo.com/logo-png/40/1/forza-horizon-5-logo-png_seeklogo-406612.png" alt="Forza Horizon 5 Mobile" class="game-thumbnail" loading="lazy">
+        <div class="game-info">
+          <div class="game-title">Forza Horizon 5 Mobile</div>
+          <div class="game-meta">
+            <span class="game-version">v1.656.386.0</span>
+            <div class="game-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    
-    <!-- CarX Street -->
-    <div class="game-card animate-in delay-1" data-game="carx" data-link="https://modxnet.github.io/CarXstreet/">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4pqJlpezWAKhl0bwwWy1GIc_zVOGXjHvz9Q&s" alt="CarX Street Mobile" class="game-thumbnail" loading="lazy">
-      <div class="game-info">
-        <div class="game-title">CarX Street Mod</div>
-        <div class="game-meta">
-          <span class="game-version">v1.3.0</span>
-          <div class="game-rating">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="far fa-star"></i>
+      
+      <!-- Euro Truck Simulator -->
+      <div class="game-card animate-in" data-game="eurotruck" data-link="https://modxnet.github.io/Euro-truck-simulator/">
+        <img src="https://i.pinimg.com/564x/32/ae/e5/32aee5919f1c4e81da58627d21b3323a.jpg" alt="Euro Truck Simulator" class="game-thumbnail" loading="lazy">
+        <div class="game-info">
+          <div class="game-title">Euro Truck Simulator</div>
+          <div class="game-meta">
+            <span class="game-version">v1.0.0</span>
+            <div class="game-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="far fa-star"></i>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    
-    <!-- Watch Dogs 2 -->
-    <div class="game-card animate-in delay-2" data-game="watchdogs" data-link="https://modxnet.github.io/Watch-dogs2/">
-      <img src="https://images.steamusercontent.com/ugc/180542583658076938/524D520DFF7C6671219DF93F38B195D435B93786/?imw=637&imh=358&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true" alt="Watch Dogs 2 Mobile" class="game-thumbnail" loading="lazy">
-      <div class="game-info">
-        <div class="game-title">Watch Dogs 2</div>
-        <div class="game-meta">
-          <span class="game-version">v1.0.5</span>
-          <div class="game-rating">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star-half-alt"></i>
-            <i class="far fa-star"></i>
+      
+      <!-- CarX Street -->
+      <div class="game-card animate-in delay-1" data-game="carx" data-link="https://modxnet.github.io/CarXstreet/">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4pqJlpezWAKhl0bwwWy1GIc_zVOGXjHvz9Q&s" alt="CarX Street Mobile" class="game-thumbnail" loading="lazy">
+        <div class="game-info">
+          <div class="game-title">CarX Street Mod</div>
+          <div class="game-meta">
+            <span class="game-version">v1.3.0</span>
+            <div class="game-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="far fa-star"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Watch Dogs 2 -->
+      <div class="game-card animate-in delay-2" data-game="watchdogs" data-link="https://modxnet.github.io/Watch-dogs2/">
+        <img src="https://images.steamusercontent.com/ugc/180542583658076938/524D520DFF7C6671219DF93F38B195D435B93786/?imw=637&imh=358&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true" alt="Watch Dogs 2 Mobile" class="game-thumbnail" loading="lazy">
+        <div class="game-info">
+          <div class="game-title">Watch Dogs 2</div>
+          <div class="game-meta">
+            <span class="game-version">v1.0.5</span>
+            <div class="game-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+              <i class="far fa-star"></i>
+            </div>
           </div>
         </div>
       </div>
@@ -2103,7 +2416,7 @@
     <i class="fas fa-check-circle"></i>
     <span id="toastMessage">Notification message here</span>
   </div>
-
+    
   <!-- JavaScript -->
   <script>
     // DOM Elements
@@ -2135,6 +2448,32 @@
     const gamesList = document.getElementById('gamesList');
     const gameCards = document.querySelectorAll('.game-card');
     const downloadGameBtn = document.getElementById('downloadGameBtn');
+    const gridViewBtn = document.getElementById('gridViewBtn');
+    const listViewBtn = document.getElementById('listViewBtn');
+    const gridView = document.getElementById('gridView');
+    const listView = document.getElementById('listView');
+    
+    // View Toggle Functionality
+    function toggleView(view) {
+      if (view === 'grid') {
+        gridView.style.display = 'grid';
+        listView.style.display = 'none';
+        gridViewBtn.classList.add('active');
+        listViewBtn.classList.remove('active');
+      } else {
+        gridView.style.display = 'none';
+        listView.style.display = 'block';
+        gridViewBtn.classList.remove('active');
+        listViewBtn.classList.add('active');
+      }
+    }
+    
+    // Set default view to grid
+    toggleView('grid');
+    
+    // Add event listeners to toggle buttons
+    gridViewBtn.addEventListener('click', () => toggleView('grid'));
+    listViewBtn.addEventListener('click', () => toggleView('list'));
     
     // Mobile Menu Toggle
     menuToggle.addEventListener('click', () => {
@@ -2153,7 +2492,7 @@
     });
     
     // Game card click handlers with visual effects
-    gameCards.forEach(card => {
+    document.querySelectorAll('.game-card, .game-card-grid').forEach(card => {
       // Add click effect element
       const clickEffect = document.createElement('div');
       clickEffect.className = 'game-card-click-effect';
@@ -2206,7 +2545,18 @@
     gamesSearchInput.addEventListener('input', () => {
       const searchTerm = gamesSearchInput.value.toLowerCase();
       
-      gameCards.forEach(card => {
+      // Search in grid view
+      document.querySelectorAll('.game-card-grid').forEach(card => {
+        const title = card.querySelector('.game-title-grid').textContent.toLowerCase();
+        if (title.includes(searchTerm)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      
+      // Search in list view
+      document.querySelectorAll('.game-card').forEach(card => {
         const title = card.querySelector('.game-title').textContent.toLowerCase();
         if (title.includes(searchTerm)) {
           card.style.display = 'flex';
@@ -2375,3 +2725,16 @@
   </script>
 </body>
 </html>
+<!-- 
+⚠ This code is protected by GitHub Pages ⚠
+Copyright © 2025. All rights reserved.
+Any attempt to steal or copy this code will result in immediate suspension through our copyright protection system.
+Your IP address has been logged for security purposes.
+-->
+
+<!-- 
+⚠ هذا الكود محمي بواسطة GitHub Pages ⚠
+جميع الحقوق محفوظة © 2025.
+أي محاولة لسرقة أو نسخ هذا الكود ستؤدي إلى الإيقاف الفوري عبر نظام حماية حقوق النشر.
+تم تسجيل عنوان IP الخاص بك لأغراض أمنية.
+-->
