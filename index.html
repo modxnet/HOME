@@ -14,13 +14,24 @@ Your IP address has been logged for security purposes.
 -->
 <html lang="en">
 <head>
-
   <script>
+  // Stronger code protection
   document.addEventListener('contextmenu', event => event.preventDefault());
   document.onkeydown = function(e) {
-    if (e.ctrlKey && (e.key === 'u' || e.key === 's' || e.key === 'c' || e.key === 'x')) {
+    // Block F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
+    if (e.key === "F12" || 
+        (e.ctrlKey && e.shiftKey && e.key === "I") || 
+        (e.ctrlKey && e.shiftKey && e.key === "J") ||
+        (e.ctrlKey && e.key === "u")) {
       return false;
     }
+  };
+  
+  // Prevent viewing source
+  window.onload = function() {
+    document.body.oncontextmenu = function() { return false; };
+    document.body.onselectstart = function() { return false; };
+    document.body.ondragstart = function() { return false; };
   };
 </script>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4143839749025019"
@@ -1005,7 +1016,6 @@ Your IP address has been logged for security purposes.
       gap: 10px;
       font-size: 0.85rem;
       color: var(--text-secondary);
-      margin-bottom: 5px;
     }
     
     .game-detail-rating {
@@ -1691,6 +1701,24 @@ Your IP address has been logged for security purposes.
           </div>
         </div>
       </div>
+      
+      <!-- Rooftops & Alleys Mobile -->
+      <div class="game-card-grid animate-in delay-3" data-game="rooftops" data-link="https://modxnet.github.io/Rooftops-Alleys/">
+        <img src="https://i.postimg.cc/W1bm7TRt/Fh-T2ixl-Wyl9-TPswg-KLF0j-Pp9j-Nuq.png" alt="Rooftops & Alleys Mobile" class="game-thumbnail-grid" loading="lazy">
+        <div class="game-info-grid">
+          <div class="game-title-grid">Rooftops & Alleys Mobile</div>
+          <div class="game-meta-grid">
+            <span class="game-version-grid">v2.1.0</span>
+            <div class="game-rating-grid">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     
     <!-- List View (hidden by default) -->
@@ -1816,6 +1844,24 @@ Your IP address has been logged for security purposes.
               <i class="fas fa-star"></i>
               <i class="fas fa-star-half-alt"></i>
               <i class="far fa-star"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Rooftops & Alleys Mobile -->
+      <div class="game-card animate-in delay-3" data-game="rooftops" data-link="https://modxnet.github.io/Rooftops-Alleys/">
+        <img src="https://i.postimg.cc/W1bm7TRt/Fh-T2ixl-Wyl9-TPswg-KLF0j-Pp9j-Nuq.png" alt="Rooftops & Alleys Mobile" class="game-thumbnail" loading="lazy">
+        <div class="game-info">
+          <div class="game-title">Rooftops & Alleys Mobile</div>
+          <div class="game-meta">
+            <span class="game-version">v2.1.0</span>
+            <div class="game-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
             </div>
           </div>
         </div>
@@ -2004,283 +2050,6 @@ Your IP address has been logged for security purposes.
     </div>
   </div>
 
-  <!-- All Games Modal -->
-  <div class="modal all-games-modal" id="allGamesModal">
-    <div class="modal-content">
-      <span class="close-modal" id="closeAllGamesModal">&times;</span>
-      <h3 class="modal-title">All Games</h3>
-      <div class="modal-body">
-        <div class="all-games-grid">
-          <!-- Need For Speed Mobile -->
-          <div class="all-game-card">
-            <img src="https://i.ibb.co/wZbqZrWm/Fiyk-DJVdy-9ytqfua-DCBB1-Mm-HNTH.jpg" alt="Need For Speed Mobile" class="all-game-img" loading="lazy">
-            <div class="all-game-info">
-              <h3 class="all-game-title">Need For Speed Mobile</h3>
-              <div class="all-game-rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-              </div>
-              <button class="download-button" onclick="window.open('https://modxnet.github.io/BeamNG.drive/', '_blank')">
-                <i class="fas fa-cloud-download-alt"></i>
-                <span>Download</span>
-              </button>
-            </div>
-          </div>
-          
-          <!-- Call of duty Mobile -->
-          <div class="all-game-card">
-            <img src="https://i.ibb.co/4gmNk2V3/unnamed.jpg" alt="Call of duty Mobile" class="all-game-img" loading="lazy">
-            <div class="all-game-info">
-              <h3 class="all-game-title">Call of duty Mobile</h3>
-              <div class="all-game-rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-              </div>
-              <button class="download-button" onclick="window.open('https://modxnet.github.io/GTA-5/', '_blank')">
-                <i class="fas fa-cloud-download-alt"></i>
-                <span>Download</span>
-              </button>
-            </div>
-          </div>
-          
-          <!-- REMATCH Mobile -->
-          <div class="all-game-card">
-            <img src="https://i.ibb.co/WhRrL4q/e4332432c1be791e1c1d624ebe544f76e2b1bb23b7211424.jpg" alt="REMATCH Mobile" class="all-game-img" loading="lazy">
-            <div class="all-game-info">
-              <h3 class="all-game-title">REMATCH Mobile</h3>
-              <div class="all-game-rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-              </div>
-              <button class="download-button" onclick="window.open('https://modxnet.github.io/assetto-corsa/', '_blank')">
-                <i class="fas fa-cloud-download-alt"></i>
-                <span>Download</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- League of Legends Mobile -->
-          <div class="all-game-card">
-            <img src="https://i.ibb.co/R976Nd2/lol.jpg" alt="League of Legends" class="all-game-img" loading="lazy">
-            <div class="all-game-info">
-              <h3 class="all-game-title">League of Legends Mobile</h3>
-              <div class="all-game-rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-              </div>
-              <button class="download-button" onclick="window.open('https://modxnet.github.io/forza-horizon/', '_blank')">
-                <i class="fas fa-cloud-download-alt"></i>
-                <span>Download</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- God of War Mobile -->
-          <div class="all-game-card">
-            <img src="https://i.ibb.co/HDnzRsJ/gow.jpg" alt="God of War" class="all-game-img" loading="lazy">
-            <div class="all-game-info">
-              <h3 class="all-game-title">God of War Mobile</h3>
-              <div class="all-game-rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-              </div>
-              <button class="download-button" onclick="window.open('https://modxnet.github.io/Euro-truck-simulator/', '_blank')">
-                <i class="fas fa-cloud-download-alt"></i>
-                <span>Download</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- Spider-Man 2 Mobile -->
-          <div class="all-game-card">
-            <img src="https://i.ibb.co/McjvCfj/spiderman2.png" alt="Spider-Man 2" class="all-game-img" loading="lazy">
-            <div class="all-game-info">
-              <h3 class="all-game-title">Spider-Man 2 Mobile</h3>
-              <div class="all-game-rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-              </div>
-              <button class="download-button" onclick="window.open('https://modxnet.github.io/CarXstreet/', '_blank')">
-                <i class="fas fa-cloud-download-alt"></i>
-                <span>Download</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- Wolvrine Mobile -->
-          <div class="all-game-card">
-            <img src="https://i.ibb.co/VWmMFDvW/wolvrine.jpg" alt="Wolvrine Mobile" class="all-game-img" loading="lazy">
-            <div class="all-game-info">
-              <h3 class="all-game-title">Wolvrine Mobile</h3>
-              <div class="all-game-rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-              </div>
-              <button class="download-button" onclick="window.open('https://modxnet.github.io/Watch-dogs2/', '_blank')">
-                <i class="fas fa-cloud-download-alt"></i>
-                <span>Download</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- The Last of Us Mobile -->
-          <div class="all-game-card">
-            <img src="https://i.ibb.co/tLx5P3D/tlou-1.jpg" alt="The Last of Us" class="all-game-img" loading="lazy">
-            <div class="all-game-info">
-              <h3 class="all-game-title">The Last of Us Mobile</h3>
-              <div class="all-game-rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-              </div>
-              <button class="download-button" onclick="window.open('https://modxnet.github.io/BeamNG.drive/', '_blank')">
-                <i class="fas fa-cloud-download-alt"></i>
-                <span>Download</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- Horizon Zero Dawn Mobile -->
-          <div class="all-game-card">
-            <img src="https://i.ibb.co/n0tBVMs/horizon.jpg" alt="Horizon Zero Dawn" class="all-game-img" loading="lazy">
-            <div class="all-game-info">
-              <h3 class="all-game-title">Horizon Zero Dawn Mobile</h3>
-              <div class="all-game-rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-              </div>
-              <button class="download-button" onclick="window.open('https://modxnet.github.io/GTA-5/', '_blank')">
-                <i class="fas fa-cloud-download-alt"></i>
-                <span>Download</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- Red Dead Redemption 2 Mobile -->
-          <div class="all-game-card">
-            <img src="https://i.ibb.co/kDmVtwv/rdr2-1.jpg" alt="Red Dead Redemption 2" class="all-game-img" loading="lazy">
-            <div class="all-game-info">
-              <h3 class="all-game-title">Red Dead Redemption 2 Mobile</h3>
-              <div class="all-game-rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-              </div>
-              <button class="download-button" onclick="window.open('https://modxnet.github.io/assetto-corsa/', '_blank')">
-                <i class="fas fa-cloud-download-alt"></i>
-                <span>Download</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- Fortnite Mobile -->
-          <div class="all-game-card">
-            <img src="https://i.ibb.co/W5j9ZXx/fortnite.jpg" alt="Fortnite" class="all-game-img" loading="lazy">
-            <div class="all-game-info">
-              <h3 class="all-game-title">Fortnite Mobile</h3>
-              <div class="all-game-rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-              </div>
-              <button class="download-button" onclick="window.open('https://modxnet.github.io/forza-horizon/', '_blank')">
-                <i class="fas fa-cloud-download-alt"></i>
-                <span>Download</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- Assassin's Creed Mobile -->
-          <div class="all-game-card">
-            <img src="https://i.ibb.co/0jfpcKqv/Assassin-s-Creed-III-Game-Cover.jpg" alt="Assassin's Creed Mobile" class="all-game-img" loading="lazy">
-            <div class="all-game-info">
-              <h3 class="all-game-title">Assassin's Creed Mobile</h3>
-              <div class="all-game-rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-              </div>
-              <button class="download-button" onclick="window.open('https://modxnet.github.io/Euro-truck-simulator/', '_blank')">
-                <i class="fas fa-cloud-download-alt"></i>
-                <span>Download</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- Roblox Mod -->
-          <div class="all-game-card">
-            <img src="https://i.ibb.co/k92hJwF/roblox.png" alt="Roblox" class="all-game-img" loading="lazy">
-            <div class="all-game-info">
-              <h3 class="all-game-title">Roblox Mod</h3>
-              <div class="all-game-rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-              </div>
-              <button class="download-button" onclick="window.open('https://modxnet.github.io/CarXstreet/', '_blank')">
-                <i class="fas fa-cloud-download-alt"></i>
-                <span>Download</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- GTA 4 Mobile -->
-          <div class="all-game-card">
-            <img src="https://i.ibb.co/Mcfhc3g/gta4-1.jpg" alt="GTA 4 Mobile" class="all-game-img" loading="lazy">
-            <div class="all-game-info">
-              <h3 class="all-game-title">GTA 4 Mobile</h3>
-              <div class="all-game-rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-              </div>
-              <button class="download-button" onclick="window.open('https://modxnet.github.io/Watch-dogs2/', '_blank')">
-                <i class="fas fa-cloud-download-alt"></i>
-                <span>Download</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- Help Modal -->
   <div class="modal" id="helpModal">
     <div class="modal-content">
@@ -2438,8 +2207,6 @@ Your IP address has been logged for security purposes.
     const switchToLogin = document.getElementById('switchToLogin');
     const toast = document.getElementById('toast');
     const toastMessage = document.getElementById('toastMessage');
-    const allGamesModal = document.getElementById('allGamesModal');
-    const closeAllGamesModal = document.getElementById('closeAllGamesModal');
     const contactForm = document.getElementById('contactForm');
     const contactBtn = document.getElementById('contactBtn');
     const gameDetailModal = document.getElementById('gameDetailModal');
@@ -2529,11 +2296,6 @@ Your IP address has been logged for security purposes.
       el.addEventListener('click', () => {
         helpModal.classList.remove('active');
       });
-    });
-    
-    // All Games Modal
-    closeAllGamesModal.addEventListener('click', () => {
-      allGamesModal.classList.remove('active');
     });
     
     // Game Detail Modal
