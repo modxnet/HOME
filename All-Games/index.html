@@ -43,6 +43,25 @@
             margin: 0 auto;
         }
 
+        /* Back Button */
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 8px 16px;
+            background-color: var(--light);
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(0, 255, 204, 0.2);
+        }
+
+        .back-btn:hover {
+            background-color: rgba(0, 255, 204, 0.1);
+            transform: translateX(-3px);
+        }
+
         .logo {
             text-align: center;
             margin-bottom: 30px;
@@ -77,12 +96,16 @@
             display: flex;
             align-items: center;
             gap: 15px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .game-card:hover {
             transform: translateY(-2px);
             background-color: var(--lighter);
             cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
         .game-image {
@@ -90,6 +113,7 @@
             height: 50px;
             border-radius: 10px;
             object-fit: cover;
+            border: 2px solid rgba(255, 255, 255, 0.1);
         }
 
         .game-info {
@@ -112,6 +136,9 @@
         .game-version {
             font-size: 0.8rem;
             color: var(--text-secondary);
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 2px 8px;
+            border-radius: 10px;
         }
 
         .game-rating {
@@ -144,6 +171,9 @@
             padding: 2px 8px;
             border-radius: 10px;
             font-weight: 500;
+            position: absolute;
+            top: 10px;
+            right: 10px;
         }
 
         .tag-mod {
@@ -209,6 +239,7 @@
             border-radius: 15px;
             overflow: hidden;
             margin-bottom: 10px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
         }
 
         .app-modal-icon {
@@ -296,6 +327,16 @@
             font-size: 0.8rem;
             color: var(--text-secondary);
             text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .shield-icon {
+            width: 14px;
+            height: 14px;
+            filter: invert(1) brightness(0.8);
         }
 
         @media (max-width: 480px) {
@@ -315,6 +356,8 @@
 </head>
 <body>
     <div class="container">
+        <a href="https://www.modxnet.com" class="back-btn">Back</a>
+
         <div class="logo">
             <h1>ModXnet</h1>
             <p>Premium Modded Mobile Games</p>
@@ -332,7 +375,7 @@
                     <div class="game-rating">★★★★☆</div>
                     <div class="game-meta">
                         <span class="game-platform">
-                            <svg class="platform-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M420.55,301.93a24,24,0,1,1,24-24,24,24,0,0,1-24,24m-265.1,0a24,24,0,1,1,24-24,24,24,0,0,1-24,24m273.7-144.48,47.94-83a10,10,0,1,0-17.27-10h0l-48.54,84.07a301.25,301.25,0,0,0-246.56,0L116.18,64.45a10,10,0,1,0-17.27,10h0l47.94,83C64.53,202.22,8.24,285.55,0,384H576c-8.24-98.45-64.54-181.78-146.85-226.55"/></svg>
+                            <img class="platform-icon" src="https://i.postimg.cc/qM45KdxW/android-1.png" alt="Android">
                             <img class="platform-icon" src="https://i.postimg.cc/CLXb6XKs/apple.png" alt="iOS">
                         </span>
                         <span>1.2 GB</span>
@@ -351,7 +394,7 @@
                     <div class="game-rating">★★★★☆</div>
                     <div class="game-meta">
                         <span class="game-platform">
-                            <svg class="platform-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M420.55,301.93a24,24,0,1,1,24-24,24,24,0,0,1-24,24m-265.1,0a24,24,0,1,1,24-24,24,24,0,0,1-24,24m273.7-144.48,47.94-83a10,10,0,1,0-17.27-10h0l-48.54,84.07a301.25,301.25,0,0,0-246.56,0L116.18,64.45a10,10,0,1,0-17.27,10h0l47.94,83C64.53,202.22,8.24,285.55,0,384H576c-8.24-98.45-64.54-181.78-146.85-226.55"/></svg>
+                            <img class="platform-icon" src="https://i.postimg.cc/qM45KdxW/android-1.png" alt="Android">
                             <img class="platform-icon" src="https://i.postimg.cc/CLXb6XKs/apple.png" alt="iOS">
                         </span>
                         <span>2.4 GB</span>
@@ -370,7 +413,8 @@
                     <div class="game-rating">★★★★☆</div>
                     <div class="game-meta">
                         <span class="game-platform">
-                            <svg class="platform-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M420.55,301.93a24,24,0,1,1,24-24,24,24,0,0,1-24,24m-265.1,0a24,24,0,1,1,24-24,24,24,0,0,1-24,24m273.7-144.48,47.94-83a10,10,0,1,0-17.27-10h0l-48.54,84.07a301.25,301.25,0,0,0-246.56,0L116.18,64.45a10,10,0,1,0-17.27,10h0l47.94,83C64.53,202.22,8.24,285.55,0,384H576c-8.24-98.45-64.54-181.78-146.85-226.55"/></svg>
+                            <img class="platform-icon" src="https://i.postimg.cc/qM45KdxW/android-1.png" alt="Android">
+                            <img class="platform-icon" src="https://i.postimg.cc/CLXb6XKs/apple.png" alt="iOS">
                         </span>
                         <span>800 MB</span>
                     </div>
@@ -388,7 +432,7 @@
                     <div class="game-rating">★★★★★</div>
                     <div class="game-meta">
                         <span class="game-platform">
-                            <svg class="platform-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M420.55,301.93a24,24,0,1,1,24-24,24,24,0,0,1-24,24m-265.1,0a24,24,0,1,1,24-24,24,24,0,0,1-24,24m273.7-144.48,47.94-83a10,10,0,1,0-17.27-10h0l-48.54,84.07a301.25,301.25,0,0,0-246.56,0L116.18,64.45a10,10,0,1,0-17.27,10h0l47.94,83C64.53,202.22,8.24,285.55,0,384H576c-8.24-98.45-64.54-181.78-146.85-226.55"/></svg>
+                            <img class="platform-icon" src="https://i.postimg.cc/qM45KdxW/android-1.png" alt="Android">
                             <img class="platform-icon" src="https://i.postimg.cc/CLXb6XKs/apple.png" alt="iOS">
                         </span>
                         <span>3.1 GB</span>
@@ -407,7 +451,7 @@
                     <div class="game-rating">★★★★☆</div>
                     <div class="game-meta">
                         <span class="game-platform">
-                            <svg class="platform-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M420.55,301.93a24,24,0,1,1,24-24,24,24,0,0,1-24,24m-265.1,0a24,24,0,1,1,24-24,24,24,0,0,1-24,24m273.7-144.48,47.94-83a10,10,0,1,0-17.27-10h0l-48.54,84.07a301.25,301.25,0,0,0-246.56,0L116.18,64.45a10,10,0,1,0-17.27,10h0l47.94,83C64.53,202.22,8.24,285.55,0,384H576c-8.24-98.45-64.54-181.78-146.85-226.55"/></svg>
+                            <img class="platform-icon" src="https://i.postimg.cc/qM45KdxW/android-1.png" alt="Android">
                             <img class="platform-icon" src="https://i.postimg.cc/CLXb6XKs/apple.png" alt="iOS">
                         </span>
                         <span>2.7 GB</span>
@@ -426,7 +470,8 @@
                     <div class="game-rating">★★★★☆</div>
                     <div class="game-meta">
                         <span class="game-platform">
-                            <svg class="platform-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M420.55,301.93a24,24,0,1,1,24-24,24,24,0,0,1-24,24m-265.1,0a24,24,0,1,1,24-24,24,24,0,0,1-24,24m273.7-144.48,47.94-83a10,10,0,1,0-17.27-10h0l-48.54,84.07a301.25,301.25,0,0,0-246.56,0L116.18,64.45a10,10,0,1,0-17.27,10h0l47.94,83C64.53,202.22,8.24,285.55,0,384H576c-8.24-98.45-64.54-181.78-146.85-226.55"/></svg>
+                            <img class="platform-icon" src="https://i.postimg.cc/qM45KdxW/android-1.png" alt="Android">
+                            <img class="platform-icon" src="https://i.postimg.cc/CLXb6XKs/apple.png" alt="iOS">
                         </span>
                         <span>1.9 GB</span>
                     </div>
@@ -444,7 +489,7 @@
                     <div class="game-rating">★★★★☆</div>
                     <div class="game-meta">
                         <span class="game-platform">
-                            <svg class="platform-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M420.55,301.93a24,24,0,1,1,24-24,24,24,0,0,1-24,24m-265.1,0a24,24,0,1,1,24-24,24,24,0,0,1-24,24m273.7-144.48,47.94-83a10,10,0,1,0-17.27-10h0l-48.54,84.07a301.25,301.25,0,0,0-246.56,0L116.18,64.45a10,10,0,1,0-17.27,10h0l47.94,83C64.53,202.22,8.24,285.55,0,384H576c-8.24-98.45-64.54-181.78-146.85-226.55"/></svg>
+                            <img class="platform-icon" src="https://i.postimg.cc/qM45KdxW/android-1.png" alt="Android">
                             <img class="platform-icon" src="https://i.postimg.cc/CLXb6XKs/apple.png" alt="iOS">
                         </span>
                         <span>1.5 GB</span>
@@ -463,7 +508,8 @@
                     <div class="game-rating">★★★★☆</div>
                     <div class="game-meta">
                         <span class="game-platform">
-                            <svg class="platform-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M420.55,301.93a24,24,0,1,1,24-24,24,24,0,0,1-24,24m-265.1,0a24,24,0,1,1,24-24,24,24,0,0,1-24,24m273.7-144.48,47.94-83a10,10,0,1,0-17.27-10h0l-48.54,84.07a301.25,301.25,0,0,0-246.56,0L116.18,64.45a10,10,0,1,0-17.27,10h0l47.94,83C64.53,202.22,8.24,285.55,0,384H576c-8.24-98.45-64.54-181.78-146.85-226.55"/></svg>
+                            <img class="platform-icon" src="https://i.postimg.cc/qM45KdxW/android-1.png" alt="Android">
+                            <img class="platform-icon" src="https://i.postimg.cc/CLXb6XKs/apple.png" alt="iOS">
                         </span>
                         <span>2.8 GB</span>
                     </div>
@@ -481,7 +527,7 @@
                     <div class="game-rating">★★★★☆</div>
                     <div class="game-meta">
                         <span class="game-platform">
-                            <svg class="platform-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M420.55,301.93a24,24,0,1,1,24-24,24,24,0,0,1-24,24m-265.1,0a24,24,0,1,1,24-24,24,24,0,0,1-24,24m273.7-144.48,47.94-83a10,10,0,1,0-17.27-10h0l-48.54,84.07a301.25,301.25,0,0,0-246.56,0L116.18,64.45a10,10,0,1,0-17.27,10h0l47.94,83C64.53,202.22,8.24,285.55,0,384H576c-8.24-98.45-64.54-181.78-146.85-226.55"/></svg>
+                            <img class="platform-icon" src="https://i.postimg.cc/qM45KdxW/android-1.png" alt="Android">
                             <img class="platform-icon" src="https://i.postimg.cc/CLXb6XKs/apple.png" alt="iOS">
                         </span>
                         <span>2.2 GB</span>
@@ -500,7 +546,8 @@
                     <div class="game-rating">★★★★★</div>
                     <div class="game-meta">
                         <span class="game-platform">
-                            <svg class="platform-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M420.55,301.93a24,24,0,1,1,24-24,24,24,0,0,1-24,24m-265.1,0a24,24,0,1,1,24-24,24,24,0,0,1-24,24m273.7-144.48,47.94-83a10,10,0,1,0-17.27-10h0l-48.54,84.07a301.25,301.25,0,0,0-246.56,0L116.18,64.45a10,10,0,1,0-17.27,10h0l47.94,83C64.53,202.22,8.24,285.55,0,384H576c-8.24-98.45-64.54-181.78-146.85-226.55"/></svg>
+                            <img class="platform-icon" src="https://i.postimg.cc/qM45KdxW/android-1.png" alt="Android">
+                            <img class="platform-icon" src="https://i.postimg.cc/CLXb6XKs/apple.png" alt="iOS">
                         </span>
                         <span>3.5 GB</span>
                     </div>
@@ -518,7 +565,7 @@
                     <div class="game-rating">★★★★☆</div>
                     <div class="game-meta">
                         <span class="game-platform">
-                            <svg class="platform-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M420.55,301.93a24,24,0,1,1,24-24,24,24,0,0,1-24,24m-265.1,0a24,24,0,1,1,24-24,24,24,0,0,1-24,24m273.7-144.48,47.94-83a10,10,0,1,0-17.27-10h0l-48.54,84.07a301.25,301.25,0,0,0-246.56,0L116.18,64.45a10,10,0,1,0-17.27,10h0l47.94,83C64.53,202.22,8.24,285.55,0,384H576c-8.24-98.45-64.54-181.78-146.85-226.55"/></svg>
+                            <img class="platform-icon" src="https://i.postimg.cc/qM45KdxW/android-1.png" alt="Android">
                             <img class="platform-icon" src="https://i.postimg.cc/CLXb6XKs/apple.png" alt="iOS">
                         </span>
                         <span>2.9 GB</span>
@@ -537,7 +584,7 @@
                     <div class="game-rating">★★★★☆</div>
                     <div class="game-meta">
                         <span class="game-platform">
-                            <svg class="platform-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M420.55,301.93a24,24,0,1,1,24-24,24,24,0,0,1-24,24m-265.1,0a24,24,0,1,1,24-24,24,24,0,0,1-24,24m273.7-144.48,47.94-83a10,10,0,1,0-17.27-10h0l-48.54,84.07a301.25,301.25,0,0,0-246.56,0L116.18,64.45a10,10,0,1,0-17.27,10h0l47.94,83C64.53,202.22,8.24,285.55,0,384H576c-8.24-98.45-64.54-181.78-146.85-226.55"/></svg>
+                            <img class="platform-icon" src="https://i.postimg.cc/qM45KdxW/android-1.png" alt="Android">
                             <img class="platform-icon" src="https://i.postimg.cc/CLXb6XKs/apple.png" alt="iOS">
                         </span>
                         <span>1.8 GB</span>
@@ -556,13 +603,13 @@
                     <div class="game-rating">★★★★☆</div>
                     <div class="game-meta">
                         <span class="game-platform">
-                            <svg class="platform-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M420.55,301.93a24,24,0,1,1,24-24,24,24,0,0,1-24,24m-265.1,0a24,24,0,1,1,24-24,24,24,0,0,1-24,24m273.7-144.48,47.94-83a10,10,0,1,0-17.27-10h0l-48.54,84.07a301.25,301.25,0,0,0-246.56,0L116.18,64.45a10,10,0,1,0-17.27,10h0l47.94,83C64.53,202.22,8.24,285.55,0,384H576c-8.24-98.45-64.54-181.78-146.85-226.55"/></svg>
+                            <img class="platform-icon" src="https://i.postimg.cc/qM45KdxW/android-1.png" alt="Android">
                             <img class="platform-icon" src="https://i.postimg.cc/CLXb6XKs/apple.png" alt="iOS">
                         </span>
                         <span>150 MB</span>
-                        <span class="game-tag tag-mod">MOD</span>
                     </div>
                 </div>
+                <span class="game-tag tag-mod">MOD</span>
             </div>
 
             <!-- Game 14 -->
@@ -576,7 +623,8 @@
                     <div class="game-rating">★★★★☆</div>
                     <div class="game-meta">
                         <span class="game-platform">
-                            <svg class="platform-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M420.55,301.93a24,24,0,1,1,24-24,24,24,0,0,1-24,24m-265.1,0a24,24,0,1,1,24-24,24,24,0,0,1-24,24m273.7-144.48,47.94-83a10,10,0,1,0-17.27-10h0l-48.54,84.07a301.25,301.25,0,0,0-246.56,0L116.18,64.45a10,10,0,1,0-17.27,10h0l47.94,83C64.53,202.22,8.24,285.55,0,384H576c-8.24-98.45-64.54-181.78-146.85-226.55"/></svg>
+                            <img class="platform-icon" src="https://i.postimg.cc/qM45KdxW/android-1.png" alt="Android">
+                            <img class="platform-icon" src="https://i.postimg.cc/CLXb6XKs/apple.png" alt="iOS">
                         </span>
                         <span>1.7 GB</span>
                     </div>
@@ -604,14 +652,17 @@
                         iOS
                     </button>
                     <button onclick="chooseDevice('android')">
-                        <svg class="device-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M420.55,301.93a24,24,0,1,1,24-24,24,24,0,0,1-24,24m-265.1,0a24,24,0,1,1,24-24,24,24,0,0,1-24,24m273.7-144.48,47.94-83a10,10,0,1,0-17.27-10h0l-48.54,84.07a301.25,301.25,0,0,0-246.56,0L116.18,64.45a10,10,0,1,0-17.27,10h0l47.94,83C64.53,202.22,8.24,285.55,0,384H576c-8.24-98.45-64.54-181.78-146.85-226.55"/></svg>
+                        <img class="device-icon" src="https://i.postimg.cc/qM45KdxW/android-1.png" alt="Android">
                         Android
                     </button>
                 </div>
                 <div class="download_button">
                     <button onclick="startDownload()">Download</button>
                 </div>
-                <div class="downgame">Secure download • 100% working</div>
+                <div class="downgame">
+                    <img src="https://i.postimg.cc/3J0x0YQb/shield.png" alt="Secure" class="shield-icon">
+                    Secure download • 100% working
+                </div>
             </div>
         </div>
     </div>
