@@ -324,19 +324,28 @@
         }
 
         .downgame {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            text-align: center;
             display: flex;
-            align-items: center;
             justify-content: center;
-            gap: 5px;
+            margin-top: 15px;
         }
 
-        .shield-icon {
-            width: 14px;
-            height: 14px;
-            filter: invert(1) brightness(0.8);
+        .secure-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 204, 255, 0.1);
+            color: var(--primary);
+            border: 1px solid rgba(0, 204, 255, 0.3);
+            padding: 10px 15px;
+            border-radius: 12px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            width: fit-content;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .secure-badge svg {
+            flex-shrink: 0;
         }
 
         @media (max-width: 480px) {
@@ -351,6 +360,11 @@
             .game-card {
                 padding: 15px;
             }
+            
+            .secure-badge {
+                padding: 8px 12px;
+                font-size: 13px;
+            }
         }
     </style>
 </head>
@@ -364,7 +378,26 @@
         </div>
 
         <div class="games-list">
-            <!-- Game 1 -->
+            <!-- Game 1 - Prototype 2 Mobile (New First Game) -->
+            <div class="game-card" onclick="openPopup('Prototype 2 Mobile', 'https://i.postimg.cc/sgg40Tz9/610057-front.jpg')">
+                <img src="https://i.postimg.cc/sgg40Tz9/610057-front.jpg" alt="Prototype 2 Mobile" class="game-image">
+                <div class="game-info">
+                    <div class="game-header">
+                        <span class="game-title">Prototype 2 Mobile</span>
+                        <span class="game-version">v1.2.5</span>
+                    </div>
+                    <div class="game-rating">★★★★☆</div>
+                    <div class="game-meta">
+                        <span class="game-platform">
+                            <img class="platform-icon" src="https://i.postimg.cc/qM45KdxW/android-1.png" alt="Android">
+                            <img class="platform-icon" src="https://i.postimg.cc/CLXb6XKs/apple.png" alt="iOS">
+                        </span>
+                        <span>2.1 GB</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Game 2 -->
             <div class="game-card" onclick="openPopup('Need For Speed Mobile', 'https://i.ibb.co/wZbqZrWm/Fiyk-DJVdy-9ytqfua-DCBB1-Mm-HNTH.jpg')">
                 <img src="https://i.ibb.co/wZbqZrWm/Fiyk-DJVdy-9ytqfua-DCBB1-Mm-HNTH.jpg" alt="Need For Speed Mobile" class="game-image">
                 <div class="game-info">
@@ -383,7 +416,7 @@
                 </div>
             </div>
 
-            <!-- Game 2 -->
+            <!-- Game 3 -->
             <div class="game-card" onclick="openPopup('Call of Duty Mobile', 'https://i.ibb.co/4gmNk2V3/unnamed.jpg')">
                 <img src="https://i.ibb.co/4gmNk2V3/unnamed.jpg" alt="Call of Duty Mobile" class="game-image">
                 <div class="game-info">
@@ -402,7 +435,7 @@
                 </div>
             </div>
 
-            <!-- Game 3 -->
+            <!-- Game 4 -->
             <div class="game-card" onclick="openPopup('REMATCH Mobile', 'https://i.ibb.co/WhRrL4q/e4332432c1be791e1c1d624ebe544f76e2b1bb23b7211424.jpg')">
                 <img src="https://i.ibb.co/WhRrL4q/e4332432c1be791e1c1d624ebe544f76e2b1bb23b7211424.jpg" alt="REMATCH Mobile" class="game-image">
                 <div class="game-info">
@@ -421,7 +454,7 @@
                 </div>
             </div>
 
-            <!-- Game 4 -->
+            <!-- Game 5 -->
             <div class="game-card" onclick="openPopup('League of Legends Mobile', 'https://i.ibb.co/R976Nd2/lol.jpg')">
                 <img src="https://i.ibb.co/R976Nd2/lol.jpg" alt="League of Legends Mobile" class="game-image">
                 <div class="game-info">
@@ -440,7 +473,7 @@
                 </div>
             </div>
 
-            <!-- Game 5 -->
+            <!-- Game 6 -->
             <div class="game-card" onclick="openPopup('God of War Mobile', 'https://i.ibb.co/HDnzRsJ/gow.jpg')">
                 <img src="https://i.ibb.co/HDnzRsJ/gow.jpg" alt="God of War Mobile" class="game-image">
                 <div class="game-info">
@@ -459,7 +492,7 @@
                 </div>
             </div>
 
-            <!-- Game 6 -->
+            <!-- Game 7 -->
             <div class="game-card" onclick="openPopup('Spider-Man 2 Mobile', 'https://i.ibb.co/McjvCfj/spiderman2.png')">
                 <img src="https://i.ibb.co/McjvCfj/spiderman2.png" alt="Spider-Man 2 Mobile" class="game-image">
                 <div class="game-info">
@@ -478,7 +511,7 @@
                 </div>
             </div>
 
-            <!-- Game 7 -->
+            <!-- Game 8 -->
             <div class="game-card" onclick="openPopup('Wolverine Mobile', 'https://i.ibb.co/VWmMFDvW/wolvrine.jpg')">
                 <img src="https://i.ibb.co/VWmMFDvW/wolvrine.jpg" alt="Wolverine Mobile" class="game-image">
                 <div class="game-info">
@@ -497,7 +530,7 @@
                 </div>
             </div>
 
-            <!-- Game 8 -->
+            <!-- Game 9 -->
             <div class="game-card" onclick="openPopup('The Last of Us Mobile', 'https://i.ibb.co/tLx5P3D/tlou-1.jpg')">
                 <img src="https://i.ibb.co/tLx5P3D/tlou-1.jpg" alt="The Last of Us Mobile" class="game-image">
                 <div class="game-info">
@@ -516,7 +549,7 @@
                 </div>
             </div>
 
-            <!-- Game 9 -->
+            <!-- Game 10 -->
             <div class="game-card" onclick="openPopup('Horizon Zero Dawn Mobile', 'https://i.ibb.co/n0tBVMs/horizon.jpg')">
                 <img src="https://i.ibb.co/n0tBVMs/horizon.jpg" alt="Horizon Zero Dawn Mobile" class="game-image">
                 <div class="game-info">
@@ -535,7 +568,7 @@
                 </div>
             </div>
 
-            <!-- Game 10 -->
+            <!-- Game 11 -->
             <div class="game-card" onclick="openPopup('Red Dead Redemption 2 Mobile', 'https://i.ibb.co/kDmVtwv/rdr2-1.jpg')">
                 <img src="https://i.ibb.co/kDmVtwv/rdr2-1.jpg" alt="Red Dead Redemption 2 Mobile" class="game-image">
                 <div class="game-info">
@@ -554,7 +587,7 @@
                 </div>
             </div>
 
-            <!-- Game 11 -->
+            <!-- Game 12 -->
             <div class="game-card" onclick="openPopup('Fortnite Mobile', 'https://i.ibb.co/W5j9ZXx/fortnite.jpg')">
                 <img src="https://i.ibb.co/W5j9ZXx/fortnite.jpg" alt="Fortnite Mobile" class="game-image">
                 <div class="game-info">
@@ -573,7 +606,7 @@
                 </div>
             </div>
 
-            <!-- Game 12 -->
+            <!-- Game 13 -->
             <div class="game-card" onclick="openPopup('Assassin\'s Creed Mobile', 'https://i.ibb.co/0jfpcKqv/Assassin-s-Creed-III-Game-Cover.jpg')">
                 <img src="https://i.ibb.co/0jfpcKqv/Assassin-s-Creed-III-Game-Cover.jpg" alt="Assassin's Creed Mobile" class="game-image">
                 <div class="game-info">
@@ -592,7 +625,7 @@
                 </div>
             </div>
 
-            <!-- Game 13 -->
+            <!-- Game 14 -->
             <div class="game-card" onclick="openPopup('Roblox Mod', 'https://i.ibb.co/k92hJwF/roblox.png')">
                 <img src="https://i.ibb.co/k92hJwF/roblox.png" alt="Roblox Mod" class="game-image">
                 <div class="game-info">
@@ -612,7 +645,7 @@
                 <span class="game-tag tag-mod">MOD</span>
             </div>
 
-            <!-- Game 14 -->
+            <!-- Game 15 -->
             <div class="game-card" onclick="openPopup('GTA 4 Mobile', 'https://i.ibb.co/Mcfhc3g/gta4-1.jpg')">
                 <img src="https://i.ibb.co/Mcfhc3g/gta4-1.jpg" alt="GTA 4 Mobile" class="game-image">
                 <div class="game-info">
@@ -660,8 +693,19 @@
                     <button onclick="startDownload()">Download</button>
                 </div>
                 <div class="downgame">
-                    <img src="https://i.postimg.cc/3J0x0YQb/shield.png" alt="Secure" class="shield-icon">
-                    Secure download • 100% working
+                    <div class="secure-badge">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L3.5 6V12C3.5 17.25 7.16 22.74 12 24C16.84 22.74 20.5 17.25 20.5 12V6L12 2Z" fill="url(#shieldGradient)"/>
+                            <path d="M11 16L7 12L8.41 10.59L11 13.17L15.59 8.58L17 10L11 16Z" fill="white"/>
+                            <defs>
+                                <linearGradient id="shieldGradient" x1="12" y1="2" x2="12" y2="24" gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#00ffcc"/>
+                                    <stop offset="1" stop-color="#00ccff"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        <span>Secure Downloading – 100% working</span>
+                    </div>
                 </div>
             </div>
         </div>
