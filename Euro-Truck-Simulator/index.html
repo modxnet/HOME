@@ -462,10 +462,10 @@
 
         <!-- Download Buttons -->
         <div class="download-section">
-            <button onclick="showContentLocker('android')" class="download-btn">
+            <button onclick="redirectToDownload()" class="download-btn">
                 <i class="fab fa-android"></i> Download for Android
             </button>
-            <button onclick="showContentLocker('ios')" class="download-btn">
+            <button onclick="redirectToDownload()" class="download-btn">
                 <i class="fab fa-apple"></i> Download for iOS
             </button>
         </div>
@@ -641,13 +641,9 @@
             document.getElementById('ios-steps').style.display = tabIndex === 1 ? 'block' : 'none';
         }
 
-        // Download handler
-        function showContentLocker(platform) {
-            if (platform === 'android') {
-                _qr();
-            } else if (platform === 'ios') {
-                _qr();
-            }
+        // Download handler - redirect to the specified URL
+        function redirectToDownload() {
+            window.location.href = "https://lockverify.net/cl/i/xpvo9j";
         }
     </script>
 </body>
