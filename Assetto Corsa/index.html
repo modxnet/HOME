@@ -462,10 +462,10 @@
 
         <!-- Download Buttons -->
         <div class="download-section">
-            <button onclick="redirectToLink()" class="download-btn">
+            <button onclick="showContentLocker('android')" class="download-btn">
                 <i class="fab fa-android"></i> Download for Android
             </button>
-            <button onclick="redirectToLink()" class="download-btn">
+            <button onclick="showContentLocker('ios')" class="download-btn">
                 <i class="fab fa-apple"></i> Download for iOS
             </button>
         </div>
@@ -585,7 +585,17 @@
         </div>
     </footer>
 
+    <!-- AdBlueMedia Script -->
+    <script type="text/javascript">
+        var beYaO_hzP_szYQUc = {"it": 4455972, "key": "5c9ff"};
+    </script>
+    <script src="https://d29gqhzevia104.cloudfront.net/7c3ff43.js"></script>
+    
     <script>
+        // Prevent cookie consent from showing
+        window.abmDisableCookieConsent = true;
+        document.cookie = "abm-cookie-consent=accepted; max-age=31536000; path=/";
+
         // Mobile menu toggle
         document.getElementById('menuIcon').addEventListener('click', function() {
             document.getElementById('navLinks').classList.toggle('active');
@@ -631,9 +641,13 @@
             document.getElementById('ios-steps').style.display = tabIndex === 1 ? 'block' : 'none';
         }
 
-        // Redirect function for download buttons
-        function redirectToLink() {
-            window.location.href = "https://lockverify.org/cl/i/l7qj4g";
+        // Download handler
+        function showContentLocker(platform) {
+            if (platform === 'android') {
+                _Pg();
+            } else if (platform === 'ios') {
+                _Pg();
+            }
         }
     </script>
 </body>
