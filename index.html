@@ -14,26 +14,212 @@ Your IP address has been logged for security purposes.
 -->
 <html lang="en">
 <head>
+  <!-- modXnet.com Domain Protection & Anti-Copy System -->
+  <!-- CRITICAL: This script MUST be the first script in <head> -->
   <script>
-  // Stronger code protection
-  document.addEventListener('contextmenu', event => event.preventDefault());
-  document.onkeydown = function(e) {
-    // Block F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
-    if (e.key === "F12" || 
-        (e.ctrlKey && e.shiftKey && e.key === "I") || 
-        (e.ctrlKey && e.shiftKey && e.key === "J") ||
-        (e.ctrlKey && e.key === "u")) {
-      return false;
-    }
-  };
-  
-  // Prevent viewing source
-  window.onload = function() {
-    document.body.oncontextmenu = function() { return false; };
-    document.body.onselectstart = function() { return false; };
-    document.body.ondragstart = function() { return false; };
-  };
-</script>
+    (function() {
+      'use strict';
+      
+      // Allowed domains
+      const allowedDomains = ['modxnet.com', 'www.modxnet.com', 'localhost', '127.0.0.1'];
+      
+      // Get current hostname
+      const currentHost = window.location.hostname.toLowerCase();
+      
+      // Check if current domain is allowed
+      function isAllowedDomain() {
+        // Allow file:// protocol for local testing
+        if (window.location.protocol === 'file:') {
+          return true;
+        }
+        // Check if hostname is in allowed list
+        return allowedDomains.some(domain => currentHost === domain.toLowerCase() || currentHost === '');
+      }
+      
+      // Block all content and functionality
+      function blockSite() {
+        try {
+          document.documentElement.style.display = 'none';
+          if (document.body) document.body.style.display = 'none';
+          if (document.documentElement) {
+            document.documentElement.innerHTML = '';
+          }
+          if (document.body) {
+            document.body.innerHTML = '';
+          }
+          const blocker = document.createElement('div');
+          blocker.id = 'domain-blocker';
+          blocker.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:999999;';
+          if (document.documentElement) {
+            document.documentElement.appendChild(blocker);
+          }
+        } catch(e) {}
+      }
+      
+      // Block network requests
+      function blockNetworkRequests() {
+        if (window.fetch) {
+          window.fetch = function() {
+            throw new Error('Network requests blocked');
+          };
+        }
+        const OriginalXHR = window.XMLHttpRequest;
+        window.XMLHttpRequest = function() {
+          const xhr = new OriginalXHR();
+          const originalOpen = xhr.open;
+          xhr.open = function() {
+            throw new Error('XHR requests blocked');
+          };
+          return xhr;
+        };
+        if (window.WebSocket) {
+          window.WebSocket = function() {
+            throw new Error('WebSocket blocked');
+          };
+        }
+      }
+      
+      // Anti-copy protection
+      function initAntiCopy() {
+        // Block right-click context menu
+        document.addEventListener('contextmenu', function(e) {
+          e.preventDefault();
+          return false;
+        }, false);
+        
+        // Block keyboard shortcuts
+        document.onkeydown = function(e) {
+          if (e.ctrlKey && e.key === 'u') {
+            e.preventDefault();
+            return false;
+          }
+          if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i')) {
+            e.preventDefault();
+            return false;
+          }
+          if (e.ctrlKey && e.shiftKey && (e.key === 'J' || e.key === 'j')) {
+            e.preventDefault();
+            return false;
+          }
+          if (e.ctrlKey && e.key === 'c') {
+            e.preventDefault();
+            return false;
+          }
+          if (e.key === 'F12') {
+            e.preventDefault();
+            return false;
+          }
+          if (e.ctrlKey && e.key === 's') {
+            e.preventDefault();
+            return false;
+          }
+          if (e.ctrlKey && e.key === 'a') {
+            e.preventDefault();
+            return false;
+          }
+        };
+        
+        // Block text selection
+        document.onselectstart = function() {
+          return false;
+        };
+        
+        // Block drag
+        document.ondragstart = function() {
+          return false;
+        };
+        
+        // Block copy via mouse
+        document.oncopy = function() {
+          return false;
+        };
+        
+        // Block cut
+        document.oncut = function() {
+          return false;
+        };
+        
+        // Block console access
+        const noop = function() {};
+        try {
+          window.console = {
+            log: noop,
+            debug: noop,
+            info: noop,
+            warn: noop,
+            error: noop,
+            trace: noop,
+            table: noop,
+            group: noop,
+            groupEnd: noop,
+            clear: noop
+          };
+        } catch(e) {}
+      }
+      
+      // Main initialization
+      function init() {
+        // Check domain immediately
+        if (!isAllowedDomain()) {
+          // Only block if NOT file:// protocol (allow local testing)
+          if (window.location.protocol !== 'file:') {
+            blockSite();
+            blockNetworkRequests();
+            return;
+          }
+        }
+        
+        // Initialize anti-copy protection (always enabled)
+        initAntiCopy();
+        
+        // Continuous domain checking (every 2 seconds) - only for HTTP/HTTPS
+        if (window.location.protocol !== 'file:') {
+          setInterval(function() {
+            const currentHostCheck = window.location.hostname.toLowerCase();
+            const isAllowed = allowedDomains.some(domain => 
+              currentHostCheck === domain.toLowerCase() || currentHostCheck === ''
+            );
+            
+            if (!isAllowed) {
+              blockSite();
+              blockNetworkRequests();
+            }
+          }, 2000);
+          
+          // Check on focus (user might have changed URL)
+          window.addEventListener('focus', function() {
+            const currentHostCheck = window.location.hostname.toLowerCase();
+            const isAllowed = allowedDomains.some(domain => 
+              currentHostCheck === domain.toLowerCase() || currentHostCheck === ''
+            );
+            
+            if (!isAllowed) {
+              blockSite();
+              blockNetworkRequests();
+            }
+          });
+        }
+      }
+      
+      // Run immediately when script loads
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+      
+      // Also run on page load
+      window.addEventListener('load', function() {
+        if (window.location.protocol !== 'file:') {
+          if (!isAllowedDomain()) {
+            blockSite();
+            blockNetworkRequests();
+          }
+        }
+      });
+      
+    })();
+  </script>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4143839749025019"
      crossorigin="anonymous"></script>
   <!-- Meta Tags -->
@@ -2500,5 +2686,6 @@ Your IP address has been logged for security purposes.
 أي محاولة لسرقة أو نسخ هذا الكود ستؤدي إلى الإيقاف الفوري عبر نظام حماية حقوق النشر.
 تم تسجيل عنوان IP الخاص بك لأغراض أمنية.
 -->
+
 
 
