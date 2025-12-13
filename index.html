@@ -520,9 +520,6 @@ Your IP address has been logged for security purposes.
       font-weight: 600;
       color: var(--white);
       margin-bottom: 6px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
     }
     
     .game-meta-grid {
@@ -1050,6 +1047,11 @@ Your IP address has been logged for security purposes.
       transform: translateY(20px);
     }
     
+    .help-button i {
+      position: relative;
+      z-index: 1;
+    }
+    
     .help-button.visible {
       opacity: 1;
       transform: translateY(0);
@@ -1058,6 +1060,41 @@ Your IP address has been logged for security purposes.
     .help-button:hover {
       transform: translateY(-5px) scale(1.05);
       box-shadow: 0 6px 25px rgba(0, 255, 204, 0.5);
+    }
+    
+    .help-button-tooltip {
+      position: absolute;
+      bottom: calc(100% + 10px);
+      right: 0;
+      background: var(--light);
+      color: var(--text);
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-5px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+    }
+    
+    .help-button-tooltip::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      right: 15px;
+      width: 0;
+      height: 0;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-top: 6px solid var(--light);
+    }
+    
+    .help-button-tooltip.show {
+      opacity: 1;
+      transform: translateY(0);
     }
     
     /* Modals - Mobile Optimized */
@@ -1888,6 +1925,24 @@ Your IP address has been logged for security purposes.
         </div>
       </div>
       
+      <!-- The Crew MotorFest Mobile -->
+      <div class="game-card-grid animate-in delay-3" data-game="motorfest" data-link="https://www.modxnet.com/The-Crew-MotorFest-Mobile/">
+        <img src="https://i.postimg.cc/8Pq2KNXW/TCM-KA-low-Rez.jpg" alt="The Crew MotorFest Mobile" class="game-thumbnail-grid" loading="lazy">
+        <div class="game-info-grid">
+          <div class="game-title-grid">The Crew MotorFest Mobile</div>
+          <div class="game-meta-grid">
+            <span class="game-version-grid">v1.0.0</span>
+            <div class="game-rating-grid">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      
       <!-- Rooftops & Alleys Mobile -->
       <div class="game-card-grid animate-in delay-3" data-game="rooftops" data-link="https://modxnet.com/Rooftops&Alleys">
         <img src="https://i.postimg.cc/W1bm7TRt/Fh-T2ixl-Wyl9-TPswg-KLF0j-Pp9j-Nuq.png" alt="Rooftops & Alleys Mobile" class="game-thumbnail-grid" loading="lazy">
@@ -2030,6 +2085,24 @@ Your IP address has been logged for security purposes.
               <i class="fas fa-star"></i>
               <i class="fas fa-star-half-alt"></i>
               <i class="far fa-star"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- The Crew MotorFest Mobile -->
+      <div class="game-card animate-in delay-3" data-game="motorfest" data-link="https://www.modxnet.com/The-Crew-MotorFest-Mobile/">
+        <img src="https://i.postimg.cc/8Pq2KNXW/TCM-KA-low-Rez.jpg" alt="The Crew MotorFest Mobile" class="game-thumbnail" loading="lazy">
+        <div class="game-info">
+          <div class="game-title">The Crew MotorFest Mobile</div>
+          <div class="game-meta">
+            <span class="game-version">v1.0.0</span>
+            <div class="game-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
             </div>
           </div>
         </div>
@@ -2179,6 +2252,7 @@ Your IP address has been logged for security purposes.
   <!-- Floating Help Button -->
   <div class="help-button" id="helpButton">
     <i class="fas fa-question"></i>
+    <span class="help-button-tooltip" id="helpTooltip">Need help?</span>
   </div>
 
   <!-- Game Detail Modal -->
@@ -2473,9 +2547,24 @@ Your IP address has been logged for security purposes.
       });
     });
 
+    // Help Button Tooltip
+    const helpTooltip = document.getElementById('helpTooltip');
+    let tooltipShown = false;
+    
+    function showHelpTooltip() {
+      if (!tooltipShown && helpButton.classList.contains('visible')) {
+        helpTooltip.classList.add('show');
+        tooltipShown = true;
+        setTimeout(() => {
+          helpTooltip.classList.remove('show');
+        }, 1500);
+      }
+    }
+    
     // Help Modal
     helpButton.addEventListener('click', () => {
       helpModal.classList.add('active');
+      helpTooltip.classList.remove('show');
     });
     
     [closeHelpModal, closeHelpBtn].forEach(el => {
@@ -2517,14 +2606,25 @@ Your IP address has been logged for security purposes.
     // Show/hide help button on scroll
     let lastScrollPosition = 0;
     const scrollThreshold = 200;
+    let helpButtonVisibleBefore = false;
     
     window.addEventListener('scroll', () => {
       const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
       
       if (currentScrollPosition > scrollThreshold) {
-        helpButton.classList.add('visible');
+        if (!helpButtonVisibleBefore) {
+          helpButton.classList.add('visible');
+          helpButtonVisibleBefore = true;
+          // Show tooltip when button first becomes visible
+          setTimeout(() => {
+            if (!tooltipShown && helpButton.classList.contains('visible')) {
+              showHelpTooltip();
+            }
+          }, 500);
+        }
       } else {
         helpButton.classList.remove('visible');
+        helpButtonVisibleBefore = false;
       }
       
       lastScrollPosition = currentScrollPosition;
@@ -2686,6 +2786,7 @@ Your IP address has been logged for security purposes.
 أي محاولة لسرقة أو نسخ هذا الكود ستؤدي إلى الإيقاف الفوري عبر نظام حماية حقوق النشر.
 تم تسجيل عنوان IP الخاص بك لأغراض أمنية.
 -->
+
 
 
 
