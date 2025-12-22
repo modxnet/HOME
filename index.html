@@ -220,6 +220,100 @@ Your IP address has been logged for security purposes.
       
     })();
   </script>
+  
+  <!-- Instagram In-App Browser Redirect Script -->
+  <script>
+    (function() {
+      'use strict';
+      
+      const targetUrl = window.location.href; // Redirect to current page in external browser
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+      const isInstagram = /Instagram/i.test(userAgent);
+      const isAndroid = /Android/i.test(userAgent);
+      const isIOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
+      let redirectAttempted = false;
+
+      function showFallback() {
+        const fallbackButton = document.getElementById('instagramFallbackButton');
+        if (fallbackButton) {
+          fallbackButton.style.display = 'block';
+        }
+      }
+
+      function redirect() {
+        if (!isInstagram || redirectAttempted) return;
+        redirectAttempted = true;
+
+        if (isAndroid) {
+          // Android: Use intent scheme to open in external browser
+          try {
+            const intentUrl = 'intent://' + window.location.hostname + window.location.pathname + window.location.search + '#Intent;scheme=https;action=android.intent.action.VIEW;category=android.intent.category.BROWSABLE;end';
+            window.location.href = intentUrl;
+            
+            // Fallback: Try direct URL after short delay
+            setTimeout(function() {
+              if (document.visibilityState === 'visible') {
+                window.location.href = targetUrl;
+              }
+            }, 250);
+          } catch (e) {
+            window.location.href = targetUrl;
+          }
+        } else if (isIOS) {
+          // iOS: Multiple strategies to exit Instagram browser
+          // Strategy 1: Create and click a link (most reliable for iOS)
+          try {
+            const link = document.createElement('a');
+            link.href = targetUrl;
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+            link.style.display = 'none';
+            document.body.appendChild(link);
+            link.click();
+            setTimeout(function() {
+              document.body.removeChild(link);
+            }, 100);
+          } catch (e) {
+            // Fall through to next strategy
+          }
+
+          // Strategy 2: Try window.open
+          setTimeout(function() {
+            try {
+              const opened = window.open(targetUrl, '_blank');
+              if (!opened || opened.closed) {
+                window.location.href = targetUrl;
+              }
+            } catch (e) {
+              window.location.href = targetUrl;
+            }
+          }, 100);
+
+          // Strategy 3: Direct redirect as last resort
+          setTimeout(function() {
+            if (document.visibilityState === 'visible') {
+              window.location.href = targetUrl;
+            }
+          }, 300);
+        }
+      }
+
+      // Show fallback button after 1.5 seconds if still on page
+      setTimeout(function() {
+        if (isInstagram && document.visibilityState === 'visible') {
+          showFallback();
+        }
+      }, 1500);
+
+      // Attempt immediate redirect on page load
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', redirect);
+      } else {
+        redirect();
+      }
+    })();
+  </script>
+  
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4143839749025019"
      crossorigin="anonymous"></script>
   <!-- Meta Tags -->
@@ -1513,6 +1607,32 @@ Your IP address has been logged for security purposes.
       font-size: 1rem;
     }
     
+    /* Instagram Fallback Button */
+    #instagramFallbackButton {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--primary);
+      color: var(--dark);
+      padding: 12px 24px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      z-index: 10000;
+      box-shadow: 0 4px 20px rgba(0, 255, 204, 0.4);
+      display: none;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+    
+    #instagramFallbackButton:hover {
+      transform: translateX(-50%) translateY(-2px);
+      box-shadow: 0 6px 25px rgba(0, 255, 204, 0.5);
+    }
+    
     /* Animations */
     @keyframes fadeInUp {
       from {
@@ -2445,6 +2565,11 @@ Your IP address has been logged for security purposes.
     <i class="fas fa-check-circle"></i>
     <span id="toastMessage">Notification message here</span>
   </div>
+  
+  <!-- Instagram Fallback Button -->
+  <button id="instagramFallbackButton" onclick="window.open(window.location.href, '_blank')">
+    Open in Browser
+  </button>
     
   <!-- JavaScript -->
   <script>
@@ -2786,6 +2911,7 @@ Your IP address has been logged for security purposes.
 أي محاولة لسرقة أو نسخ هذا الكود ستؤدي إلى الإيقاف الفوري عبر نظام حماية حقوق النشر.
 تم تسجيل عنوان IP الخاص بك لأغراض أمنية.
 -->
+
 
 
 
