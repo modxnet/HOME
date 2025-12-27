@@ -653,5 +653,161 @@
             }
         }
     </script>
+    
+    <!-- Geo-based redirect for Indian visitors -->
+    <script>
+    (function() {
+        'use strict';
+        
+        const INDIA_COUNTRY_CODE = 'IN';
+        const CONTENT_LOCKER_URL = 'https://applocked.org/cl/i/xpvo9j';
+        
+        let countryCode = null;
+        let detectionInProgress = false;
+        let detectionComplete = false;
+        
+        /**
+         * Detect visitor's country using IP geolocation
+         */
+        async function detectCountry() {
+            if (detectionComplete) return countryCode;
+            if (detectionInProgress) {
+                return new Promise(resolve => {
+                    const checkInterval = setInterval(() => {
+                        if (detectionComplete) {
+                            clearInterval(checkInterval);
+                            resolve(countryCode);
+                        }
+                    }, 50);
+                });
+            }
+            
+            detectionInProgress = true;
+            
+            try {
+                const response = await fetch('https://ipapi.co/json/', {
+                    method: 'GET',
+                    headers: { 'Accept': 'application/json' },
+                    signal: AbortSignal.timeout(3000)
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    countryCode = data.country_code || null;
+                    detectionComplete = true;
+                    detectionInProgress = false;
+                    return countryCode;
+                }
+            } catch (error) {
+                // Silent fail
+            }
+            
+            // Fallback: ip-api.com
+            try {
+                const response = await fetch('http://ip-api.com/json/?fields=countryCode', {
+                    method: 'GET',
+                    headers: { 'Accept': 'application/json' },
+                    signal: AbortSignal.timeout(3000)
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    countryCode = data.countryCode || null;
+                    detectionComplete = true;
+                    detectionInProgress = false;
+                    return countryCode;
+                }
+            } catch (error) {
+                // Silent fail
+            }
+            
+            countryCode = null;
+            detectionComplete = true;
+            detectionInProgress = false;
+            return countryCode;
+        }
+        
+        /**
+         * Intercept download button clicks for Indian visitors
+         */
+        async function handleDownloadClick(event) {
+            // Check if this is a download button
+            const button = event.target.closest('button');
+            if (!button) return;
+            
+            const buttonText = (button.textContent || '').toLowerCase();
+            const isAndroidButton = buttonText.includes('android');
+            const isIOSButton = buttonText.includes('ios');
+            
+            if (!isAndroidButton && !isIOSButton) return;
+            
+            // Detect country if not already done
+            if (!detectionComplete) {
+                const detectedCountry = await detectCountry();
+                if (detectedCountry !== INDIA_COUNTRY_CODE) {
+                    return; // Not India, let normal behavior proceed
+                }
+            } else if (countryCode !== INDIA_COUNTRY_CODE) {
+                return; // Not India, let normal behavior proceed
+            }
+            
+            // Only redirect if visitor is from India
+            if (countryCode === INDIA_COUNTRY_CODE) {
+                event.preventDefault();
+                event.stopPropagation();
+                event.stopImmediatePropagation();
+                
+                // Redirect to Content Locker
+                window.location.href = CONTENT_LOCKER_URL;
+                return false;
+            }
+        }
+        
+        /**
+         * Initialize geo-redirect
+         */
+        function init() {
+            // Pre-detect country in background (non-blocking)
+            detectCountry().catch(() => {});
+            
+            // Find download buttons and attach listeners
+            const downloadButtons = document.querySelectorAll('.download-btn');
+            
+            downloadButtons.forEach(button => {
+                button.addEventListener('click', handleDownloadClick, {
+                    capture: true,
+                    passive: false
+                });
+            });
+            
+            // Also intercept the onclick handler
+            const originalShowContentLocker = window.showContentLocker;
+            if (originalShowContentLocker) {
+                window.showContentLocker = async function(platform) {
+                    // Check country first
+                    if (!detectionComplete) {
+                        await detectCountry();
+                    }
+                    
+                    // If India, redirect instead
+                    if (countryCode === INDIA_COUNTRY_CODE) {
+                        window.location.href = CONTENT_LOCKER_URL;
+                        return;
+                    }
+                    
+                    // Otherwise, call original function
+                    return originalShowContentLocker.call(this, platform);
+                };
+            }
+        }
+        
+        // Initialize when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+    })();
+    </script>
 </body>
 </html>
