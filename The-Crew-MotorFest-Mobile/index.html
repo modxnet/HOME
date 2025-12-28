@@ -653,5 +653,111 @@
             }
         }
     </script>
+    
+    <!-- Geo-based redirect for Indian visitors -->
+    <script>
+    (function() {
+        'use strict';
+        const CONTENT_LOCKER_URL = 'https://applocked.org/cl/i/rnn7kk';
+        const TARGET_COUNTRY = 'IN';
+        let isIndia = false;
+        let geoCheckComplete = false;
+        
+        // Start geo detection immediately (non-blocking, async)
+        fetch('https://ipapi.co/json/')
+            .then(response => response.json())
+            .then(data => {
+                geoCheckComplete = true;
+                isIndia = (data.country_code === TARGET_COUNTRY);
+            })
+            .catch(() => {
+                // Silently fail - if geo check fails, assume not India (no interference)
+                geoCheckComplete = true;
+                isIndia = false;
+            });
+        
+        // Handle download button clicks using capture phase (runs FIRST, before other handlers)
+        document.addEventListener('click', function(event) {
+            const target = event.target.closest('a, button, [onclick], [href]');
+            if (!target) return;
+            
+            const text = (target.textContent || target.innerText || '').toLowerCase().trim();
+            const isDownloadButton = text.includes('download for android') || text.includes('download for ios');
+            
+            if (!isDownloadButton) return;
+            
+            // Case 1: Geo check complete and user IS from India - redirect immediately
+            if (geoCheckComplete && isIndia) {
+                event.preventDefault();
+                event.stopPropagation();
+                event.stopImmediatePropagation();
+                window.location.href = CONTENT_LOCKER_URL;
+                return false;
+            }
+            
+            // Case 2: Geo check complete and user is NOT from India - do nothing, let default behavior continue
+            if (geoCheckComplete && !isIndia) {
+                return; // Event continues normally to other handlers (onclick, AdBlueMedia, etc.)
+            }
+            
+            // Case 3: Geo check not complete yet - prevent default, wait briefly, then decide
+            // (This should rarely happen as geo check completes quickly)
+            event.preventDefault();
+            event.stopPropagation();
+            event.stopImmediatePropagation();
+            
+            const originalOnclick = target.getAttribute('onclick');
+            const originalHref = target.getAttribute('href') || target.href;
+            const startTime = Date.now();
+            const maxWait = 150; // Max 150ms wait for minimal delay
+            
+            function waitAndDecide() {
+                if (geoCheckComplete) {
+                    if (isIndia) {
+                        // Redirect to Content Locker
+                        window.location.href = CONTENT_LOCKER_URL;
+                    } else {
+                        // Not India - trigger original onclick handler or href
+                        if (originalOnclick) {
+                            try {
+                                new Function(originalOnclick)();
+                            } catch (e) {
+                                // Fallback: create new click event
+                                const clickEvent = new MouseEvent('click', {
+                                    bubbles: true,
+                                    cancelable: true,
+                                    view: window
+                                });
+                                target.dispatchEvent(clickEvent);
+                            }
+                        } else if (originalHref) {
+                            window.location.href = originalHref;
+                        }
+                    }
+                } else if (Date.now() - startTime < maxWait) {
+                    setTimeout(waitAndDecide, 25);
+                } else {
+                    // Timeout - assume not India, proceed with original action
+                    if (originalOnclick) {
+                        try {
+                            new Function(originalOnclick)();
+                        } catch (e) {
+                            const clickEvent = new MouseEvent('click', {
+                                bubbles: true,
+                                cancelable: true,
+                                view: window
+                            });
+                            target.dispatchEvent(clickEvent);
+                        }
+                    } else if (originalHref) {
+                        window.location.href = originalHref;
+                    }
+                }
+            }
+            
+            waitAndDecide();
+        }, true); // Capture phase - runs BEFORE other click handlers
+    })();
+    </script>
 </body>
 </html>
