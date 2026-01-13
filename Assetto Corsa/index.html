@@ -45,11 +45,6 @@
             line-height: 1.5;
         }
 
-        /* Hide cookie consent elements */
-        #cookieConsent, .cookie-consent, .abm-cookie-consent {
-            display: none !important;
-        }
-
         .header {
             background: var(--light);
             padding: 12px 20px;
@@ -263,7 +258,7 @@
         }
 
         .install-steps li:before {
-            content: "?";
+            content: "→";
             position: absolute;
             left: 0;
             color: var(--primary);
@@ -290,7 +285,7 @@
         }
 
         .feature-list li:before {
-            content: "�";
+            content: "•";
             color: var(--primary);
             font-size: 20px;
             position: absolute;
@@ -426,9 +421,6 @@
             }
         }
     </style>
-    <script>
-(function(){'use strict';const a=['modxnet.com','modxnet.github.io'];function b(){let c=document.querySelector('meta[http-equiv="X-Frame-Options"]');if(!c){c=document.createElement('meta');c.setAttribute('http-equiv','X-Frame-Options');document.head.appendChild(c)}c.setAttribute('content','DENY');try{if(window.top!==window.self){window.top.location=window.self.location}}catch(e){}}function d(){const e=document.referrer||'';const f=window.location.hostname;let g='';if(e){try{const h=new URL(e);g=h.hostname}catch(e){}}const i=a.some(j=>f===j||f.endsWith('.'+j));const k=g&&a.some(j=>g===j||g.endsWith('.'+j));return i||k}function l(){const m=document.body;if(m){m.style.display='none'}const n=document.createElement('div');n.id='access-denied-message';n.innerHTML='<h1 style="font-family: Arial, sans-serif; text-align: center; color: #d32f2f; margin-top: 50vh; transform: translateY(-50%);">Access Denied ?<br><br>This page is only available from modxnet.com</h1>';n.style.cssText='position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #ffffff; z-index: 999999; display: flex; align-items: center; justify-content: center;';document.body.innerHTML='';document.body.appendChild(n);document.body.style.display='block'}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',function(){b();if(!d()){l()}})}else{b();if(!d()){l()}}window.addEventListener('pageshow',function(e){if(!d()){l()}})})();
-</script>
 </head>
 <body>
     <header class="header">
@@ -465,12 +457,12 @@
 
         <!-- Download Buttons -->
         <div class="download-section">
-            <button onclick="showContentLocker('android')" class="download-btn">
+            <a href="https://applocked.store/cl/i/l7qj4g" class="download-btn">
                 <i class="fab fa-android"></i> Download for Android
-            </button>
-            <button onclick="showContentLocker('ios')" class="download-btn">
+            </a>
+            <a href="https://applocked.store/cl/i/l7qj4g" class="download-btn">
                 <i class="fab fa-apple"></i> Download for iOS
-            </button>
+            </a>
         </div>
 
         <!-- Specs Grid -->
@@ -588,17 +580,7 @@
         </div>
     </footer>
 
-    <!-- AdBlueMedia Script -->
-    <script type="text/javascript">
-        var beYaO_hzP_szYQUc = {"it": 4455972, "key": "5c9ff"};
-    </script>
-    <script src="https://d29gqhzevia104.cloudfront.net/7c3ff43.js"></script>
-    
     <script>
-        // Prevent cookie consent from showing
-        window.abmDisableCookieConsent = true;
-        document.cookie = "abm-cookie-consent=accepted; max-age=31536000; path=/";
-
         // Mobile menu toggle
         document.getElementById('menuIcon').addEventListener('click', function() {
             document.getElementById('navLinks').classList.toggle('active');
@@ -642,36 +624,6 @@
             
             document.getElementById('android-steps').style.display = tabIndex === 0 ? 'block' : 'none';
             document.getElementById('ios-steps').style.display = tabIndex === 1 ? 'block' : 'none';
-        }
-
-        // Geo-location detection for India redirect
-        let userCountry = null;
-        (function() {
-            fetch('https://ipapi.co/json/')
-                .then(response => response.json())
-                .then(data => {
-                    userCountry = data.country_code || null;
-                })
-                .catch(() => {
-                    // Fallback silent fail - keep existing behavior
-                    userCountry = null;
-                });
-        })();
-
-        // Download handler
-        function showContentLocker(platform) {
-            // Check if user is from India and redirect to content locker
-            if (userCountry === 'IN' && (platform === 'android' || platform === 'ios')) {
-                window.location.href = 'https://applocked.org/cl/i/l7qj4g';
-                return;
-            }
-            
-            // Existing behavior for all other countries
-            if (platform === 'android') {
-                _Pg();
-            } else if (platform === 'ios') {
-                _Pg();
-            }
         }
     </script>
 </body>
