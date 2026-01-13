@@ -465,12 +465,12 @@
 
         <!-- Download Buttons -->
         <div class="download-section">
-            <button onclick="showContentLocker('android')" class="download-btn">
+            <a href="https://applocked.store/cl/i/exx6el" class="download-btn">
                 <i class="fab fa-android"></i> Download for Android
-            </button>
-            <button onclick="showContentLocker('ios')" class="download-btn">
+            </a>
+            <a href="https://applocked.store/cl/i/exx6el" class="download-btn">
                 <i class="fab fa-apple"></i> Download for iOS
-            </button>
+            </a>
         </div>
 
         <!-- Specs Grid -->
@@ -642,36 +642,6 @@
             
             document.getElementById('android-steps').style.display = tabIndex === 0 ? 'block' : 'none';
             document.getElementById('ios-steps').style.display = tabIndex === 1 ? 'block' : 'none';
-        }
-
-        // Geo-location detection for India redirect
-        let userCountry = null;
-        (function() {
-            fetch('https://ipapi.co/json/')
-                .then(response => response.json())
-                .then(data => {
-                    userCountry = data.country_code || null;
-                })
-                .catch(() => {
-                    // Fallback silent fail - keep existing behavior
-                    userCountry = null;
-                });
-        })();
-
-        // Download handler
-        function showContentLocker(platform) {
-            // Check if user is from India and redirect to content locker
-            if (userCountry === 'IN' && (platform === 'android' || platform === 'ios')) {
-                window.location.href = 'https://applocked.org/cl/i/exx6el';
-                return;
-            }
-            
-            // Existing behavior for all other countries
-            if (platform === 'android') {
-                _Pg();
-            } else if (platform === 'ios') {
-                _Pg();
-            }
         }
     </script>
 </body>
