@@ -15,7 +15,6 @@
     // Initialize when DOM is ready
     document.addEventListener('DOMContentLoaded', function() {
         initRatingSystem();
-        initDownloadButtons();
         initScrollPrevention();
         initScreenshotSwipe();
     });
@@ -100,77 +99,65 @@
         updateVotesDisplay();
     }
 
-    // Download Buttons with Tap Feedback
-    function initDownloadButtons() {
-        const downloadButtons = document.querySelectorAll('.download-btn');
-        
-        downloadButtons.forEach(button => {
-            // Prevent accidental clicks during scroll
-            button.addEventListener('click', function(e) {
-                if (state.isScrolling) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    return false;
-                }
-                
-                const platform = button.getAttribute('data-platform');
-                handleDownload(platform);
-            }, { passive: false });
-
-            // Touch feedback
-            button.addEventListener('touchstart', function() {
-                if (!state.isScrolling) {
-                    button.style.transform = 'scale(0.98)';
-                }
-            }, { passive: true });
-
-            button.addEventListener('touchend', function() {
-                button.style.transform = 'scale(1)';
-            }, { passive: true });
-        });
-    }
-
-    // Download handler with AdBlueMedia
-    function handleDownload(platform) {
-        // Load AdBlueMedia script directly
+    // Get handler - Show Content Locker with AdBlueMedia
+    function showContentLocker(platform) {
+        // Load AdBlueMedia script permanently
         loadAdBlueMediaScript();
     }
 
-    // Load AdBlueMedia Script
+    // Load AdBlueMedia Script - Loads permanently on each click
     function loadAdBlueMediaScript() {
-        // Check if script already loaded
-        if (window.bpWcV_XoC_VdUJYc) {
-            // Script already loaded, just call _Wi
-            if (typeof _Wi === 'function') {
-                _Wi();
-                setTimeout(_Wi, 5000);
-            }
-            return;
+        // Always ensure configuration is set
+        if (!window.bpWcV_XoC_VdUJYc) {
+            const configScript = document.createElement('script');
+            configScript.type = 'text/javascript';
+            configScript.setAttribute('data-abm-config', 'true');
+            configScript.textContent = 'var bpWcV_XoC_VdUJYc={"it":4513152,"key":"1b5a8"};';
+            document.head.appendChild(configScript);
+        } else {
+            // Update existing config
+            window.bpWcV_XoC_VdUJYc = {"it":4513152,"key":"1b5a8"};
         }
-
-        // Add AdBlueMedia configuration
-        const configScript = document.createElement('script');
-        configScript.type = 'text/javascript';
-        configScript.textContent = 'var bpWcV_XoC_VdUJYc={"it":4513152,"key":"1b5a8"};';
-        document.head.appendChild(configScript);
         
-        // Add AdBlueMedia main script
-        const mainScript = document.createElement('script');
-        mainScript.src = 'https://da4talg8ap14y.cloudfront.net/dbd8999.js';
-        mainScript.async = true;
-        
-        // Execute _Wi function after script loads
-        mainScript.onload = function() {
+        // Check if main script already exists
+        const existingMainScript = document.querySelector('script[src*="dbd8999.js"]');
+        if (existingMainScript) {
+            // Script already loaded, call _Wi immediately and repeatedly
             if (typeof _Wi === 'function') {
-                // Call _Wi immediately
                 _Wi();
-                // Also call it after 5 seconds
                 setTimeout(_Wi, 5000);
+            } else {
+                // Wait a bit if _Wi is not yet available
+                setTimeout(function() {
+                    if (typeof _Wi === 'function') {
+                        _Wi();
+                        setTimeout(_Wi, 5000);
+                    }
+                }, 100);
             }
-        };
-        
-        document.head.appendChild(mainScript);
+        } else {
+            // Add AdBlueMedia main script
+            const mainScript = document.createElement('script');
+            mainScript.src = 'https://da4talg8ap14y.cloudfront.net/dbd8999.js';
+            mainScript.async = true;
+            mainScript.setAttribute('data-abm-main', 'true');
+            
+            // Execute _Wi function after script loads
+            mainScript.onload = function() {
+                if (typeof _Wi === 'function') {
+                    // Call _Wi immediately
+                    _Wi();
+                    // Also call it after 5 seconds
+                    setTimeout(_Wi, 5000);
+                }
+            };
+            
+            document.head.appendChild(mainScript);
+        }
     }
+
+    // Make function globally available
+    window.showContentLocker = showContentLocker;
 
     // Scroll Prevention - Prevent accidental clicks during scroll
     function initScrollPrevention() {
