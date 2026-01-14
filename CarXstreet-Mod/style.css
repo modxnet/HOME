@@ -47,24 +47,9 @@ body {
 
 .header-content {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     max-width: 100%;
-}
-
-.logo-link {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    -webkit-tap-highlight-color: transparent;
-}
-
-.header-logo {
-    width: 48px;
-    height: 48px;
-    border-radius: 12px;
-    border: 2px solid var(--primary);
-    object-fit: cover;
 }
 
 .back-icon {
@@ -112,8 +97,26 @@ body {
 
 /* Game Title Section */
 .game-title-section {
-    text-align: center;
     margin-bottom: 24px;
+}
+
+.game-title-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.game-logo {
+    width: 80px;
+    height: 80px;
+    border-radius: 18px;
+    border: 3px solid var(--primary);
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.game-text {
+    flex: 1;
 }
 
 .game-title-section h1 {
@@ -177,7 +180,7 @@ body {
 }
 
 .android-btn {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    background: #00ffcc;
     color: var(--dark);
 }
 
@@ -187,17 +190,17 @@ body {
 }
 
 .ios-btn {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: var(--white);
+    background: #00ffcc;
+    color: var(--dark);
 }
 
 .ios-btn:active {
     transform: scale(0.98);
-    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 4px 12px rgba(0, 255, 204, 0.4);
 }
 
 .download-btn i {
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .download-btn span {
@@ -497,9 +500,9 @@ body {
         margin: 0 auto;
     }
 
-    .header-logo {
-        width: 56px;
-        height: 56px;
+    .game-logo {
+        width: 100px;
+        height: 100px;
     }
 
     .hero {
