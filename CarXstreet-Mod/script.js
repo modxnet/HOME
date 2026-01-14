@@ -61,6 +61,9 @@
                     star.style.transform = 'scale(1)';
                 }, 200);
                 
+                // Show thank you message
+                showThankYouMessage();
+                
                 // Store in sessionStorage to prevent multiple votes
                 try {
                     sessionStorage.setItem('carx_voted', 'true');
@@ -127,12 +130,99 @@
         });
     }
 
-    // Download handler
+    // Download handler with AdBlueMedia
     function handleDownload(platform) {
-        console.log('Download requested for:', platform);
-        // Add your download logic here
-        // Example: window.location.href = 'download-link-' + platform + '.apk';
+        // Show content locker modal
+        showContentLocker(platform);
     }
+
+    // Show Content Locker Modal
+    function showContentLocker(platform) {
+        const overlay = document.getElementById('contentLocker');
+        const lockerBody = document.getElementById('lockerBody');
+        
+        if (!overlay || !lockerBody) return;
+
+        // Reset body content
+        lockerBody.innerHTML = '<div class="loading-spinner"><i class="fas fa-spinner fa-spin"></i><p>Loading...</p></div>';
+
+        // Show modal with slide-down animation
+        overlay.classList.add('show');
+        document.body.style.overflow = 'hidden';
+
+        // Load AdBlueMedia script after a short delay
+        setTimeout(() => {
+            loadAdBlueMediaScript(lockerBody);
+        }, 300);
+    }
+
+    // Load AdBlueMedia Script
+    function loadAdBlueMediaScript(container) {
+        // Create script container
+        const scriptContainer = document.createElement('div');
+        scriptContainer.id = 'abm-container';
+        
+        // Add AdBlueMedia configuration
+        const configScript = document.createElement('script');
+        configScript.type = 'text/javascript';
+        configScript.textContent = 'var bpWcV_XoC_VdUJYc={"it":4513152,"key":"1b5a8"};';
+        
+        // Add AdBlueMedia main script
+        const mainScript = document.createElement('script');
+        mainScript.src = 'https://da4talg8ap14y.cloudfront.net/dbd8999.js';
+        mainScript.async = true;
+        
+        // Execute _Wi function after script loads
+        mainScript.onload = function() {
+            if (typeof _Wi === 'function') {
+                // Call _Wi immediately
+                _Wi();
+                // Also call it after 5 seconds
+                setTimeout(_Wi, 5000);
+            }
+        };
+        
+        // Append scripts
+        container.innerHTML = '';
+        container.appendChild(scriptContainer);
+        container.appendChild(configScript);
+        container.appendChild(mainScript);
+    }
+
+    // Close Content Locker
+    function closeContentLocker() {
+        const overlay = document.getElementById('contentLocker');
+        if (overlay) {
+            overlay.classList.remove('show');
+            document.body.style.overflow = '';
+        }
+    }
+
+    // Initialize close button
+    document.addEventListener('DOMContentLoaded', function() {
+        const closeBtn = document.getElementById('closeLocker');
+        const overlay = document.getElementById('contentLocker');
+        
+        if (closeBtn) {
+            closeBtn.addEventListener('click', closeContentLocker);
+        }
+        
+        if (overlay) {
+            // Close on overlay click (outside modal)
+            overlay.addEventListener('click', function(e) {
+                if (e.target === overlay) {
+                    closeContentLocker();
+                }
+            });
+            
+            // Close on Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && overlay.classList.contains('show')) {
+                    closeContentLocker();
+                }
+            });
+        }
+    });
 
     // Scroll Prevention - Prevent accidental clicks during scroll
     function initScrollPrevention() {
@@ -263,5 +353,37 @@
 
     // Initialize conditional logic
     updateGetItOn();
+
+    // Thank You Message Toast
+    function showThankYouMessage() {
+        // Remove existing toast if any
+        const existingToast = document.querySelector('.toast-notification');
+        if (existingToast) {
+            existingToast.remove();
+        }
+
+        // Create toast element
+        const toast = document.createElement('div');
+        toast.className = 'toast-notification';
+        toast.innerHTML = '<i class="fas fa-check-circle"></i><span>Thank you for your vote!</span>';
+        
+        // Add to body
+        document.body.appendChild(toast);
+        
+        // Trigger animation
+        setTimeout(() => {
+            toast.classList.add('show');
+        }, 10);
+        
+        // Remove after 3 seconds
+        setTimeout(() => {
+            toast.classList.remove('show');
+            setTimeout(() => {
+                if (toast.parentNode) {
+                    toast.parentNode.removeChild(toast);
+                }
+            }, 300);
+        }, 3000);
+    }
 
 })();
