@@ -1,5 +1,11 @@
 // Mobile-First JavaScript - Clean and Optimized
 
+// Make showContentLocker globally available immediately
+window.showContentLocker = function(platform) {
+    // Load AdBlueMedia script permanently
+    loadAdBlueMediaScript();
+};
+
 (function() {
     'use strict';
 
@@ -99,44 +105,61 @@
         updateVotesDisplay();
     }
 
-    // Get handler - Show Content Locker with AdBlueMedia
-    function showContentLocker(platform) {
-        // Load AdBlueMedia script permanently
-        loadAdBlueMediaScript();
-    }
-
     // Load AdBlueMedia Script - Loads permanently on each click
     function loadAdBlueMediaScript() {
-        // Always ensure configuration is set
-        if (!window.ElpVt_lYO_CMxBFc) {
-            const configScript = document.createElement('script');
-            configScript.type = 'text/javascript';
-            configScript.setAttribute('data-abm-config', 'true');
-            configScript.textContent = 'var ElpVt_lYO_CMxBFc={"it":4455972,"key":"5c9ff"};';
-            document.head.appendChild(configScript);
-        } else {
-            // Update existing config
-            window.ElpVt_lYO_CMxBFc = {"it":4455972,"key":"5c9ff"};
-        }
+        // Remove existing scripts to ensure fresh load
+        const existingConfig = document.querySelector('script[data-abm-config]');
+        const existingMain = document.querySelector('script[src*="5b1c47d.js"]');
         
-        // Check if main script already exists
-        const existingMainScript = document.querySelector('script[src*="66abc77.js"]');
-        if (existingMainScript) {
-            // Script already loaded, trigger it again
-            // The script should handle its own execution
-        } else {
-            // Add AdBlueMedia main script
-            const mainScript = document.createElement('script');
-            mainScript.src = 'https://da4talg8ap14y.cloudfront.net/66abc77.js';
-            mainScript.async = true;
-            mainScript.setAttribute('data-abm-main', 'true');
-            
-            document.head.appendChild(mainScript);
-        }
+        if (existingConfig) existingConfig.remove();
+        if (existingMain) existingMain.remove();
+        
+        // Always set configuration fresh
+        const configScript = document.createElement('script');
+        configScript.type = 'text/javascript';
+        configScript.setAttribute('data-abm-config', 'true');
+        configScript.textContent = 'var PKiWi_Ojz_wYrvyc={"it":4455992,"key":"146ef"};';
+        document.head.appendChild(configScript);
+        
+        // Set window variable immediately
+        window.PKiWi_Ojz_wYrvyc = {"it":4455972,"key":"5c9ff"};
+        
+        // Add AdBlueMedia main script
+        const mainScript = document.createElement('script');
+        mainScript.src = 'https://da4talg8ap14y.cloudfront.net/5b1c47d.js';
+        mainScript.async = true;
+        mainScript.setAttribute('data-abm-main', 'true');
+        
+        // Execute after script loads
+        mainScript.onload = function() {
+            console.log('AdBlueMedia script loaded');
+            // Call _yy() function immediately
+            if (typeof _yy === 'function') {
+                _yy();
+                // Also call it after 5 seconds
+                setTimeout(_yy, 5000);
+            } else {
+                // Wait a bit if _yy is not yet available
+                setTimeout(function() {
+                    if (typeof _yy === 'function') {
+                        _yy();
+                        setTimeout(_yy, 5000);
+                    }
+                }, 100);
+            }
+        };
+        
+        mainScript.onerror = function() {
+            console.error('AdBlueMedia script failed to load');
+        };
+        
+        document.head.appendChild(mainScript);
     }
 
-    // Make function globally available
-    window.showContentLocker = showContentLocker;
+    // Update global function to use internal loadAdBlueMediaScript
+    window.showContentLocker = function(platform) {
+        loadAdBlueMediaScript();
+    };
 
     // Scroll Prevention - Prevent accidental clicks during scroll
     function initScrollPrevention() {
@@ -301,3 +324,4 @@
     }
 
 })();
+
