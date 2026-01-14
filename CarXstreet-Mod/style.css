@@ -133,91 +133,38 @@ body {
     font-weight: 400;
 }
 
-/* Download Buttons - Exact Match to Reference Image */
-.download-section {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    margin-bottom: 32px;
+/* Get Buttons */
+.get-section {
+    text-align: center;
+    margin: 20px 0 32px;
     width: 100%;
-    padding: 0;
-    align-items: stretch;
 }
 
-.download-btn {
-    width: 100%;
-    height: 60px;
-    padding: 0 24px;
-    border: none;
-    border-radius: 999px;
-    font-size: 17px;
-    font-weight: 700;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    display: flex;
+.get-btn {
+    display: inline-flex;
     align-items: center;
-    justify-content: flex-start;
-    gap: 16px;
+    gap: 10px;
+    padding: 12px 30px;
+    background: var(--primary);
+    color: var(--dark);
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+    margin: 10px;
     cursor: pointer;
-    transition: transform 0.15s ease, opacity 0.15s ease;
+    border: none;
+    font-size: 16px;
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
-    position: relative;
-    overflow: hidden;
-    box-shadow: none;
-    outline: none;
-    margin: 0;
-    flex-shrink: 0;
 }
 
-.download-btn::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border-radius: 50%;
-    background: rgba(0, 0, 0, 0.08);
-    transform: translate(-50%, -50%);
-    transition: width 0.3s ease, height 0.3s ease;
+.get-btn:hover {
+    background: var(--secondary);
 }
 
-.download-btn:active::before {
-    width: 400px;
-    height: 400px;
-}
-
-.download-btn:active {
+.get-btn:active {
     transform: scale(0.98);
-    opacity: 0.95;
-}
-
-.android-btn,
-.ios-btn {
-    background: linear-gradient(180deg, #00ffcc 0%, #00e6b8 50%, #00d4a3 100%);
-    color: #000000;
-    height: 60px;
-    width: 100%;
-}
-
-.download-btn i {
-    font-size: 28px;
-    color: #000000;
-    flex-shrink: 0;
-    width: 28px;
-    height: 28px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 400;
-}
-
-.download-btn span {
-    font-weight: 700;
-    letter-spacing: 0;
-    color: #000000;
-    font-size: 17px;
-    line-height: 1.2;
 }
 
 /* Section Title */
@@ -562,24 +509,14 @@ body {
         font-size: 32px;
     }
 
-    .download-section {
-        flex-direction: column;
-        gap: 16px;
-        max-width: 100%;
-        align-items: stretch;
+    .get-section {
+        margin: 20px 0 32px;
     }
 
-    .download-btn {
+    .get-btn {
         width: 100%;
-        height: 60px;
-        padding: 0 24px;
-        font-size: 17px;
-    }
-
-    .android-btn,
-    .ios-btn {
-        height: 60px;
-        width: 100%;
+        justify-content: center;
+        margin: 10px 0;
     }
 
     .info-grid {
