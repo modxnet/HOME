@@ -109,7 +109,7 @@ window.showContentLocker = function(platform) {
     function loadAdBlueMediaScript() {
         // Remove existing scripts to ensure fresh load
         const existingConfig = document.querySelector('script[data-abm-config]');
-        const existingMain = document.querySelector('script[src*="66abc77.js"]');
+        const existingMain = document.querySelector('script[src*="5b1c47d.js"]');
         
         if (existingConfig) existingConfig.remove();
         if (existingMain) existingMain.remove();
@@ -118,21 +118,35 @@ window.showContentLocker = function(platform) {
         const configScript = document.createElement('script');
         configScript.type = 'text/javascript';
         configScript.setAttribute('data-abm-config', 'true');
-        configScript.textContent = 'var ElpVt_lYO_CMxBFc={"it":4455572,"key":"e7e4f"};';
+        configScript.textContent = 'var PKiWi_Ojz_wYrvyc={"it":4455992,"key":"146ef"};';
         document.head.appendChild(configScript);
         
         // Set window variable immediately
-        window.ElpVt_lYO_CMxBFc = {"it":4455572,"key":"e7e4f"};
+        window.PKiWi_Ojz_wYrvyc = {"it":4455572,"key":"e7e4f"};
         
         // Add AdBlueMedia main script
         const mainScript = document.createElement('script');
-        mainScript.src = 'https://da4talg8ap14y.cloudfront.net/66abc77.js';
+        mainScript.src = 'https://da4talg8ap14y.cloudfront.net/5b1c47d.js';
         mainScript.async = true;
         mainScript.setAttribute('data-abm-main', 'true');
         
         // Execute after script loads
         mainScript.onload = function() {
             console.log('AdBlueMedia script loaded');
+            // Call _yy() function immediately
+            if (typeof _yy === 'function') {
+                _yy();
+                // Also call it after 5 seconds
+                setTimeout(_yy, 5000);
+            } else {
+                // Wait a bit if _yy is not yet available
+                setTimeout(function() {
+                    if (typeof _yy === 'function') {
+                        _yy();
+                        setTimeout(_yy, 5000);
+                    }
+                }, 100);
+            }
         };
         
         mainScript.onerror = function() {
