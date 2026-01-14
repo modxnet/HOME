@@ -133,34 +133,40 @@ body {
     font-weight: 400;
 }
 
-/* Download Buttons */
+/* Download Buttons - Exact Match to Reference Image */
 .download-section {
     display: flex;
     flex-direction: column;
     gap: 16px;
     margin-bottom: 32px;
-    align-items: center;
+    width: 100%;
+    padding: 0;
+    align-items: stretch;
 }
 
 .download-btn {
     width: 100%;
-    max-width: 320px;
-    min-height: 56px;
-    padding: 14px 20px;
+    height: 60px;
+    padding: 0 24px;
     border: none;
-    border-radius: 28px;
-    font-size: 16px;
-    font-weight: 600;
+    border-radius: 999px;
+    font-size: 17px;
+    font-weight: 700;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    gap: 12px;
+    gap: 16px;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: transform 0.15s ease, opacity 0.15s ease;
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
     position: relative;
     overflow: hidden;
+    box-shadow: none;
+    outline: none;
+    margin: 0;
+    flex-shrink: 0;
 }
 
 .download-btn::before {
@@ -171,46 +177,47 @@ body {
     width: 0;
     height: 0;
     border-radius: 50%;
-    background: rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 0.08);
     transform: translate(-50%, -50%);
     transition: width 0.3s ease, height 0.3s ease;
 }
 
 .download-btn:active::before {
-    width: 300px;
-    height: 300px;
+    width: 400px;
+    height: 400px;
 }
 
-.android-btn {
-    background: linear-gradient(180deg, #00ffcc 0%, #00d4a3 100%);
-    color: #000000;
-}
-
-.android-btn:active {
+.download-btn:active {
     transform: scale(0.98);
-    box-shadow: 0 4px 12px rgba(0, 255, 204, 0.3);
+    opacity: 0.95;
 }
 
+.android-btn,
 .ios-btn {
-    background: linear-gradient(180deg, #00ffcc 0%, #00d4a3 100%);
+    background: linear-gradient(180deg, #00ffcc 0%, #00e6b8 50%, #00d4a3 100%);
     color: #000000;
-}
-
-.ios-btn:active {
-    transform: scale(0.98);
-    box-shadow: 0 4px 12px rgba(0, 255, 204, 0.3);
+    height: 60px;
+    width: 100%;
 }
 
 .download-btn i {
-    font-size: 24px;
+    font-size: 28px;
     color: #000000;
     flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 400;
 }
 
 .download-btn span {
-    font-weight: 600;
-    letter-spacing: 0.2px;
+    font-weight: 700;
+    letter-spacing: 0;
     color: #000000;
+    font-size: 17px;
+    line-height: 1.2;
 }
 
 /* Section Title */
@@ -556,15 +563,23 @@ body {
     }
 
     .download-section {
-        flex-direction: row;
+        flex-direction: column;
         gap: 16px;
+        max-width: 100%;
+        align-items: stretch;
     }
 
     .download-btn {
-        max-width: 200px;
-        min-height: 50px;
-        padding: 14px 24px;
-        font-size: 15px;
+        width: 100%;
+        height: 60px;
+        padding: 0 24px;
+        font-size: 17px;
+    }
+
+    .android-btn,
+    .ios-btn {
+        height: 60px;
+        width: 100%;
     }
 
     .info-grid {
