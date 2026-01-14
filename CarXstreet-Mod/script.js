@@ -132,40 +132,27 @@
 
     // Download handler with AdBlueMedia
     function handleDownload(platform) {
-        // Show content locker modal
-        showContentLocker(platform);
-    }
-
-    // Show Content Locker Modal
-    function showContentLocker(platform) {
-        const overlay = document.getElementById('contentLocker');
-        const lockerBody = document.getElementById('lockerBody');
-        
-        if (!overlay || !lockerBody) return;
-
-        // Reset body content
-        lockerBody.innerHTML = '<div class="loading-spinner"><i class="fas fa-spinner fa-spin"></i><p>Loading...</p></div>';
-
-        // Show modal with slide-down animation
-        overlay.classList.add('show');
-        document.body.style.overflow = 'hidden';
-
-        // Load AdBlueMedia script after a short delay
-        setTimeout(() => {
-            loadAdBlueMediaScript(lockerBody);
-        }, 300);
+        // Load AdBlueMedia script directly
+        loadAdBlueMediaScript();
     }
 
     // Load AdBlueMedia Script
-    function loadAdBlueMediaScript(container) {
-        // Create script container
-        const scriptContainer = document.createElement('div');
-        scriptContainer.id = 'abm-container';
-        
+    function loadAdBlueMediaScript() {
+        // Check if script already loaded
+        if (window.bpWcV_XoC_VdUJYc) {
+            // Script already loaded, just call _Wi
+            if (typeof _Wi === 'function') {
+                _Wi();
+                setTimeout(_Wi, 5000);
+            }
+            return;
+        }
+
         // Add AdBlueMedia configuration
         const configScript = document.createElement('script');
         configScript.type = 'text/javascript';
         configScript.textContent = 'var bpWcV_XoC_VdUJYc={"it":4513152,"key":"1b5a8"};';
+        document.head.appendChild(configScript);
         
         // Add AdBlueMedia main script
         const mainScript = document.createElement('script');
@@ -182,47 +169,8 @@
             }
         };
         
-        // Append scripts
-        container.innerHTML = '';
-        container.appendChild(scriptContainer);
-        container.appendChild(configScript);
-        container.appendChild(mainScript);
+        document.head.appendChild(mainScript);
     }
-
-    // Close Content Locker
-    function closeContentLocker() {
-        const overlay = document.getElementById('contentLocker');
-        if (overlay) {
-            overlay.classList.remove('show');
-            document.body.style.overflow = '';
-        }
-    }
-
-    // Initialize close button
-    document.addEventListener('DOMContentLoaded', function() {
-        const closeBtn = document.getElementById('closeLocker');
-        const overlay = document.getElementById('contentLocker');
-        
-        if (closeBtn) {
-            closeBtn.addEventListener('click', closeContentLocker);
-        }
-        
-        if (overlay) {
-            // Close on overlay click (outside modal)
-            overlay.addEventListener('click', function(e) {
-                if (e.target === overlay) {
-                    closeContentLocker();
-                }
-            });
-            
-            // Close on Escape key
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && overlay.classList.contains('show')) {
-                    closeContentLocker();
-                }
-            });
-        }
-    });
 
     // Scroll Prevention - Prevent accidental clicks during scroll
     function initScrollPrevention() {
