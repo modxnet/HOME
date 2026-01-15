@@ -1,10 +1,4 @@
-// Mobile-First JavaScript - Clean and Optimized
-
-// Make showContentLocker globally available immediately
-window.showContentLocker = function(platform) {
-    // Load AdBlueMedia script permanently
-    loadAdBlueMediaScript();
-};
+// Mobile-First JavaScript - Optimized for Instant Content Locker Display (Like Watch Dogs 2)
 
 (function() {
     'use strict';
@@ -15,15 +9,164 @@ window.showContentLocker = function(platform) {
         currentVotes: 10367,
         currentRating: 4.5,
         isScrolling: false,
-        scrollTimer: null
+        scrollTimer: null,
+        abmInitialized: false,
+        abmReady: false,
+        lockerContainer: null,
+        lockerWrapper: null,
+        abmInjectedElement: null
     };
 
     // Initialize when DOM is ready
     document.addEventListener('DOMContentLoaded', function() {
+        initAdBlueMedia();
         initRatingSystem();
         initScrollPrevention();
         initScreenshotSwipe();
+        updateGetItOn();
     });
+
+    // Preload AdBlueMedia Script (DO NOT Initialize Until Button Click) - Like Watch Dogs 2
+    function initAdBlueMedia() {
+        // Get container elements
+        state.lockerContainer = document.getElementById('content-locker-container');
+        state.lockerWrapper = document.getElementById('content-locker-wrapper');
+
+        // Check if AdBlueMedia script is loaded (but DO NOT call _yy() yet)
+        let checkCount = 0;
+        const maxChecks = 100; // Max 5 seconds (100 * 50ms)
+        
+        function checkAdBlueMediaReady() {
+            checkCount++;
+            
+            if (typeof _yy === 'function' && window.PKiWi_Ojz_wYrvyc) {
+                // Script is ready - mark as ready but DO NOT initialize
+                // We will only call _yy() when button is clicked
+                state.abmReady = true;
+                // DO NOT call _yy() here - wait for button click
+            } else if (checkCount < maxChecks) {
+                // Script not ready yet, check again
+                setTimeout(checkAdBlueMediaReady, 50);
+            } else {
+                // Timeout - mark as ready anyway (script might load later)
+                state.abmReady = true;
+            }
+        }
+
+        // Start checking for script readiness immediately
+        checkAdBlueMediaReady();
+        
+        // Monitor for AdBlueMedia content injection and HIDE it if it appears automatically
+        const observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                mutation.addedNodes.forEach(function(node) {
+                    if (node.nodeType === 1) { // Element node
+                        // Check if this is AdBlueMedia content
+                        const isABMContent = node.id && (
+                            node.id.includes('abm') || 
+                            node.id.includes('adbluemedia') ||
+                            node.className && (
+                                node.className.includes('abm') ||
+                                node.className.includes('adbluemedia')
+                            )
+                        );
+                        
+                        // Also check for common AdBlueMedia patterns (high z-index overlays)
+                        const hasHighZIndex = node.style && node.style.zIndex && parseInt(node.style.zIndex) > 10000;
+                        
+                        if (isABMContent || hasHighZIndex) {
+                            // This is AdBlueMedia content - HIDE it until button is clicked
+                            if (node.style) {
+                                node.style.setProperty('display', 'none', 'important');
+                                node.style.setProperty('opacity', '0', 'important');
+                                node.style.setProperty('visibility', 'hidden', 'important');
+                                node.style.transition = 'none';
+                                node.style.animation = 'none';
+                            }
+                            
+                            // Store reference for later use
+                            if (!state.abmInjectedElement) {
+                                state.abmInjectedElement = node;
+                            }
+                        }
+                    }
+                });
+            });
+        });
+        
+        // Observe body for AdBlueMedia injections
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    }
+
+    // Show Content Locker - ONLY Called on Button Click - No Black Screen, No Effects, Stable (Like Watch Dogs 2)
+    window.showContentLocker = function(platform) {
+        // Show any previously hidden AdBlueMedia content first with stability fixes
+        if (state.abmInjectedElement && state.abmInjectedElement.style) {
+            // Use cssText for atomic update to prevent glitches
+            state.abmInjectedElement.style.cssText += 'display: block !important; opacity: 1 !important; visibility: visible !important; will-change: auto !important; transform: translateZ(0) !important; -webkit-transform: translateZ(0) !important; backface-visibility: hidden !important; -webkit-backface-visibility: hidden !important;';
+        }
+        
+        // Search for any AdBlueMedia elements that might have been injected and show them with stability
+        const abmElements = document.querySelectorAll('[id*="abm"], [id*="adbluemedia"], [class*="abm"], [class*="adbluemedia"]');
+        abmElements.forEach(function(el) {
+            if (el.style && parseInt(el.style.zIndex || 0) > 10000) {
+                // Apply stable styles atomically to prevent glitches
+                el.style.cssText += 'display: block !important; opacity: 1 !important; visibility: visible !important; will-change: auto !important; transform: translateZ(0) !important; -webkit-transform: translateZ(0) !important; backface-visibility: hidden !important; -webkit-backface-visibility: hidden !important; position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important; width: 100% !important; height: 100% !important; min-height: 100vh !important; min-height: 100dvh !important; overflow: auto !important; -webkit-overflow-scrolling: touch !important;';
+            }
+        });
+
+        // Also apply stability to any high z-index elements
+        const highZIndexElements = document.querySelectorAll('div[style*="z-index"]');
+        highZIndexElements.forEach(function(el) {
+            if (el.style && parseInt(el.style.zIndex || 0) > 10000) {
+                // Force stable rendering
+                el.style.setProperty('will-change', 'auto', 'important');
+                el.style.setProperty('transform', 'translateZ(0)', 'important');
+                el.style.setProperty('-webkit-transform', 'translateZ(0)', 'important');
+                el.style.setProperty('backface-visibility', 'hidden', 'important');
+                el.style.setProperty('-webkit-backface-visibility', 'hidden', 'important');
+            }
+        });
+
+        // Call _yy() to show the locker directly - no black screen, no effects, stable
+        if (typeof _yy === 'function') {
+            try {
+                _yy();
+                state.abmInitialized = true;
+                
+                // After locker shows, ensure stability by applying fixes again
+                setTimeout(function() {
+                    const lockerElements = document.querySelectorAll('[id*="abm"], [id*="adbluemedia"], [class*="abm"], [class*="adbluemedia"], div[style*="z-index"]');
+                    lockerElements.forEach(function(el) {
+                        if (el.style && (parseInt(el.style.zIndex || 0) > 10000 || el.id || el.className)) {
+                            el.style.setProperty('will-change', 'auto', 'important');
+                            el.style.setProperty('transform', 'translateZ(0)', 'important');
+                            el.style.setProperty('-webkit-transform', 'translateZ(0)', 'important');
+                            el.style.setProperty('backface-visibility', 'hidden', 'important');
+                            el.style.setProperty('-webkit-backface-visibility', 'hidden', 'important');
+                        }
+                    });
+                }, 50);
+            } catch (e) {
+                console.error('AdBlueMedia _yy() call error:', e);
+            }
+        } else {
+            // Script not ready yet, wait a bit and try again
+            setTimeout(function() {
+                if (typeof _yy === 'function') {
+                    try {
+                        _yy();
+                        state.abmInitialized = true;
+                    } catch (e) {
+                        console.error('AdBlueMedia _yy() call error:', e);
+                    }
+                }
+            }, 100);
+        }
+    };
 
     // Rating System
     function initRatingSystem() {
@@ -104,62 +247,6 @@ window.showContentLocker = function(platform) {
         // Initialize display
         updateVotesDisplay();
     }
-
-    // Load AdBlueMedia Script - Loads permanently on each click
-    function loadAdBlueMediaScript() {
-        // Remove existing scripts to ensure fresh load
-        const existingConfig = document.querySelector('script[data-abm-config]');
-        const existingMain = document.querySelector('script[src*="5b1c47d.js"]');
-        
-        if (existingConfig) existingConfig.remove();
-        if (existingMain) existingMain.remove();
-        
-        // Always set configuration fresh
-        const configScript = document.createElement('script');
-        configScript.type = 'text/javascript';
-        configScript.setAttribute('data-abm-config', 'true');
-        configScript.textContent = 'var PKiWi_Ojz_wYrvyc={"it":4455992,"key":"146ef"};';
-        document.head.appendChild(configScript);
-        
-        // Set window variable immediately
-        window.PKiWi_Ojz_wYrvyc = {"it":4455572,"key":"e7e4f"};
-        
-        // Add AdBlueMedia main script
-        const mainScript = document.createElement('script');
-        mainScript.src = 'https://da4talg8ap14y.cloudfront.net/5b1c47d.js';
-        mainScript.async = true;
-        mainScript.setAttribute('data-abm-main', 'true');
-        
-        // Execute after script loads
-        mainScript.onload = function() {
-            console.log('AdBlueMedia script loaded');
-            // Call _yy() function immediately
-            if (typeof _yy === 'function') {
-                _yy();
-                // Also call it after 5 seconds
-                setTimeout(_yy, 5000);
-            } else {
-                // Wait a bit if _yy is not yet available
-                setTimeout(function() {
-                    if (typeof _yy === 'function') {
-                        _yy();
-                        setTimeout(_yy, 5000);
-                    }
-                }, 100);
-            }
-        };
-        
-        mainScript.onerror = function() {
-            console.error('AdBlueMedia script failed to load');
-        };
-        
-        document.head.appendChild(mainScript);
-    }
-
-    // Update global function to use internal loadAdBlueMediaScript
-    window.showContentLocker = function(platform) {
-        loadAdBlueMediaScript();
-    };
 
     // Scroll Prevention - Prevent accidental clicks during scroll
     function initScrollPrevention() {
@@ -287,9 +374,6 @@ window.showContentLocker = function(platform) {
             getItOnElement.textContent = 'ModXNet';
         }
     }
-
-    // Initialize conditional logic
-    updateGetItOn();
 
     // Thank You Message Toast
     function showThankYouMessage() {
