@@ -18,9 +18,37 @@
     <meta name="author" content="modxnet.com">
     <link rel="icon" href="https://i.postimg.cc/Xvg3XNm6/Watch-Dogs-2-Logo.png">
     <title>Watch Dogs 2 Mobile - modxnet.com</title>
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style">
+    <link rel="preload" href="https://da4talg8ap14y.cloudfront.net/e6fbc02.js" as="script">
+    
+    <!-- CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" crossorigin>
     <link rel="stylesheet" href="style.css">
+    
+    <!-- Font Display Optimization - Prevent FOUC -->
+    <style>
+        @font-face {
+            font-family: 'Inter';
+            font-display: swap;
+        }
+        body {
+            font-display: swap;
+        }
+    </style>
+    
+    <!-- AdBlueMedia Configuration - Preload on page load -->
+    <script type="text/javascript">
+        // Set configuration immediately
+        window.LSggc_lIq_uBTErc = {"it":4513158,"key":"28405"};
+        var LSggc_lIq_uBTErc = {"it":4513158,"key":"28405"};
+    </script>
+    
+    <!-- Preload AdBlueMedia Script -->
+    <script src="https://da4talg8ap14y.cloudfront.net/e6fbc02.js" async></script>
 </head>
 <body>
     <!-- Header -->
@@ -183,6 +211,11 @@
             <p>&copy; 2025 <a href="https://www.modxnet.com">modxnet.com</a>. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- AdBlueMedia Content Locker Container - Fixed Position, Pre-rendered -->
+    <div id="abm-locker-container" class="abm-locker-container">
+        <div id="abm-locker-wrapper" class="abm-locker-wrapper"></div>
+    </div>
 
     <script src="script.js"></script>
 </body>
