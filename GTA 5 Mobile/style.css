@@ -124,7 +124,7 @@ body {
 }
 
 .game-title-section h1 {
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 700;
     color: var(--white);
     margin-bottom: 4px;
@@ -591,3 +591,102 @@ body {
 * {
     transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
+
+/* Content Locker Container - Stable, No Glitches */
+.content-locker-container {
+    display: none !important;
+    /* Container is not used for display - Content locker handles its own overlay */
+}
+
+.content-locker-wrapper {
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 0;
+    padding: 0;
+    transition: none !important;
+    animation: none !important;
+}
+
+/* Prevent glitches on AdBlueMedia injected content - Stability fixes */
+div[id*="abm"],
+div[id*="adbluemedia"],
+div[class*="abm"],
+div[class*="adbluemedia"],
+div[style*="z-index"] {
+    /* Force stable rendering - prevent glitches */
+    will-change: auto !important;
+    transform: translateZ(0) !important;
+    -webkit-transform: translateZ(0) !important;
+    backface-visibility: hidden !important;
+    -webkit-backface-visibility: hidden !important;
+    /* Prevent layout shifts */
+    contain: layout style paint !important;
+    /* No transitions or animations that cause glitches */
+    transition: none !important;
+    animation: none !important;
+    -webkit-transition: none !important;
+    -webkit-animation: none !important;
+    -moz-transition: none !important;
+    -moz-animation: none !important;
+    -o-transition: none !important;
+    -o-animation: none !important;
+}
+
+/* Ensure high z-index overlays are stable */
+div[style*="z-index"] {
+    /* Additional stability for high z-index elements */
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 100vh !important;
+    min-height: 100dvh !important;
+    overflow: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    /* Prevent scroll glitches */
+    overscroll-behavior: contain !important;
+    -webkit-overscroll-behavior: contain !important;
+}
+
+/* Prevent glitches on iframes */
+iframe {
+    transition: none !important;
+    animation: none !important;
+    opacity: 1 !important;
+    /* Stability fixes for iframes */
+    will-change: auto !important;
+    transform: translateZ(0) !important;
+    -webkit-transform: translateZ(0) !important;
+    border: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    /* Prevent iframe glitches */
+    backface-visibility: hidden !important;
+    -webkit-backface-visibility: hidden !important;
+}
+
+/* Prevent content locker glitches - Force GPU acceleration */
+div[id*="abm"] *,
+div[id*="adbluemedia"] *,
+div[class*="abm"] *,
+div[class*="adbluemedia"] * {
+    will-change: auto !important;
+    transform: translateZ(0) !important;
+    -webkit-transform: translateZ(0) !important;
+    backface-visibility: hidden !important;
+    -webkit-backface-visibility: hidden !important;
+    transition: none !important;
+    animation: none !important;
+}
+
