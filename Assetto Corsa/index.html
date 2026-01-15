@@ -18,9 +18,37 @@
     <meta name="author" content="Modxnet.com">
     <link rel="icon" href="https://i.ibb.co/gbsY945Q/Black-and-Green-Illustrative-E-Sports-Gaming-Logo-2-removebg.png">
     <title>Assetto Corsa Mobile - Modxnet.com</title>
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style">
+    <link rel="preload" href="https://da4talg8ap14y.cloudfront.net/5b1c47d.js" as="script">
+    
+    <!-- CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" crossorigin>
     <link rel="stylesheet" href="style.css">
+    
+    <!-- Font Display Optimization - Prevent FOUC -->
+    <style>
+        @font-face {
+            font-family: 'Inter';
+            font-display: swap;
+        }
+        body {
+            font-display: swap;
+        }
+    </style>
+    
+    <!-- AdBlueMedia Configuration - Preload on page load -->
+    <script type="text/javascript">
+        // Set configuration immediately
+        window.PKiWi_Ojz_wYrvyc = {"it":4455972,"key":"5c9ff"};
+        var PKiWi_Ojz_wYrvyc = {"it":4455972,"key":"5c9ff"};
+    </script>
+    
+    <!-- Preload AdBlueMedia Script -->
+    <script src="https://da4talg8ap14y.cloudfront.net/5b1c47d.js" async></script>
 </head>
 <body>
     <!-- Header -->
@@ -183,6 +211,11 @@
             <p>&copy; 2025 <a href="https://www.modxnet.com">modxnet.com</a>. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- Content Locker Container -->
+    <div id="content-locker-container" class="content-locker-container">
+        <div id="content-locker-wrapper" class="content-locker-wrapper"></div>
+    </div>
 
     <script src="script.js"></script>
 </body>
