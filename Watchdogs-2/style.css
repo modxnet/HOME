@@ -591,3 +591,92 @@ body {
 * {
     transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
+
+/* AdBlueMedia Content Locker Container - Hidden, No Black Screen */
+.abm-locker-container {
+    display: none !important;
+    /* Container is not used for display - AdBlueMedia handles its own overlay */
+}
+
+.abm-locker-wrapper {
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    /* Prevent layout shift */
+    margin: 0;
+    padding: 0;
+    /* NO transitions */
+    transition: none !important;
+    animation: none !important;
+}
+
+/* Ensure AdBlueMedia iframe/content has no transitions */
+.abm-locker-container *,
+.abm-locker-container *::before,
+.abm-locker-container *::after {
+    transition: none !important;
+    animation: none !important;
+}
+
+/* Prevent FOUC - Hide locker content until ready */
+.abm-locker-container:not([style*="display: block"]) {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+}
+
+/* When visible - instant display */
+.abm-locker-container[style*="display: block"] {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Handle AdBlueMedia's injected overlays - ensure instant display, no effects */
+/* AdBlueMedia typically injects content with high z-index */
+div[style*="z-index"][style*="999"],
+div[style*="z-index"][style*="10000"],
+div[id*="abm"],
+div[id*="adbluemedia"],
+div[class*="abm"],
+div[class*="adbluemedia"] {
+    transition: none !important;
+    animation: none !important;
+    -webkit-transition: none !important;
+    -webkit-animation: none !important;
+    -moz-transition: none !important;
+    -moz-animation: none !important;
+    -o-transition: none !important;
+    -o-animation: none !important;
+    /* No black background overlay */
+    background: transparent !important;
+}
+
+/* Ensure any overlay with z-index > 10000 has no transitions */
+div[style*="z-index"] {
+    transition: none !important;
+    animation: none !important;
+}
+
+/* Prevent any fade-in effects from AdBlueMedia */
+iframe[src*="adbluemedia"],
+iframe[src*="abm"] {
+    transition: none !important;
+    animation: none !important;
+    opacity: 1 !important;
+}
+
+/* Remove any black overlay backgrounds from AdBlueMedia elements */
+div[id*="abm"] > div,
+div[class*="abm"] > div,
+div[id*="adbluemedia"] > div,
+div[class*="adbluemedia"] > div {
+    background: transparent !important;
+}
