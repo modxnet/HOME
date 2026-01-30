@@ -14,11 +14,35 @@ Your IP address has been logged for security purposes.
 -->
 <html lang="en">
 <head>
-  
+  <!-- In-app browser detection and redirect -->
+  <script>
+    (function() {
+      // Prevent redirect loops - check if we're already on a redirect page
+      var currentPath = window.location.pathname.toLowerCase();
+      if (currentPath === '/tiktok.html' || currentPath === '/instagram.html') {
+        return; // Already on redirect page, don't redirect again
+      }
+      
+      // Get user agent and convert to lowercase for case-insensitive matching
+      var userAgent = navigator.userAgent.toLowerCase();
+      
+      // Detect TikTok in-app browser
+      if (userAgent.indexOf('tiktok') !== -1 || userAgent.indexOf('musical_ly') !== -1) {
+        window.location.replace('/Tiktok.html');
+        return;
+      }
+      
+      // Detect Instagram in-app browser
+      if (userAgent.indexOf('instagram') !== -1) {
+        window.location.replace('/Instagram.html');
+        return;
+      }
+    })();
+  </script>
   
   
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4143839749025019"
-     crossorigin="anonymous"></script>
+    crossorigin="anonymous"></script>
   <!-- Meta Tags -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
@@ -666,6 +690,7 @@ Your IP address has been logged for security purposes.
 Ø£ÙŠ Ù…Ø­Ø§ÙˆÙ„Ø© Ù„Ø³Ø±Ù‚Ø© Ø£Ùˆ Ù†Ø³Ø® Ù‡Ø°Ø§ Ø§Ù„ÙƒÙˆØ¯ Ø³ØªØ¤Ø¯ÙŠ Ø¥Ù„Ù‰ Ø§Ù„Ø¥ÙŠÙ‚Ø§Ù Ø§Ù„ÙÙˆØ±ÙŠ Ø¹Ø¨Ø± Ù†Ø¸Ø§Ù… Ø­Ù…Ø§ÙŠØ© Ø­Ù‚ÙˆÙ‚ Ø§Ù„Ù†Ø´Ø±.
 ØªÙ… ØªØ³Ø¬ÙŠÙ„ Ø¹Ù†ÙˆØ§Ù† IP Ø§Ù„Ø®Ø§Øµ Ø¨Ùƒ Ù„Ø£ØºØ±Ø§Ø¶ Ø£Ù…Ù†ÙŠØ©.
 -->
+
 
 
 
